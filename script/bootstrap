@@ -151,6 +151,13 @@ then
     fail "error installing dependencies"
   fi
 fi
+## JD edit
+
+#backup old bin
+sudo mv bin bin_old
+
+#symlink .dotfiles bin to ~
+ln -s .dotfiles/bin bin
 
 echo ''
 echo '  All installed!'

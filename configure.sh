@@ -36,6 +36,7 @@ mv dircolors.256dark .dircolors
 
 # Pull down personal dotfiles
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
+git checkout wsl
 cd .dotfiles
 source script/bootstrap
 
