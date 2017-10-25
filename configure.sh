@@ -49,7 +49,7 @@ mv dircolors.256dark .dircolors
 # Pull down personal dotfiles
 echo "Now pulling down jldeen dotfiles and configuring symlinks..."
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
-cd $HOME/.dotfiles/
+cd $HOME/.dotfiles
 git checkout wsl
 source script/bootstrap
 
