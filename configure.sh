@@ -3,15 +3,19 @@
 # zsh install
 echo ''
 echo "Now installing zsh..."
+echo ''
 sudo apt install zsh -y
 
 # oh-my-zsh install
+echo ''
 echo "Now installing oh-my-zsh"
+echo ''
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # oh-my-zsh plugin install
 echo ''
-echo "Now installing oh-my-zsh..."
+echo "Now installing oh-my-zsh plugins..."
+echo ''
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
@@ -20,38 +24,45 @@ echo "source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> 
 # powerlevel9k install
 echo ''
 echo "Now installing powerlevel9k..."
+echo ''
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 # vimrc vundle install
 echo ''
 echo "Now installing vundle..."
+echo ''
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Pathogen install
 echo ''
 echo "Now installing Pathogen..."
+echo ''
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 # Nerdtree for vim install
 echo ''
 echo "Now installing Nerdtree for Vim..."
+echo ''
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
 # Vim color scheme install
 echo ''
 echo "Now installing vim wombat color scheme..."
+echo ''
 git clone https://github.com/sheerun/vim-wombat-scheme.git ~/.vim/colors/wombat 
 mv ~/.vim/colors/wombat/colors/* ~/.vim/colors/
 
 # Midnight commander install
 echo ''
 echo "Now installing Midnight commander..."
+echo ''
 sudo apt-get install mc -y
 
 # Bash color scheme
 echo ''
 echo "Now installing solarized dark WSL color scheme..."
+echo ''
 wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
 mv dircolors.256dark .dircolors
 
@@ -59,14 +70,16 @@ mv dircolors.256dark .dircolors
 echo ''
 echo "Now pulling down jldeen dotfiles..."
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
-echo
+echo ''
 cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo ''
 echo "Checking out WSL branch..." && git checkout wsl
-echo
+echo ''
 echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
 
 # Set default shell to zsh
 echo ''
 echo "Now setting default shell..."
 chsh -s $(which zsh); exit 0
+
+echo '	Badass WSL terminal installed!'
