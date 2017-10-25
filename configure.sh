@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # zsh install
-echo 
+echo ''
 echo "Now installing zsh..."
 sudo apt install zsh -y
 
@@ -10,7 +10,7 @@ echo "Now installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # oh-my-zsh plugin install
-echo 
+echo ''
 echo "Now installing oh-my-zsh..."
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
@@ -18,56 +18,55 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-sy
 echo "source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 # powerlevel9k install
-echo 
+echo ''
 echo "Now installing powerlevel9k..."
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 # vimrc vundle install
-echo 
+echo ''
 echo "Now installing vundle..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Pathogen install
-echo 
+echo ''
 echo "Now installing Pathogen..."
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 # Nerdtree for vim install
-echo 
+echo ''
 echo "Now installing Nerdtree for Vim..."
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
 # Vim color scheme install
-echo 
+echo ''
 echo "Now installing vim wombat color scheme..."
 git clone https://github.com/sheerun/vim-wombat-scheme.git ~/.vim/colors/wombat 
 mv ~/.vim/colors/wombat/colors/* ~/.vim/colors/
 
 # Midnight commander install
-echo
+echo ''
 echo "Now installing Midnight commander..."
 sudo apt-get install mc -y
 
 # Bash color scheme
-echo
+echo ''
 echo "Now installing solarized dark WSL color scheme..."
 wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
 mv dircolors.256dark .dircolors
 
 # Pull down personal dotfiles
-echo
+echo ''
 echo "Now pulling down jldeen dotfiles..."
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
 echo
 cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
-echo
+echo ''
 echo "Checking out WSL branch..." && git checkout wsl
 echo
 echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
 
 # Set default shell to zsh
-echo
+echo ''
 echo "Now setting default shell..."
 chsh -s $(which zsh); exit 0
-
