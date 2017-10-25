@@ -3,6 +3,9 @@
 # zsh install
 echo "Now installing zsh..."
 sudo apt install zsh -y
+
+# oh-my-zsh install
+echo "Now installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # oh-my-zsh plugin install
@@ -10,7 +13,7 @@ echo "Now installing oh-my-zsh..."
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-echo "source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh >> ${ZDOTDIR:-$HOME}/.zshrc"
+echo "source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 # powerlevel9k install
 echo "Now installing powerlevel9k..."
@@ -46,8 +49,8 @@ mv dircolors.256dark .dircolors
 # Pull down personal dotfiles
 echo "Now pulling down jldeen dotfiles and configuring symlinks..."
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
+cd $HOME/.dotfiles/
 git checkout wsl
-cd .dotfiles
 source script/bootstrap
 
 # Set default shell to zsh
