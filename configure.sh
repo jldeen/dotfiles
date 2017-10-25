@@ -51,7 +51,7 @@ echo "Now pulling down jldeen dotfiles..."
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
 cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo "Checking out WSL branch..." && git checkout wsl
-echo "Now configuring symlinks..."source script/bootstrap
+echo "Now configuring symlinks..."source $HOME/.dotfiles/script/bootstrap
 
 # Set default shell to zsh
 echo "Now setting default shell..."
