@@ -47,11 +47,11 @@ wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolor
 mv dircolors.256dark .dircolors
 
 # Pull down personal dotfiles
-echo "Now pulling down jldeen dotfiles and configuring symlinks..."
+echo "Now pulling down jldeen dotfiles..."
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
-cd $HOME/.dotfiles
-git checkout wsl
-source script/bootstrap
+cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
+echo "Checking out WSL branch..." && git checkout wsl
+echo "Now configuring symlinks..."source script/bootstrap
 
 # Set default shell to zsh
 echo "Now setting default shell..."
