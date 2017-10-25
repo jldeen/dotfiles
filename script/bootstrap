@@ -153,11 +153,19 @@ then
 fi
 ## JD edit
 
-#backup old bin
-sudo mv bin bin_old
+#backup old bin, if exists
+if [ -e $HOME/bin ]
+then
+    echo ''
+    echo "current $HOME/bin folder found!!! Creating backup..."
+    sudo mv $HOME/bin bin_old
+else
+    echo ''
+    echo "No current $HOME/bin folder found. Proceeding to link bin folder for tumx scripts..."
+fi
 
 #symlink .dotfiles bin to ~
-ln -s .dotfiles/bin bin
+ln -s $HOME/.dotfiles/bin $HOME/bin
 
 echo ''
 echo '  All installed!'
