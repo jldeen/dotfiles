@@ -64,7 +64,7 @@ cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo
 echo "Checking out WSL branch..." && git checkout wsl
 echo
-echo "Now configuring symlinks..." && source $HOME/.dotfiles/script/bootstrap
+echo "Now configuring symlinks..." && . $HOME/.dotfiles/script/bootstrap
 
 # Set default shell to zsh
 echo
