@@ -99,6 +99,7 @@ DEFAULT_USER="jldeen"
 plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
