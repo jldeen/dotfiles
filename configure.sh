@@ -1,5 +1,8 @@
 #!/bin/bash
+# Update pkg lists
 
+echo "Updating package lists..."
+sudo apt-get update
 # zsh install
 echo ''
 echo "Now installing zsh..."
@@ -115,11 +118,10 @@ fi
 # Setup and configure az cli
 echo ''
 read -p "Do you want to install Azure CLI? y/n" -n 1 -r
-echo "Now installing az cli..."
-echo    # (optional) move to a new line
+echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-	sudo apt-get update -y
+	echo "Now installing az cli..."
     sudo apt-get install python libssl-dev libffi-dev python-dev build-essential -y
 	curl -L https://aka.ms/InstallAzureCli | bash
 	exec -l $SHELL
