@@ -100,6 +100,7 @@ plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # User configuration
 
@@ -144,5 +145,3 @@ export PATH=$PATH:~/bin
 
 autoload bashcompinit && bashcompinit
 #source '/Users/jessicadeen/lib/azure-cli/az.completion'
-
-source /home/jldeen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
