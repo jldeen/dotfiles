@@ -164,8 +164,11 @@ else
     echo "No current $HOME/bin folder found. Proceeding to link bin folder for tumx scripts..."
 fi
 
-#symlink .dotfiles bin to ~
+# symlink .dotfiles bin to ~
 ln -s $HOME/.dotfiles/bin $HOME/bin
+
+# symlink .dotfiles tmux to ~
+ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 
 echo ''
 echo '  All installed!'
