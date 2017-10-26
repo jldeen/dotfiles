@@ -26,7 +26,7 @@ echo "source $HOME/.git-completion.bash" >> ${ZDOTDIR:-$HOME}/.bashrc
 echo ''
 echo "Now installing oh-my-zsh"
 echo ''
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh; exit 0)"
 
 # oh-my-zsh plugin install
 echo ''
@@ -92,6 +92,12 @@ echo ''
 echo "Checking out WSL branch..." && git checkout wsl
 echo ''
 echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
+
+# Setup and configure az cli
+echo ''
+echo "Now installing az cli..."
+curl -L https://aka.ms/InstallAzureCli | bash
+exec -l $SHELL
 
 # Set default shell to zsh
 echo ''
