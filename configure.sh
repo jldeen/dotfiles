@@ -26,7 +26,7 @@ fi
 
 # oh-my-zsh install
 echo ''
-echo "Now installing oh-my-zsh"
+echo "Now installing oh-my-zsh..."
 echo ''
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
