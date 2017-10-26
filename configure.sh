@@ -117,7 +117,7 @@ fi
 
 # Setup and configure az cli
 echo ''
-read -p "Do you want to install Azure CLI? y/n" -n 1 -r
+read -p "Do you want to install Azure CLI? y/n (This will take some time...)" -n 1 -r
 echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -145,9 +145,9 @@ then
     chsh -s $(which zsh); exit 0
     if [[ $? -eq 0 ]]
     then
-        echo "Successfully installed Azure CLI 2.0..."
+        echo "Successfully set your default shell to zsh..."
     else
-        echo "Azure CLI not installed successfully..." >&2
+        echo "Default shell not set successfully..." >&2
 fi
 else 
     echo "You chose not to install Azure CLI. Exiting now..."
