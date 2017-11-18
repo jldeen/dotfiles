@@ -128,8 +128,8 @@ link_file () {
 rename_tmux_files () {
   info 'renaming tmux files from submodules'
 
-  mv "$DOTFILES_ROOT/tmux/.tmux.conf" "$DOTFILES_ROOT/tmux/.tmux.conf.symlink"
-  mv "$DOTFILES_ROOT/tmux/.tmux.conf.local" "$DOTFILES_ROOT/tmux/.tmux.conf.local.symlink"
+  mv "$DOTFILES_ROOT/tmux/.tmux.conf" "$DOTFILES_ROOT/tmux/tmux.conf.symlink"
+  mv "$DOTFILES_ROOT/tmux/.tmux.conf.local" "$DOTFILES_ROOT/tmux/tmux.conf.local.symlink"
 
   success 'tmux files'
 }
