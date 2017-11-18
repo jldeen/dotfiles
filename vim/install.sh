@@ -3,5 +3,6 @@ if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
 fi
 
 if [ ! -d "$HOME/.vim/autoload" ]; then
+  mkdir ~/.vim/autoload
   sudo curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
