@@ -1,4 +1,4 @@
-if test ! $(which sdk)
+if test ! $(command -v sdk)
 then
-  curl -s "https://get.sdkman.io" | bash
+  sudo curl -s "https://get.sdkman.io" | bash
 fi
