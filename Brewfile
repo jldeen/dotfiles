@@ -1,7 +1,7 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
-tap 'caskroom/casks'
+tap 'caskroom/cask'
 tap 'caskroom/versions'
 
 brew 'ack'
@@ -11,7 +11,6 @@ brew 'grc'
 brew 'fpp'
 brew 'jenv'
 brew 'jq'
-brew 'libcaca', args: ['with-imlib2']
 brew 'openssl'
 brew 'rbenv'
 brew 'reattach-to-user-namespace'
