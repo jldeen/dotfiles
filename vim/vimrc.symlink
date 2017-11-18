@@ -10,6 +10,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'dracula/vim'
 Plugin 'nightsense/seabird'
 Plugin 'tomasiser/vim-code-dark'
+Plugin 'sheerun/vim-wombat-scheme'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()            " required
