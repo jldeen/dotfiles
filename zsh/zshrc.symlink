@@ -1,4 +1,4 @@
-# shortcut to this dotfiles path is $ZSH
+# shortcut to this dotfiles path is $DZSH
 export DZSH=$HOME/.dotfiles
 export ZSH=$HOME/.oh-my-zsh
 

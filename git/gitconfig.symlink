@@ -5,9 +5,9 @@
         protocol = https
 [alias]
         co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
+        promote = !$dZSH/bin/git-promote
+        wtf     = !$DZSH/bin/git-wtf
+        rank-contributors = !$dZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
 
         re-ignore = !git rm --cached -r . && git add -A
