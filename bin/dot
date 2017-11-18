@@ -41,7 +41,7 @@ done
 export DZSH=$HOME/.dotfiles
 
 # Set macOS defaults
-$dZSH/macos/set-defaults.sh
+$DZSH/macos/set-defaults.sh
 
 # Install homebrew
 $DZSH/homebrew/install.sh 2>&1
@@ -51,5 +51,5 @@ echo "› brew update"
 brew update
 
 # Install software
-echo "› $dZSH/script/install"
+echo "› $DZSH/script/install"
 $DZSH/script/install
