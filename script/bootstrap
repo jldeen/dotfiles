@@ -125,6 +125,15 @@ link_file () {
   fi
 }
 
+rename_tmux_files () {
+  info 'renaming tmux files from submodules'
+
+  mv "$DOTFILES_ROOT\tmux\.tmux.conf" "$DOTFILES_ROOT\tmux\.tmux.conf.symlink"
+  mv "$DOTFILES_ROOT\tmux\.tmux.conf.local" "$DOTFILES_ROOT\tmux\.tmux.conf.local.symlink"
+
+  success 'tmux files'
+}
+
 install_dotfiles () {
   info 'installing dotfiles'
 
@@ -137,6 +146,7 @@ install_dotfiles () {
   done
 }
 
+rename_tmux_files
 setup_gitconfig
 install_dotfiles
 
