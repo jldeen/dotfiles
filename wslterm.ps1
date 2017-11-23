@@ -29,7 +29,7 @@ Get-ChildItem $wslTerminal -Filter *.7z | ForEach-Object {
 
 # Add shortcut to desktop
 $TargetFile = "$env:USERPROFILE\wsl-terminal\open-wsl.exe"
-$ShortcutFile = "$env:USERPROFILE\Desktop\bash.lnk"
+$ShortcutFile = "$env:USERPROFILE\Desktop\wsl.lnk"
 $WScriptShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
 $Shortcut.TargetPath = $TargetFile
