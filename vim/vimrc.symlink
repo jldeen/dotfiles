@@ -22,7 +22,7 @@ filetype plugin indent on    " required
 
 " Put your non-Plugin stuff after this line
 
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " theme
 " ----
