@@ -8,11 +8,10 @@ zsh_dotnet() {
     local version
     local color='%F{magenta}'
 
-    if ls *.csproj 1> /dev/null 2>&1; then
-        
-    else
-        return
-    fi
+    setopt +o nomatch
+    local count=$(ls -1 ./*.csproj 2>/dev/null | wc -l)
+
+    [ "$count" -eq 0 ] && return
 
     version=$(dotnet --version)
 
