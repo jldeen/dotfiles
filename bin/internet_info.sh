@@ -30,7 +30,7 @@ fi
  
 INTERNET=''
 
-#internet_info=`airport -I | grep agrCtlRSSI | awk '{print $2}' | sed 's/-//g'`
+#internet_info=`iwconfig eth0 | grep "Signal level" | awk '{print $2}' | sed 's/-//g'`
 
 if [[ $internet_info -lt 20 ]]; then
     echo -n '#[fg=colour150]'
