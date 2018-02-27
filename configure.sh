@@ -80,7 +80,7 @@ sudo apt-get install mc -y
 echo ''
 echo "Now installing tmux plugin manager..."
 echo ''
-$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Bash color scheme
 echo ''
