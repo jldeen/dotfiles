@@ -1,11 +1,22 @@
 #!/bin/bash
 
+# Internal IP
 IP=$(hostname -I | awk {'print $1}')
-P_L=$(ping google.com -t 4 | grep "packet loss" | awk '{print $7}')
+
+# Packet loss check
+timeout 7s "ping google.com -t 4 | grep "packet loss" | awk '{print $7}'" > /dev/null 2>&1
+if [[ $? -eq 0 ]]
+    then
+        PL=$(ping google.com -t 4 | grep "packet loss" | awk '{print $7}')
+    else
+        PL="N/A"
+fi
+
+# Speedtest
 DL=$(speedtest-cli --simple | awk 'NR==2{print $2}')
 UP=$(speedtest-cli --simple | awk 'NR==3{print $2}')
 
-# # Public IP
+# Public IP
 PUB_IP=$(speedtest-cli --json | jq -r .client.ip)
 
 if [[ "$PUB_IP" = ";; connection timed out; no servers could be reached" ]]; then 
@@ -32,4 +43,4 @@ else
     echo -n '#[fg=colour150]'
 fi
 
-echo -n "#[fg=colour60]$INTERNET  -[$internet_info]db | #[fg=colour81]$P_L p/l #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour60]$IP | $PUB_IP"
+echo -n "#[fg=colour60]$INTERNET  -[$internet_info]db | #[fg=colour81]$PL p/l #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour60]$IP | $PUB_IP"
