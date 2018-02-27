@@ -6,6 +6,12 @@ Run the following to configure macOS from scratch...
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/mac/configure.sh)"
 ```
 
+### WSL Configuration
+Run the following to configure WSL from scratch...
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl/configure.sh)"
+```
+
 ### Notes
 Your dotfiles are how you personalize your system. These are mine.
 
@@ -56,7 +62,7 @@ There's a few special files in the hierarchy.
 ## install
 There are two "master" branches here: WSL and MacOS; there are two "dev" branches here wsl-dev and mac-dev.
 
-Run this:
+Run this if you wish to run from clone:
 
 ```sh
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
@@ -83,14 +89,14 @@ said, I do use this as *my* dotfiles, so there's a good chance I may break
 something if I forget to make a check for a dependency.
 
 If you're brand-new to the project and run into any blockers, please
-[open an issue](https://github.com/holman/dotfiles/issues) on this repository
+[open an issue](https://github.com/jldeen/dotfiles/issues) on this repository
 and I'd love to get it fixed for you!
 
 ## thanks
 
-I forked [Ryan Bates](http://github.com/ryanb)' excellent
+Holman forked [Ryan Bates](http://github.com/ryanb)' excellent
 [dotfiles](http://github.com/ryanb/dotfiles) for a couple years before the
-weight of my changes and tweaks inspired me to finally roll my own. But Ryan's
+weight of his changes and tweaks inspired him to finally roll his own. But Ryan's
 dotfiles were an easy way to get into bash customization, and then to jump ship
 to zsh a bit later. A decent amount of the code in these dotfiles stem or are
 inspired from Ryan's original project.
