@@ -96,6 +96,9 @@ then
 	echo "Checking out macOS branch..." && git checkout mac
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
+    echo ''
+    echo "Now setting up dependencies..."
+    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport\n
     if [[ $? -eq 0 ]]
     then
         echo "Successfully configured your environment with jldeen's macOS dotfiles..."
