@@ -9,4 +9,8 @@ atom.symlink/themes
 atom.symlink/blob-store
 atom.symlink/recovery
 
+bin/ip.sh
+bin/kubectl
+bin/ssh.sh
+
 git/gitconfig.local.symlink
