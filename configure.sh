@@ -78,8 +78,8 @@ echo "Now installing Midnight commander..."
 echo ''
 brew install mc
 
-# Speedtest-cli and jq install
-brew install jq speedtest-cli
+# Speedtest-cli, coreutils and jq install
+brew install coreutils jq speedtest-cli
 
 # Pull down personal dotfiles
 echo ''
