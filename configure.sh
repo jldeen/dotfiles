@@ -153,7 +153,7 @@ then
         echo "Default shell not set successfully..." >&2
 fi
 else 
-    echo "You chose not to install Azure CLI. Exiting now..."
+    echo "You chose not to set your default shell to zsh. Exiting now..."
 fi
 echo ''
 echo '	Badass WSL terminal installed!'
