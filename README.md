@@ -1,14 +1,9 @@
 # jldeen does dotfiles - forked from holman's repo
 
-### WSL Configuration
-Run the following to configure WSL from scratch...
+### macOS Configuration
+Run the following to configure macOS from scratch...
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl/configure.sh)"
-```
-### WSL Emulator Install
-Run the following command from an Administrator PowerShell prompt...
-```
-Set-ExecutionPolicy Bypass; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/jldeen/dotfiles/wsl/wslterm.ps1'))
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/mac/configure.sh)"
 ```
 
 ### Notes
@@ -59,7 +54,7 @@ There's a few special files in the hierarchy.
   symlinked in when you run `script/bootstrap`.
 
 ## install
-There are two branches here: WSL and MacOS (still in development).
+There are two "master" branches here: WSL and MacOS; there are two "dev" branches here wsl-dev and mac-dev.
 
 Run this:
 
