@@ -82,7 +82,7 @@ echo "Now installing tmux plugin manager..."
 echo ''
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# Speedtest-cli and jq install
+# Speedtest-cli, pip and jq install
 echo ''
 echo "Now installing Speedtest-cli, pip and jq..."
 echo ''
