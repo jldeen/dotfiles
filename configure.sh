@@ -101,7 +101,7 @@ then
 	echo ''
 	cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 	echo ''
-	echo "Checking out WSL branch..." && git checkout wsl
+	echo "Checking out WSL branch..." && git checkout wsl-dev
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     if [[ $? -eq 0 ]]
