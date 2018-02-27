@@ -1,18 +1,20 @@
 #!/bin/bash
-# Update pkg lists
+
+# Install brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "Updating package lists..."
-sudo apt-get update
+brew update
 # zsh install
 echo ''
 echo "Now installing zsh..."
 echo ''
-sudo apt install zsh -y
+brew install zsh zsh-completions
 
 # Installing git completion
 echo ''
 echo "Now installing git and bash-completion..."
-sudo apt-get install git bash-completion -y
+brew install git && brew install bash-completion
 
 echo ''
 echo "Now configuring git-completion..."
@@ -74,14 +76,14 @@ mv ~/.vim/colors/wombat/colors/* ~/.vim/colors/
 echo ''
 echo "Now installing Midnight commander..."
 echo ''
-sudo apt-get install mc -y
+brew install mc
 
 # Bash color scheme
-echo ''
-echo "Now installing solarized dark WSL color scheme..."
-echo ''
-wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
-mv dircolors.256dark .dircolors
+# echo ''
+# echo "Now installing solarized dark WSL color scheme..."
+# echo ''
+# wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
+# mv dircolors.256dark .dircolors
 
 # Pull down personal dotfiles
 echo ''
@@ -95,18 +97,18 @@ then
 	echo ''
 	cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 	echo ''
-	echo "Checking out WSL branch..." && git checkout wsl
+	echo "Checking out macOS branch..." && git checkout mac
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     if [[ $? -eq 0 ]]
     then
-        echo "Successfully configured your environment with jldeen's dotfiles..."
+        echo "Successfully configured your environment with jldeen's macOS dotfiles..."
     else
-        echo "jldeen's dotfiles were not applied successfully..." >&2
+        echo "jldeen's macOS dotfiles were not applied successfully..." >&2
 fi
 else 
 	echo ''
-    echo "You chose not to apply jldeen's dotfiles. You will need to configure your environment manually..."
+    echo "You chose not to apply jldeen's macOS dotfiles. You will need to configure your environment manually..."
 	echo ''
 	echo "Setting defaults for .zshrc and .bashrc..."
 	echo ''
@@ -125,9 +127,7 @@ echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo "Now installing az cli..."
-    sudo apt-get install python libssl-dev libffi-dev python-dev build-essential -y
-	curl -L https://aka.ms/InstallAzureCli | bash
-	exec -l $SHELL
+    brew install azure-cli
     if [[ $? -eq 0 ]]
     then
         echo "Successfully installed Azure CLI 2.0."
@@ -156,4 +156,4 @@ else
     echo "You chose not to set your default shell to zsh. Exiting now..."
 fi
 echo ''
-echo '	Badass WSL terminal installed!'
+echo '	Badass macOS terminal installed!'
