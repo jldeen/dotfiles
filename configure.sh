@@ -76,6 +76,12 @@ echo "Now installing Midnight commander..."
 echo ''
 sudo apt-get install mc -y
 
+# Tmux Plugin Manager
+echo ''
+echo "Now installing tmux plugin manager..."
+echo ''
+$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Bash color scheme
 echo ''
 echo "Now installing solarized dark WSL color scheme..."
