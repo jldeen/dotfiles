@@ -4,7 +4,7 @@
 IP=$(hostname -I | awk {'print $1}')
 
 # Packet loss check
-timeout 7s "ping google.com -t 4 | grep "packet loss" | awk '{print $7}'" > /dev/null 2>&1
+timeout 7s ping google.com -t 4 | grep "packet loss" | awk '{print $7}' > /dev/null 2>&1
 if [[ $? -eq 0 ]]
     then
         PL=$(ping google.com -t 4 | grep "packet loss" | awk '{print $7}' p/l)
