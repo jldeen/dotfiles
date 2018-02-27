@@ -24,31 +24,13 @@ setw -g xterm-keys on
 # Mouse support ---------------------------------------------------------- 
 set -g mouse on
 
+bind-key -T copy-mode-vi WheelUpPane send -X scroll-up
+bind-key -T copy-mode-vi WheelDownPane send -X scroll-down
 
 # # Vi copypaste
 setw -g mode-keys vi
-
-## Clipboard integration
-
-# Selection with mouse should copy to clipboard right away, in addition to the default action.
-# Unbind the default action first.
-
-#### Doesn't work yet
-#unbind -n -Tcopy-mode-vi MouseDragEnd1Pane
-#bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel\; run "tmux save-buffer - | xclip -i -sel clipboard &gt; /dev/null"
-####
-
-# Copy mode copy should also copy it to the clipboard as well.
-
-#### Doesn't work yet
-#unbind -Tcopy-mode-vi Enter
-#bind -Tcopy-mode-vi Enter send -X copy-selection-and-cancel\; run "tmux save-buffer - | xclip -i -sel clipboard &gt; /dev/null"
-####
-
-# Right click to paste from the clipboard
-# If you like middle click better, change MouseDown3Pane to MouseDown2Pane for middle click.
-unbind-key MouseDown3Pane
-bind-key -n MouseDown3Pane run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "highlighted selection copied to system clipboard"
 
 # Easy-to-remember split pane commands
 bind \ split-window -h -c '#{pane_current_path}' # vertical pane
@@ -67,8 +49,8 @@ unbind &
 set -g @tasks_manager 'taskwarrior'
 
 # Colors
-set -g @tasks_format_begin '#[fg=white,bg=default]'
-set -g @tasks_format_end '#[fg=white,bg=default]'
+set -g @tasks_format_begin '#[fg=white,bg=colour236]'
+set -g @tasks_format_end '#[fg=white,bg=colour236]'
 
 # Icons
 set -g @tasks_icon_urgent '⧗ '
@@ -81,13 +63,13 @@ set -g status-interval 1
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
 set -g status-position bottom
-set -g status-bg colour248
+set -g status-bg colour237
 set -g status-fg colour137
-set -g status-attr 'none'
-set -g status-left '#[fg=colour240]#(~/bin/internet_info.sh) '
-set -g status-right '#[fg=colour240]♪ #(~/bin/now_playing.sh) #(~/bin/battery.sh) #[fg=colour10,bold,bg=default] %a %m-%d  %H:%M:%S #[fg=colour165]#[bg=default] #H '
+set -g status-attr dim
+set -g status-left '#[fg=colour197]#(~/bin/internet_info.sh) '
+set -g status-right '#[fg=colour81]♪ #(~/bin/now_playing.sh) #(~/bin/battery.sh) #[fg=colour255,bg=colour241,bold] %a %m-%d #[fg=colour255,bg=colour241,bold] %H:%M:%S #[fg=colour165]#[bg=default] #H '
 set -g status-right-length 100
-set -g status-left-length 70
+set -g status-left-length 90
 
 set-window-option -g aggressive-resize
 setw -g window-status-current-fg colour170
