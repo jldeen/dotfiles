@@ -24,7 +24,7 @@ if [ "$WIDTH" -ge "$MEDIUM" ]; then
 fi
 
 if [ "$WIDTH" -ge "$SMALL" ]; then
-  UNAME="#[fg=colour165]#[bg=default] #H"
+  CLEAR=""
 fi
 
-echo "$MPD $BATTERY $DATE $TIME $UNAME " | sed 's/ *$/ /g'
+echo "$MPD $BATTERY $DATE $TIME " | sed 's/ *$/ /g'

@@ -82,7 +82,7 @@ set -g status-bg colour237
 set -g status-fg colour137
 set -g status-attr 'none'
 set -g status-left ' #[fg=colour197]#(~/bin/internet_info.sh) '
-set -g status-right '#(eval responsive `tmux display -p "#{client_width}"`)'
+set -g status-right '#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165]#[bg=default] #H'
 set -g status-right-length 100
 set -g status-left-length 80
 
