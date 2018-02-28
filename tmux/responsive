@@ -1,0 +1,26 @@
+#!/bin/sh
+
+CLOCK=⌚
+CALENDAR=☼
+MUSIC=♫
+
+WIDTH=${1}
+
+SMALL=80
+MEDIUM=140
+
+if [ "$WIDTH" -gt "$MEDIUM" ]; then
+  MPD="#[fg=colour81]♪ #(~/bin/now_playing.sh)"
+  date_colour='colour41'
+fi
+
+if [ "$WIDTH" -ge "$SMALL" ]; then
+  UNAME="#[fg=colour165]#[bg=default] #H"
+fi
+DATE="#[fg=colour255,bg=colour241,bold] $CALENDAR $(date +'%a %m-%d-%y')"
+TIME="$CLOCK #[fg=colour255,bg=colour241,bold] $(date +'%H:%M:%S')"
+
+echo "$MPD $DATE $TIME $UNAME " | sed 's/ *$/ /g'
+
+
+# set -g status-right '#[fg=colour81]♪ #(~/bin/now_playing.sh) #(~/bin/battery.sh) #[fg=colour255,bg=colour241,bold] %a %m-%d #[fg=colour255,bg=colour241,bold] %H:%M:%S #[fg=colour165]#[bg=default] #H '
