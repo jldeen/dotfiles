@@ -1,6 +1,5 @@
 #!/bin/sh
 
-CLOCK=⌚
 CALENDAR=☼
 
 WIDTH=${1}
@@ -21,7 +20,7 @@ if [ "$WIDTH" -ge "$LARGE" ]; then
 fi
 
 if [ "$WIDTH" -ge "$MEDIUM" ]; then
-  TIME="$CLOCK #[fg=colour255,bg=colour241,bold] $(date +'%H:%M:%S')"
+  TIME="#[fg=colour255,bg=colour241,bold] $(date +'%H:%M:%S')"
 fi
 
 if [ "$WIDTH" -ge "$SMALL" ]; then
