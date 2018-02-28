@@ -78,11 +78,11 @@ set -g status-interval 1
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
 set -g status-position bottom
-set -g status-bg colour248
+set -g status-bg colour237
 set -g status-fg colour137
 set -g status-attr 'none'
-set -g status-left '#[fg=colour240]#(~/bin/internet_info.sh) '
-set -g status-right '#[fg=colour10,bold,bg=default] %a %m-%d  %H:%M:%S #[fg=colour165]#[bg=default] #H '
+set -g status-left '#[fg=colour197]#(~/bin/internet_info.sh) '
+set -g status-right '#[fg=colour255,bold,bg=colour241] %a %m-%d  %H:%M:%S #[fg=colour165]#[bg=default] #H '
 set -g status-right-length 100
 set -g status-left-length 80
 

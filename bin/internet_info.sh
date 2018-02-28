@@ -32,16 +32,16 @@ INTERNET=''
 
 #internet_info=`iwconfig eth0 | grep "Signal level" | awk '{print $2}' | sed 's/-//g'`
 
-if [[ $internet_info -lt 20 ]]; then
-    echo -n '#[fg=colour150]'
-elif [[ $internet_info -lt 30 ]]; then
-    echo -n '#[fg=colour155]'
-elif [[ $internet_info -lt 40 ]]; then
-    echo -n '#[fg=colour160]'
-elif [[ $internet_info -lt 50 ]]; then
-    echo -n '#[fg=colour163]'
-else
-    echo -n '#[fg=colour150]'
-fi
+# if [[ $internet_info -lt 20 ]]; then
+#     echo -n '#[fg=colour150]'
+# elif [[ $internet_info -lt 30 ]]; then
+#     echo -n '#[fg=colour155]'
+# elif [[ $internet_info -lt 40 ]]; then
+#     echo -n '#[fg=colour160]'
+# elif [[ $internet_info -lt 50 ]]; then
+#     echo -n '#[fg=colour163]'
+# else
+#     echo -n '#[fg=colour150]'
+# fi
 
-echo -n "#[fg=colour60]$INTERNET | #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour60]$IP | $PUB_IP"
+echo -n "#[fg=colour197]$INTERNET #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour197]$IP | $PUB_IP"
