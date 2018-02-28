@@ -44,4 +44,4 @@ INTERNET=''
 #     echo -n '#[fg=colour150]'
 # fi
 
-echo -n "#[fg=colour197]$INTERNET #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour197]$IP | $PUB_IP"
+echo -n "#[fg=colour81]$INTERNET  #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour197]$IP | $PUB_IP"
