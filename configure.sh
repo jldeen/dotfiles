@@ -84,10 +84,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Speedtest-cli, pip and jq install
 echo ''
-echo "Now installing Speedtest-cli, pip and jq..."
+echo "Now installing Speedtest-cli, pip, wireless tools and jq..."
 echo ''
-sudo apt-get install jq python-pip -y
-pip install speedtest-cli
+sudo apt-get install jq wireless-tools python-pip -y
+pip install --upgrade pip
+sudo pip install speedtest-cli
 
 # Bash color scheme
 echo ''
