@@ -2,25 +2,30 @@
 
 CLOCK=⌚
 CALENDAR=☼
-MUSIC=♫
 
 WIDTH=${1}
 
 SMALL=80
-MEDIUM=140
+MEDIUM=107
+LARGE=125
+X_LARGE=150
 
-if [ "$WIDTH" -gt "$MEDIUM" ]; then
+if [ "$WIDTH" -gt "$X_LARGE" ]; then
   MPD="#[fg=colour81]♪ #(~/bin/now_playing.sh)"
+  BATTERY="#(~/bin/battery.sh)"
   date_colour='colour41'
+fi
+
+if [ "$WIDTH" -ge "$LARGE" ]; then
+  DATE="#[fg=colour255,bg=colour241,bold] $CALENDAR $(date +'%a %m-%d-%y')"
+fi
+
+if [ "$WIDTH" -ge "$MEDIUM" ]; then
+  TIME="$CLOCK #[fg=colour255,bg=colour241,bold] $(date +'%H:%M:%S')"
 fi
 
 if [ "$WIDTH" -ge "$SMALL" ]; then
   UNAME="#[fg=colour165]#[bg=default] #H"
 fi
-DATE="#[fg=colour255,bg=colour241,bold] $CALENDAR $(date +'%a %m-%d-%y')"
-TIME="$CLOCK #[fg=colour255,bg=colour241,bold] $(date +'%H:%M:%S')"
 
-echo "$MPD $DATE $TIME $UNAME " | sed 's/ *$/ /g'
-
-
-# set -g status-right '#[fg=colour81]♪ #(~/bin/now_playing.sh) #(~/bin/battery.sh) #[fg=colour255,bg=colour241,bold] %a %m-%d #[fg=colour255,bg=colour241,bold] %H:%M:%S #[fg=colour165]#[bg=default] #H '
+echo "$MPD $BATTERY $DATE $TIME $UNAME " | sed 's/ *$/ /g'
