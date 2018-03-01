@@ -109,7 +109,7 @@ then
 	echo ''
 	cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 	echo ''
-	echo "Checking out WSL branch..." && git checkout wsl-dev
+	echo "Checking out wsl-dev branch..." && git checkout wsl-dev
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     if [[ $? -eq 0 ]]
@@ -164,7 +164,7 @@ echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo "Now setting default shell..."
-    chsh -s $(which zsh); exit 0
+    chsh -s $(which zsh)
     if [[ $? -eq 0 ]]
     then
         echo "Successfully set your default shell to zsh..."
