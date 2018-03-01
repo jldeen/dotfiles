@@ -173,11 +173,8 @@ ln -s $HOME/.dotfiles/bin $HOME/bin
 # symlink .dotfiles tmux to ~
 ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 
-# symlink .itermcfg to ~
-ln -s $HOME/.dotfiles/iterm/.itermcfg.symlink $HOME/.itermcfg
-
 # symlink VSCode User Settings
-ln -s $HOME/.dotfiles/code/settings.json.symlink $HOME/Library/Application\ Support/Code/User/settings.json
+ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
 # # iterm2 config
 # echo ''
