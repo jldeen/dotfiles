@@ -76,17 +76,11 @@ echo "Now installing Midnight commander..."
 echo ''
 sudo apt-get install mc -y
 
-# Tmux Plugin Manager
-echo ''
-echo "Now installing tmux plugin manager..."
-echo ''
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 # Speedtest-cli, pip and jq install
 echo ''
-echo "Now installing Speedtest-cli, pip, wireless tools and jq..."
+echo "Now installing Speedtest-cli, pip, tmux and jq..."
 echo ''
-sudo apt-get install jq wireless-tools python-pip -y
+sudo apt-get install jq tmux python-pip -y
 pip install --upgrade pip
 sudo pip install speedtest-cli
 
