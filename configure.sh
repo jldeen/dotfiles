@@ -78,9 +78,6 @@ echo "Now installing Midnight commander..."
 echo ''
 brew install mc
 
-# Speedtest-cli, coreutils and jq install
-brew install coreutils jq speedtest-cli
-
 # Pull down personal dotfiles
 echo ''
 read -p "Do you want to use jldeen's dotfiles? y/n" -n 1 -r
@@ -98,7 +95,8 @@ then
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     echo ''
     echo "Now setting up dependencies..."
-    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport\n
+    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+    
     if [[ $? -eq 0 ]]
     then
         echo "Successfully configured your environment with jldeen's macOS dotfiles..."
