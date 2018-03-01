@@ -97,7 +97,7 @@ DEFAULT_USER="jessicadeen"
 plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -132,21 +132,21 @@ alias config='/usr/bin/git --git-dir=/Users/jessicadeen/.cfg/ --work-tree=/Users
 alias k="kubectl"
 # alias EDITOR=nvim
 
-#Powerline
-if [ -d "$HOME/Library/Python/2.7/bin" ]; then
-    PATH="$HOME/Library/Python/2.7/bin:$PATH"
-fi
+# #Powerline
+# if [ -d "$HOME/Library/Python/2.7/bin" ]; then
+#     PATH="$HOME/Library/Python/2.7/bin:$PATH"
+# fi
 
-repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
-. $repository_root/powerline/bindings/zsh/powerline.zsh
+# repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
+# . $repository_root/powerline/bindings/zsh/powerline.zsh
 
-export PATH=$PATH:~/bin
-export GOPATH=~/go 
-export PATH=$GOPATH/bin:$PATH
-export GOROOT=/usr/local/opt/go/libexec
+# export PATH=$PATH:~/bin
+# export GOPATH=~/go 
+# export PATH=$GOPATH/bin:$PATH
+# export GOROOT=/usr/local/opt/go/libexec
 
-# font source
-source ~/.fonts/*.sh
+# # font source
+# source ~/.fonts/*.sh
 
 #acs-engine
 alias acse="$GOPATH/src/github.com/Azure/acs-engine/bin/acs-engine"
