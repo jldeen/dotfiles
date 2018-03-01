@@ -171,7 +171,12 @@ ln -s $HOME/.dotfiles/bin $HOME/bin
 ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 
 # symlink VSCode User Settings
-ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+# if [ -e /usr/bin/code ]
+# then
+#   ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+# else
+#   echo "No installation of VS Code found. Will not attempt to symlink VS Code settings.json."
+# fi
 
 echo ''
 echo '  All installed!'
