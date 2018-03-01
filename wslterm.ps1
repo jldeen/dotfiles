@@ -1,4 +1,5 @@
-﻿# Function to extract our 7z download
+
+# Function to extract our 7z download
 Function Expand-Archive([string]$Path, [string]$Destination, [switch]$RemoveSource) {
 	$7z_Application = "C:\Program Files\7-Zip\7z.exe"
 	$7z_Arguments = @(
