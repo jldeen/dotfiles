@@ -126,4 +126,6 @@ GIT_PS1_SHOWUPSTREAM="auto"
 
 export PATH=$PATH:/home/jldeen/bin
 
-source '/home/jldeen/lib/azure-cli/az.completion'
+# az cli
+autoload bashcompinit && bashcompinit
+source /usr/local/etc/bash_completion.d/az
