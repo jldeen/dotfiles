@@ -173,7 +173,7 @@ ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 # install Source Code Pro nerd font on Linux systems (not wsl)
 if [ ! -e /mnt/c/Users ]
 then
-  sudo cp $HOME/.dotfiles/Source\ Csode\ Pro\ Nerd\ Font\ Complete.ttf /usr/local/share/fonts
+  sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /usr/local/share/fonts
   sudo fc-cache -fv
 fi
 
