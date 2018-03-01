@@ -63,11 +63,12 @@ Function Expand-Archive([string]$Path, [string]$Destination, [switch]$RemoveSour
 cd $env:USERPROFILE
 
 # Set variable for WSL terminal
-$wslTerminal = "wsl-terminal-0.8.8.7z"
+$version = "0.8.8"
+$wslTerminal = "wsl-terminal-$version.7z"
 
 # Get bits for WSL terminal
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest -Uri 'https://github.com/goreliu/wsl-terminal/releases/download/v0.8.8/wsl-terminal-0.8.8.7z' -OutFile $env:USERPROFILE\$wslTerminal
+Invoke-WebRequest -Uri "https://github.com/goreliu/wsl-terminal/releases/download/v$version/wsl-terminal-$version.7z" -OutFile $env:USERPROFILE\$wslTerminal
 
 # Extract WSL terminal and remove after complete
 Get-ChildItem $wslTerminal -Filter *.7z | ForEach-Object {
