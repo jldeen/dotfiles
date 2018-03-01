@@ -176,6 +176,9 @@ ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 # symlink VSCode User Settings
 ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
+# install Source Code Pro nerd font
+cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
+
 # # iterm2 config
 # echo ''
 # read -p "Do you currently use iTerm2 and would you like to set jldeen's custom colors? y/n" -n 1 -r
