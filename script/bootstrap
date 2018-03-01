@@ -170,13 +170,20 @@ ln -s $HOME/.dotfiles/bin $HOME/bin
 # symlink .dotfiles tmux to ~
 ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 
+# install Source Code Pro nerd font on Linux systems (not wsl)
+if [ ! -e /mnt/c/Users ]
+then
+  sudo cp $HOME/.dotfiles/Source\ Csode\ Pro\ Nerd\ Font\ Complete.ttf /usr/local/share/fonts
+  sudo fc-cache -fv
+fi
+
 # symlink VSCode User Settings
-# if [ -e /usr/bin/code ]
-# then
-#   ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-# else
-#   echo "No installation of VS Code found. Will not attempt to symlink VS Code settings.json."
-# fi
+if [ -e $HOME/.config/Code/User/settings.json ]
+then
+  ln -s $HOME/.dotfiles/code/settings.json $HOME/.config/Code/User/settings.json
+else
+  echo "No installation of VS Code found. Will not attempt to symlink VS Code settings.json."
+fi
 
 echo ''
 echo '  All installed!'
