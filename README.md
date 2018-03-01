@@ -1,3 +1,4 @@
+
 # jldeen does dotfiles - forked from holman's repo
 
 ### WSL Configuration
@@ -8,7 +9,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl/conf
 ### WSL Emulator Install
 Run the following command from an Administrator PowerShell prompt...
 ```
-Set-ExecutionPolicy Bypass; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/jldeen/dotfiles/wsl/wslterm.ps1'))
+Set-ExecutionPolicy Bypass; [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/jldeen/dotfiles/wsl/wslterm.ps1'))
 ```
 
 ### Notes
