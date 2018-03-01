@@ -126,7 +126,7 @@ echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo "Now setting default shell..."
-    chsh -s $(which zsh); exit 0
+    chsh -s $(which zsh)
     if [[ $? -eq 0 ]]
     then
         echo "Successfully set your default shell to zsh..."
