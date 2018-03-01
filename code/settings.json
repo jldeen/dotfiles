@@ -1,0 +1,55 @@
+{
+    // word wrap settings    
+        "editor.wordWrap": "on",
+    //-------- Remote VSCode configuration --------
+    
+    // Port number to use for connection.
+    "remote.port": 52698,
+    
+    // Launch the server on start up.
+    "remote.onstartup": true,
+    
+    // Controls the font family.
+    "editor.fontFamily": "'SauceCodePro Nerd Font'",
+    "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
+    "terminal.integrated.fontSize": 11,
+    "workbench.startupEditor": "newUntitledFile",
+    "typescript.check.npmIsInstalled": false,
+    "window.zoomLevel": 1,
+    "git.autofetch": true,
+    // "workbench.colorTheme": "Visual Studio Dark"
+    // "window.zoomLevel": 0,
+    // "workbench.startupEditor": "newUntitledFile",
+    //PowerShell
+    // "terminal.integrated.shell.osx": "/usr/local/bin/powershell",
+    // Color Override for terminal
+    "workbench.colorCustomizations": {
+        "terminal.foreground": "#839496",
+        "terminal.background": "#002833",
+        "terminal.ansiBlack": "#003541",
+        "terminal.ansiBlue": "#268bd2",
+        "terminal.ansiCyan": "#2aa198",
+        "terminal.ansiGreen": "#859901",
+        "terminal.ansiMagenta": "#d33682",
+        "terminal.ansiRed": "#dc322f",
+        "terminal.ansiWhite": "#eee8d5",
+        "terminal.ansiYellow": "#b58901",
+        "terminal.ansiBrightBlack": "#586e75",
+        "terminal.ansiBrightBlue": "#839496",
+        "terminal.ansiBrightCyan": "#93a1a1",
+        "terminal.ansiBrightGreen": "#586e75",
+        "terminal.ansiBrightMagenta": "#6c6ec6",
+        "terminal.ansiBrightRed": "#cb4b16",
+        "terminal.ansiBrightWhite": "#fdf6e3",
+        "terminal.ansiBrightYellow": "#657b83",
+        "terminalCursor.foreground": "#839496",
+        "terminalCursor.background": "#003541"
+        },
+        "workbench.colorTheme": "Visual Studio Dark",
+        "azure.resourceFilter": [
+            "72f988bf-86f1-41af-91ab-2d7cd011db47/dfb5d696-98d8-447c-a14d-56f131f3c4a5",
+            "72f988bf-86f1-41af-91ab-2d7cd011db47/998e0f50-cedb-4e50-a461-52ef20a0478b"
+        ],
+        "workbench.activityBar.visible": true,
+        "workbench.sideBar.location": "left"
+    }
