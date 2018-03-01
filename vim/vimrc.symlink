@@ -25,7 +25,7 @@ execute pathogen#infect()
 " theme
 " ----
 syntax on
-colorscheme wombat
+" colorscheme wombat
 " ----
 " End theme
 
