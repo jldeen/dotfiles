@@ -17,10 +17,10 @@ Function Expand-Archive([string]$Path, [string]$Destination, [switch]$RemoveSour
 cd $env:USERPROFILE
 
 # Set variable for WSL terminal
-$wslTerminal = "wsl-terminal-0.8.3.7z"
+$wslTerminal = "wsl-terminal-0.8.8"
 
 # Get bits for WSL terminal
-wget https://github.com/goreliu/wsl-terminal/releases/download/v0.8.3/wsl-terminal-0.8.3.7z -OutFile $env:USERPROFILE\$wslTerminal
+wget https://github.com/goreliu/wsl-terminal/releases/download/v0.8.8/wsl-terminal-0.8.8.7z -OutFile $env:USERPROFILE\$wslTerminal
 
 # Extract WSL terminal and remove after complete
 Get-ChildItem $wslTerminal -Filter *.7z | ForEach-Object {
@@ -28,8 +28,8 @@ Get-ChildItem $wslTerminal -Filter *.7z | ForEach-Object {
 }
 
 # Add shortcut to desktop
-$TargetFile = "$env:USERPROFILE\wsl-terminal\open-wsl.exe"
-$ShortcutFile = "$env:USERPROFILE\Desktop\bash.lnk"
+$TargetFile = "$env:USERPROFILE\$wslTerminal\open-wsl.exe"
+$ShortcutFile = "$env:USERPROFILE\Desktop\wsl.lnk"
 $WScriptShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
 $Shortcut.TargetPath = $TargetFile

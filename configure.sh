@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # Update pkg lists
 
 echo "Updating package lists..."
@@ -20,7 +20,7 @@ GIT_VERSION=`git --version | awk '{print $3}'`
 URL="https://raw.github.com/git/git/v$GIT_VERSION/contrib/completion/git-completion.bash"
 echo ''
 echo "Downloading git-completion for git version: $GIT_VERSION..."
-if ! curl "$URL" --silent --output "$HOME/.git-completion.bash"; then
+if ! curl -fsSL "$URL" --output "$HOME/.git-completion.bash"; then
 	echo "ERROR: Couldn't download completion script. Make sure you have a working internet connection." && exit 1
 fi
 
@@ -103,10 +103,10 @@ then
         echo "Successfully configured your environment with jldeen's dotfiles..."
     else
         echo "jldeen's dotfiles were not applied successfully..." >&2
-fi
+    fi
 else 
 	echo ''
-    echo "You chose not to apply jldeen's dotfiles. You will need to configure your environment manually..."
+        echo "You chose not to apply jldeen's dotfiles. You will need to configure your environment manually..."
 	echo ''
 	echo "Setting defaults for .zshrc and .bashrc..."
 	echo ''
@@ -151,7 +151,7 @@ then
         echo "Successfully set your default shell to zsh..."
     else
         echo "Default shell not set successfully..." >&2
-fi
+    fi
 else 
     echo "You chose not to set your default shell to zsh. Exiting now..."
 fi
