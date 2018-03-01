@@ -132,9 +132,9 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias k="kubectl"
-# alias EDITOR=nvim
 
 export PATH=$PATH:~/bin
 
+# az cli
 autoload bashcompinit && bashcompinit
-source '~/lib/azure-cli/az.completion'
+source /usr/local/etc/bash_completion.d/az
