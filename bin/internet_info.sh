@@ -2,11 +2,19 @@
 
 #IP=$(ipconfig getifaddr wifi0)
 IP=$(hostname -I | awk {'print $1}')
+
+# # Public IP
 PUB_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
-INTERNET=''
+if [[ "$PUB_IP" = ";; connection timed out; no servers could be reached" ]]; then 
+    PUB_IP="Not Available"
+elif [[ "$PUB_IP" = "" ]]; then
+    PUB_IP="No external access"
+else 
+    PUB_IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+fi
 
-#internet_info=`airport -I | grep agrCtlRSSI | awk '{print $2}' | sed 's/-//g'`
+INTERNET=''
 
 if [[ $internet_info -lt 20 ]]; then
     echo -n '#[fg=colour150]'
@@ -20,6 +28,4 @@ else
     echo -n '#[fg=colour150]'
 fi
 
-echo -n "#[fg=colour60]$INTERNET  -[$internet_info]db #[fg=colour60]$IP | $PUB_IP"
-
-
+echo -n "#[fg=colour60]$INTERNET #[fg=colour60]$IP | $PUB_IP"
