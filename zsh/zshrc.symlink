@@ -154,10 +154,3 @@ alias acse="$GOPATH/src/github.com/Azure/acs-engine/bin/acs-engine"
 # az cli
 autoload bashcompinit && bashcompinit
 source '~/lib/azure-cli/az.completion'
-
-#vsts source
-
-export PATH=$PATH:~/lib/vsts-cli/bin
-export PATH=$PATH:/usr/local/bin/node
-
-source '~/lib/vsts-cli/vsts.completion'
