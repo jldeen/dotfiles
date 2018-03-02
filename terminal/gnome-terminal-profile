@@ -1,6 +1,7 @@
 #!/bin/bash
 #=======================================================================================================================
 # Export and import Gnome Terminal profiles
+# https://github.com/yktoo/yktools/blob/master/gnome-terminal-profile
 #=======================================================================================================================
 
 # Displays usage info and exits

@@ -177,6 +177,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
 # install Source Code Pro nerd font on Linux systems (not wsl) and configure terminal
+# https://github.com/yktoo/yktools/blob/master/gnome-terminal-profile
 if [ ! -e /mnt/c/Users ]
 then
   sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/local/share/fonts
