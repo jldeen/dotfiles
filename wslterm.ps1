@@ -1,83 +1,77 @@
+# Inspiration from 
 # Silent Install 7-Zip
 # http://www.7-zip.org/download.html
 # https://forum.pulseway.com/topic/1939-install-7-zip-with-powershell/ 
-Function install7z {
-	# Path for the workdir
-	$workdir = "c:\installer\"
 
-	# Check if work directory exists if not create it
-	If (Test-Path -Path $workdir -PathType Container)
-	{ Write-Host "$workdir already exists" -ForegroundColor Red}
-	ELSE
-	{ New-Item -Path $workdir  -ItemType directory }
-
-	# Download the installer
-	$source = "http://www.7-zip.org/a/7z1801-x64.msi"
-	$destination = "$workdir\7-Zip.msi"
-
-	# Check if Invoke-Webrequest exists otherwise execute WebClient
-	if (Get-Command 'Invoke-Webrequest')
-	{
-		Invoke-WebRequest $source -OutFile $destination
-	}
-	else
-	{
-		$WebClient = New-Object System.Net.WebClient
-		$webclient.DownloadFile($source, $destination)
-	}
-
-	Invoke-WebRequest $source -OutFile $destination 
-
-	# Start the installation
-	msiexec.exe /i "$workdir\7-Zip.msi" /qb
-	# Wait XX Seconds for the installation to finish
-	Start-Sleep -s 35
-
-	# Remove the installer
-	rm -Force $workdir\7*
+# Check for admin rights
+$wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$prp = new-object System.Security.Principal.WindowsPrincipal($wid)
+$adm = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+if (-not $prp.IsInRole($adm)) {
+    throw "This script requires elevated rights to install software.. Please run from an elevated shell session."
 }
 
 # Check for 7z install
-$7z = 'C:\Program Files\7-Zip\7z.e'
-if (-NOT (Test-Path $7z)) {
-	Write-Host "7zip not found, installing now..."
-	install7z
-	}
-
-# Function to extract our 7z download
-Function Expand-Archive([string]$Path, [string]$Destination, [switch]$RemoveSource) {
-	$7z_Application = "C:\Program Files\7-Zip\7z.exe"
-	$7z_Arguments = @(
-		'x'							## eXtract files with full paths
-		'-y'						## assume Yes on all queries
-		"`"-o$($Destination)`""		## set Output directory
-		"`"$($Path)`""				## <archive_name>
-	)
-	& $7z_Application $7z_Arguments
-	If ($RemoveSource -and ($LASTEXITCODE -eq 0)) {
-		Remove-Item -Path $Path -Force
-	}
+Write-Progress -Activity "Validating Dependencies" -Status "Checking for 7zip"
+$7z_Application = get-command 7z.exe -ErrorAction SilentlyContinue | select-object -expandproperty Path
+if ([string]::IsNullOrEmpty($7z_Application)) {   
+    $7z_Application = "C:\Program Files\7-Zip\7z.exe"
 }
 
-# Ensure in $HOME directory
-cd $env:USERPROFILE
+if (-not (Test-Path $7z_Application)) {
+    Write-Progress -Activity "Validating Dependencies" -Status "Installing 7zip"
+    # Path for the workdir
+    $workdir = "c:\installer\"
+
+    # Check if work directory exists if not create it
+    If (-not (Test-Path -Path $workdir -PathType Container)) { 
+        New-Item -Path $workdir  -ItemType directory 
+    }
+
+    # Download the installer
+    $source = "http://www.7-zip.org/a/7z1801-x64.msi"
+    $destination = "$workdir\7-Zip.msi"
+
+    Invoke-WebRequest $source -OutFile $destination 
+
+    # Start the installation
+    msiexec.exe /i "$workdir\7-Zip.msi" /qb
+    # Wait XX Seconds for the installation to finish
+    Start-Sleep -s 35
+
+    # Remove the installer
+    Remove-Item -Force $workdir\7*
+    Write-Progress -Activity "Validating Dependencies" -Status "Installing 7zip" -Completed	
+}
+Write-Progress -Activity "Validating Dependencies" -Completed
+
+Write-Progress -Activity "Ensure in `$HOME directory"
+set-location $env:USERPROFILE
 
 # Set variable for WSL terminal
 $version = "0.8.8"
 $wslTerminal = "wsl-terminal-$version.7z"
 
-# Get bits for WSL terminal
+Write-Progress -Activity "Get bits for WSL terminal"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest -Uri "https://github.com/goreliu/wsl-terminal/releases/download/v$version/wsl-terminal-$version.7z" -OutFile $env:USERPROFILE\$wslTerminal
+Invoke-WebRequest -Uri "https://github.com/goreliu/wsl-terminal/releases/download/v$version/$wslTerminal" -OutFile $env:USERPROFILE\$wslTerminal
 
-# Extract WSL terminal and remove after complete
-Get-ChildItem $wslTerminal -Filter *.7z | ForEach-Object {
-	Expand-Archive -Path $_.FullName -Destination $env:USERPROFILE -RemoveSource
+Write-Progress -Activity "Extract WSL terminal and remove after complete"
+Get-Item $wslTerminal | ForEach-Object {
+    $7z_Arguments = @(
+        'x'							## eXtract files with full paths
+        '-y'						## assume Yes on all queries
+        "`"-o$($env:USERPROFILE)`""		## set Output directory
+        "`"$($_.FullName)`""				## <archive_name>
+    )
+    & $7z_Application $7z_Arguments
+    If ($LASTEXITCODE -eq 0) {
+        Remove-Item -Path $_.FullName -Force
+    }
 }
 
-# Check if symlink exists. If not, create it
+Write-Progress -Activity "Ensure symlink exists"
 $symlink = "$env:USERPROFILE\Desktop\wsl.lnk"
-If (Test-Path -Path $symlink)
-	{ Write-Host "$symlink already exists" -ForegroundColor Red }
-ELSE
-	{ New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\Desktop\" -Name "wsl.lnk" -Value "$env:USERPROFILE\wsl-terminal\open-wsl.exe" }
+If (-not (Test-Path -Path $symlink)) {
+    New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\Desktop\" -Name "wsl.lnk" -Value "$env:USERPROFILE\wsl-terminal\open-wsl.exe" 
+}
