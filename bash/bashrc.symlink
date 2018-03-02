@@ -127,5 +127,4 @@ GIT_PS1_SHOWUPSTREAM="auto"
 export PATH=$PATH:/home/jldeen/bin
 
 # az cli
-autoload bashcompinit && bashcompinit
 source /usr/bin/az
