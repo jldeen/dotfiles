@@ -27,7 +27,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
 }❯ "
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
@@ -131,17 +131,10 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Example aliases
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
-# alias EDITOR=nvim
-
-#Powerline
-#if [ -d "$HOME/Library/Python/2.7/bin" ]; then
-#    PATH="$HOME/Library/Python/2.7/bin:$PATH"
-#fi
-
-#repository_root="$HOME/Library/Python/2.7/lib/python/site-packages"
-#. $repository_root/powerline/bindings/zsh/powerline.zsh
+alias k="kubectl"
 
 export PATH=$PATH:~/bin
 
-autoload bashcompinit && bashcompinit
-#source '/Users/jessicadeen/lib/azure-cli/az.completion'
+# az cli
+# autoload bashcompinit && bashcompinit
+# source /usr/bin/az
