@@ -81,7 +81,7 @@ echo ''
 echo "Now installing Speedtest-cli, pip, tmux and jq..."
 echo ''
 sudo apt-get install jq tmux python-pip -y
-pip install --upgrade pip
+sudo pip install --upgrade pip
 sudo pip install speedtest-cli
 
 # Bash color scheme
