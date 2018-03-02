@@ -127,4 +127,4 @@ GIT_PS1_SHOWUPSTREAM="auto"
 export PATH=$PATH:/home/jldeen/bin
 
 # az cli
-source /usr/bin/az
+# source /usr/bin/az
