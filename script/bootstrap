@@ -181,7 +181,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 if [ ! -e /mnt/c/Users ]
 then
   sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/local/share/fonts
-  sudo chown root /usr/local/share/fonts/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf
+  sudo chown root /usr/local/share/fonts/Source\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf
   sudo fc-cache -fv
   $HOME/.dotfiles/terminal/gnome-terminal-profile import $HOME/.dotfiles/terminal/terminal.gnome && echo "terminal profile loaded successfully!"
 fi
