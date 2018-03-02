@@ -183,13 +183,13 @@ then
   sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/local/share/fonts
   sudo chown root /usr/local/share/fonts/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf
   sudo fc-cache -fv
-  $HOME/.dotfiles/terminal/gnome-terminal-profile import $HOME/.dotfiles/terminal/terminal.gnome
+  $HOME/.dotfiles/terminal/gnome-terminal-profile import $HOME/.dotfiles/terminal/terminal.gnome && echo "terminal profile loaded successfully!"
 fi
 
 # symlink VSCode User Settings
-if [ -e $HOME/.config/Code/User/settings.json ]
+if [ -e $HOME/.config/Code/User ]
 then
-  ln -s $HOME/.dotfiles/code/settings.json $HOME/.config/Code/User/settings.json
+  ln -s $HOME/.dotfiles/code/settings.json $HOME/.config/Code/User/settings.json && echo "VS Code settings.json applied successfully!"
 else
   echo "No installation of VS Code found. Will not attempt to symlink VS Code settings.json."
 fi
