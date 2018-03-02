@@ -3,6 +3,14 @@
 # http://www.7-zip.org/download.html
 # https://forum.pulseway.com/topic/1939-install-7-zip-with-powershell/ 
 
+# Check for admin rights
+$wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$prp = new-object System.Security.Principal.WindowsPrincipal($wid)
+$adm = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+if (-not $prp.IsInRole($adm)) {
+    throw "This script requires elevated rights to install software.. Please run from an elevated shell session."
+}
+
 # Check for 7z install
 Write-Progress -Activity "Validating Dependencies" -Status "Checking for 7zip"
 $7z_Application = get-command 7z.exe -ErrorAction SilentlyContinue | select-object -expandproperty Path
