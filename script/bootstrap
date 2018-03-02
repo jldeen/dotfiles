@@ -176,12 +176,13 @@ echo ''
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
-# install Source Code Pro nerd font on Linux systems (not wsl)
+# install Source Code Pro nerd font on Linux systems (not wsl) and configure terminal
 if [ ! -e /mnt/c/Users ]
 then
   sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete\ Mono.ttf /usr/local/share/fonts
   sudo chown root /usr/local/share/fonts/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf
   sudo fc-cache -fv
+  $HOME/.dotfiles/terminal/gnome-terminal-profile import $HOME/.dotfiles/terminal/terminal.gnome
 fi
 
 # symlink VSCode User Settings
