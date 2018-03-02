@@ -170,4 +170,4 @@ else
 fi
 
 echo ''
-echo '	Badass WSL terminal installed!'
+echo '	Badass WSL terminal installed! Please reboot your computer for changes to be made.'
