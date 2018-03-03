@@ -61,7 +61,7 @@ There's a few special files in the hierarchy.
 ## Git clone
 There are two "master" branches here: WSL and MacOS.
 
-If you wish to clone these filesa and run scripts manually, run this:
+If you wish to clone these files and run scripts manually, run this:
 
 ```sh
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
