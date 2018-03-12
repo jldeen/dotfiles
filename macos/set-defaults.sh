@@ -39,3 +39,23 @@ defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Set the terminal theme to "Pro." The default white background looks terrible.
+#   From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+osascript <<EOD
+tell application "Terminal"
+    local initialOpenedWindows
+    local windowID
+    set themeName to "Pro"
+    (* Store the IDs of all the open terminal windows. *)
+    set initialOpenedWindows to id of every window
+    (* Set the custom theme as the default terminal theme. *)
+    set default settings to settings set themeName
+    repeat with windowID in initialOpenedWindows
+        (* Change the theme for the initial opened terminal windows
+           to remove the need to close them in order for the custom
+           theme to be applied. *)
+        set current settings of tabs of (every window whose id is windowID) to settings set themeName
+    end repeat
+end tell
+EOD`
