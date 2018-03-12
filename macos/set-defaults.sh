@@ -68,4 +68,4 @@ tell application "Terminal"
         set current settings of tabs of (every window whose id is windowID) to settings set themeName
     end repeat
 end tell
-EOD`
+EOD
