@@ -2,6 +2,7 @@ cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
 tap 'caskroom/cask'
+tap 'caskroom/fonts'
 
 brew 'ack'
 brew 'coreutils'
@@ -16,6 +17,10 @@ brew 'roundup'
 brew 'tmux'
 brew 'zsh'
 brew 'zsh-completions'
+
+cask 'font-sourcecodepro-nerd-font-mono'
+cask 'font-ubuntu-nerd-font-mono'
+cask 'font-ubuntumono-nerd-font-mono'
 
 cask 'ccleaner'
 cask 'dotnet-sdk'
