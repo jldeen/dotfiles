@@ -5,7 +5,7 @@ fi
 
 if [ ! -x "$HOME/.vimrc" ]; then
   echo "› installing vim plugins"
-  vim +PluginInstall +qall 2>/dev/null
+  vim +PluginInstall +qall || true
 fi
 
 # if [ ! -d "$HOME/.vim/autoload" ]; then
