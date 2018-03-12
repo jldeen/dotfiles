@@ -12,3 +12,8 @@ brew bundle
 
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+
+if [ ! -x "$HOME/.vimrc" ]; then
+  echo "› installing vim plugins"
+  vim +PluginInstall +qall 2>/dev/null
+fi
