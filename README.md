@@ -48,10 +48,9 @@ There's a few special files in the hierarchy.
 
 ## install
 
-Run this:
+Make sure Oh-My-Zsh is installed, then run this:
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone --recursive https://github.com/ronniehicks/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
@@ -67,6 +66,11 @@ which sets up a few paths that'll be different on your particular machine.
 defaults, and so on. Tweak this script, and occasionally run `dot` from
 time to time to keep your environment fresh and up-to-date. You can find
 this script in `bin/`.
+
+Install Oh-my-zsh:
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
 
 ## bugs
 
