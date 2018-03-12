@@ -27,7 +27,7 @@ filetype plugin indent on    " required
 " theme
 " ----
 syntax on
-colorscheme wombat
+" colorscheme wombat
 " ----
 " End theme
 
