@@ -23,6 +23,7 @@ cask 'font-sourcecodepro-nerd-font-mono'
 cask 'font-ubuntu-nerd-font-mono'
 cask 'font-ubuntumono-nerd-font-mono'
 
+cask 'beyond-compare'
 cask 'ccleaner'
 cask 'dotnet-sdk'
 cask 'enpass'
