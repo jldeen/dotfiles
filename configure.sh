@@ -36,7 +36,7 @@ echo ''
 echo "oh-my-zsh is already installed..."
 read -p "Would you like to update oh-my-zsh now?" -n 1 -r
 echo ''
-    if [[ $REPLY =~ ^[Yy]$ ] ; then
+    if [[ $REPLY =~ ^[Yy]$ ]] ; then
     git pull
     fi
 else
