@@ -37,7 +37,13 @@ echo "oh-my-zsh is already installed..."
 read -p "Would you like to update oh-my-zsh now?" -n 1 -r
 echo ''
     if [[ $REPLY =~ ^[Yy]$ ]] ; then
-    git pull
+    cd ~/.oh-my-zsh && git pull
+        if [[ $? -eq 0 ]]
+        then
+            echo "Update complete..." && cd
+        else
+            echo "Update not complete..." >&2 cd
+        fi
     fi
 else
 echo "oh-my-zsh not found, now installing oh-my-zsh..."
