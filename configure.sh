@@ -1,6 +1,6 @@
 #!/bin/bash
-# Update pkg lists
 
+# Update pkg lists
 echo "Updating package lists..."
 sudo apt-get update
 
