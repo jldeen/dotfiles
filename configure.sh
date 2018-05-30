@@ -1,13 +1,19 @@
 #!/bin/bash
-# Update pkg lists
 
+# Update pkg lists
 echo "Updating package lists..."
 sudo apt-get update
+
 # zsh install
+which zsh > /dev/null 2>&1
+if [[ $? -eq 0 ]] ; then
 echo ''
-echo "Now installing zsh..."
+echo "zsh already installed..."
+else
+echo "zsh not found, now installing zsh..."
 echo ''
 sudo apt install zsh -y
+fi
 
 # Installing git completion
 echo ''
@@ -25,10 +31,25 @@ if ! curl "$URL" --silent --output "$HOME/.git-completion.bash"; then
 fi
 
 # oh-my-zsh install
+if [ -d ~/.oh-my-zsh/ ] ; then
 echo ''
-echo "Now installing oh-my-zsh..."
+echo "oh-my-zsh is already installed..."
+read -p "Would you like to update oh-my-zsh now?" -n 1 -r
+echo ''
+    if [[ $REPLY =~ ^[Yy]$ ]] ; then
+    cd ~/.oh-my-zsh && git pull
+        if [[ $? -eq 0 ]]
+        then
+            echo "Update complete..." && cd
+        else
+            echo "Update not complete..." >&2 cd
+        fi
+    fi
+else
+echo "oh-my-zsh not found, now installing oh-my-zsh..."
 echo ''
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 # oh-my-zsh plugin install
 echo ''
@@ -138,6 +159,7 @@ then
      sudo tee /etc/apt/sources.list.d/azure-cli.list
 
     sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+    sudo curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
     sudo apt-get install apt-transport-https
     sudo apt-get update && sudo apt-get install azure-cli
 	
