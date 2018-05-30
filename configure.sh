@@ -31,7 +31,7 @@ if ! curl "$URL" --silent --output "$HOME/.git-completion.bash"; then
 fi
 
 # oh-my-zsh install
-if [ -f ~/.oh-my-zsh ] ; then
+if [ -d ~/.oh-my-zsh/ ] ; then
 echo ''
 echo "oh-my-zsh is already installed..."
 read -p "Would you like to update oh-my-zsh now?" -n 1 -r
