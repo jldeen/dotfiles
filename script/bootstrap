@@ -174,10 +174,13 @@ ln -s $HOME/.dotfiles/bin $HOME/bin
 ln -s $HOME/.dotfiles/tmux $HOME/.tmux
 
 # symlink VSCode User Settings
+if [ -d $HOME/Library/Application\ Support/Code/User ] ; then 
 ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+else
+echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..."
 
 # install Source Code Pro nerd font
-cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
+cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts && echo "Source Code Pro font copied successfully!"
 
 # # iterm2 config
 # echo ''
