@@ -10,8 +10,8 @@
 "remote.onstartup": true,
 
 // Controls the font family.
-"editor.fontFamily": "'SauceCodePro Nerd Font'",
-"terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
+"editor.fontFamily": "'SourceCodePro Nerd Font'",
+"terminal.integrated.fontFamily": "'SourceCodePro Nerd Font'",
 "terminal.integrated.fontSize": 11,
 "workbench.startupEditor": "newUntitledFile",
 "typescript.check.npmIsInstalled": false,
@@ -21,7 +21,7 @@
 // "window.zoomLevel": 0,
 // "workbench.startupEditor": "newUntitledFile",
 //PowerShell
-// "terminal.integrated.shell.osx": "/usr/local/bin/powershell",
+"terminal.integrated.shell.osx": "/usr/local/bin/zsh",
 // Color Override for terminal
 "workbench.colorCustomizations": {
     "terminal.foreground": "#839496",
