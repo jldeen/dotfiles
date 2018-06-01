@@ -111,7 +111,7 @@ then
 	echo ''
 	cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 	echo ''
-	echo "Checking out macOS branch..." && git checkout mac
+	echo "Checking out macOS dev branch..." && git checkout mac-dev
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     echo ''
