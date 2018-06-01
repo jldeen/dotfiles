@@ -3,8 +3,12 @@
 ### macOS Configuration
 Run the following to configure macOS from scratch...
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/mac/configure.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/mac-dev/configure.sh)"
 ```
+
+It should go without saying, you should never run a script on your system without reading it to understand what changes it will make to your system. My scripts and code samples are no exception to the rule.
+
+If you choose to use my dotfiles, my configure script will backup your current dotfiles, but will also make changes to your crontab - it's in your best interest to understand these changes prior to opting in.
 
 ### Notes
 Your dotfiles are how you personalize your system. These are mine.
@@ -83,7 +87,7 @@ said, I do use this as *my* dotfiles, so there's a good chance I may break
 something if I forget to make a check for a dependency.
 
 If you're brand-new to the project and run into any blockers, please
-[open an issue](https://github.com/holman/dotfiles/issues) on this repository
+[open an issue](https://github.com/jldeen/dotfiles/issues) on this repository
 and I'd love to get it fixed for you!
 
 ## thanks
