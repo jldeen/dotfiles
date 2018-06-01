@@ -182,6 +182,9 @@ echo "VS Code does not appear to have been installed or launched yet. Cannot cre
 # install Source Code Pro nerd font
 cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts && echo "Source Code Pro font copied successfully!"
 
+# .config permissions fix
+sudo chown $(whoami) $HOME/.config && echo "Permissions fixed!"
+
 # # iterm2 config
 # echo ''
 # read -p "Do you currently use iTerm2 and would you like to set jldeen's custom colors? y/n" -n 1 -r
