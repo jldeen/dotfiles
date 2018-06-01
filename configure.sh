@@ -1,14 +1,27 @@
 #!/bin/bash
 
 # Install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if test ! $(which brew)
+then
+  echo "  Installing Homebrew for you."
+
+  # Install the correct homebrew for each OS type
+  if test "$(uname)" = "Darwin"
+  then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+  then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+  fi
+
+fi
 
 echo "Updating package lists..."
 brew update
 
 # zsh install
-which zsh > /dev/null 2>&1
-if [[ $? -eq 0 ]] ; then
+if test $(which zsh) 
+then
 echo ''
 echo "zsh already installed..."
 else
@@ -121,6 +134,11 @@ then
     (crontab -l 2>/dev/null; echo "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin") | crontab -
     (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
     (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --json > ~/bin/bandwidth.json") | crontab -
+
+    echo "Running speedtest-cli..."
+    speedtest-cli --simple > ~/bin/bandwidth.log
+    speedtest-cli --json > ~/bin/bandwidth.json
+    
 
     if [[ $? -eq 0 ]]
     then
