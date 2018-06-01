@@ -149,15 +149,14 @@ then
     success "dependencies installed"
     echo ''
     echo "Now updating dependencies..."
-    pip2 install --upgrade pip setuptools
+    pip3 install --upgrade setuptools
   else
     fail "error installing dependencies"
   fi
 fi
-## JD edit
 
 #backup old bin, if exists
-if [ -e $HOME/bin ]
+if [ -d $HOME/bin ]
 then
     echo ''
     echo "current $HOME/bin folder found!!! Creating backup..."
