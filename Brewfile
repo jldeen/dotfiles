@@ -3,6 +3,7 @@ cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
 
 brew 'ack'
+brew 'azure-cli'
 brew 'coreutils'
 brew 'go'
 brew 'grc'
