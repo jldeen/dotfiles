@@ -144,6 +144,7 @@ install_dotfiles
 if [ "$(uname -s)" == "Darwin" ]
 then
   info "installing dependencies"
+  echo $pwd
   if source bin/dot | while read -r data; do info "$data"; done
   then
     success "dependencies installed"
