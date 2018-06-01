@@ -14,18 +14,18 @@ if [[ $? -eq 0 ]]
 fi
 
 # Speedtest
-DL=$(speedtest-cli --simple | awk 'NR==2{print $2}')
-UP=$(speedtest-cli --simple | awk 'NR==3{print $2}')
+DL=$(cat ~/bin/bandwidth.log | awk 'NR==2{print $2}')
+UP=$(cat ~/bin/bandwidth.log | awk 'NR==3{print $2}')
 
 # # Public IP
-PUB_IP=$(speedtest-cli --json | jq -r .client.ip)
+PUB_IP=$(cat ~/bin/bandwidth.json | jq -r .client.ip)
 
 if [[ "$PUB_IP" = ";; connection timed out; no servers could be reached" ]]; then 
     PUB_IP="Not Available"
 elif [[ "$PUB_IP" = "" ]]; then
     PUB_IP="No external access"
 else 
-    PUB_IP=$(speedtest-cli --json | jq -r .client.ip)
+    PUB_IP=$(cat ~/bin/bandwidth.json | jq -r .client.ip)
 fi
  
 INTERNET=''
