@@ -148,6 +148,3 @@ else
 	echo "source $HOME/.git-completion.bash" >> ${ZDOTDIR:-$HOME}/.bashrc && echo "added git-completion to .bashrc..."
 	
 fi
-
-echo ''
-echo '	Badass macOS terminal installed!'
