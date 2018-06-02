@@ -179,14 +179,16 @@ if [ -d $HOME/Library/Application\ Support/Code/User ] ; then
   success "symlink for vs code settings created"
 else
   info "symlink for vs code settings not created"
-  echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..."
+  echo "VS Code does not appear to be installed or has not been launched yet. Cannot create symlink for VS Code User settings..."
 fi
 
 # install Source Code Pro nerd font
-cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts && success "Source Code Pro font copied successfully!"
+cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
+success "Source Code Pro font copied successfully!"
 
 # .config permissions fix
-sudo chown $(whoami) $HOME/.config && success '.config permissions fixed'
+sudo chown $(whoami) $HOME/.config 
+success '.config permissions fixed'
 
 # airport symlink
 sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
@@ -203,6 +205,7 @@ success "crontab created for speedtest cli --simple"
 success "crontab created for speedtest cli --json"
 
 # first run of speedtest-cli
+echo "Running speedtest-cli for tmux status bar data now..."
 speedtest-cli --simple > ~/bin/bandwidth.log
 success "speedtest-cli bandwidth.log created"
 
@@ -230,4 +233,4 @@ else
 fi
 
 echo ''
-echo '  All installed!'
+echo '	Badass macOS terminal installed!'
