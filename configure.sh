@@ -128,17 +128,6 @@ then
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     echo ''
-    echo "Now setting up dependencies..."
-    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
-    echo "Now setting up crontab for speedtest-cli..."
-    (crontab -l 2>/dev/null; echo "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin") | crontab -
-    (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
-    (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --json > ~/bin/bandwidth.json") | crontab -
-
-    echo "Running speedtest-cli..."
-    speedtest-cli --simple > ~/bin/bandwidth.log
-    speedtest-cli --json > ~/bin/bandwidth.json
-
 
     if [[ $? -eq 0 ]]
     then
