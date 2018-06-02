@@ -187,25 +187,25 @@ cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts &&
 # .config permissions fix
 sudo chown $(whoami) $HOME/.config && success '.config permissions fixed'
 
-# # iterm2 config
-# echo ''
-# read -p "Do you currently use iTerm2 and would you like to set jldeen's custom colors? y/n" -n 1 -r
-# echo ''
-# if [[ $REPLY =~ ^[Yy]$ ]]
-# then
-# 	# Specify the preferences directory
-#   defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.itermcfg/"
-#   # Tell iTerm2 to use the custom preferences in the directory
-#   defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-#     if [[ $? -eq 0 ]]
-#     then
-#         echo "Successfully configured iTerm2 to use jldeen's custom colors..."
-#     else
-#         echo "Failed to apply jldeen's custom colors..." >&2
-# fi
-# else 
-#     echo "You chose not to use iTerm2 or jldeen's custom colors."
-# fi
+# iterm2 config
+echo ''
+read -p "Do you currently use iTerm2 and would you like to set jldeen's custom colors? y/n" -n 1 -r
+echo ''
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	# Specify the preferences directory
+  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/.itermcfg/"
+  # Tell iTerm2 to use the custom preferences in the directory
+  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+    if [[ $? -eq 0 ]]
+    then
+        echo "Successfully configured iTerm2 to use jldeen's custom colors..."
+    else
+        echo "Failed to apply jldeen's custom colors..." >&2
+fi
+else 
+    echo "You chose not to use iTerm2 or jldeen's custom colors."
+fi
 
 echo ''
 echo '  All installed!'
