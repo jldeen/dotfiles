@@ -155,39 +155,37 @@ then
   fi
 fi
 
+info "jldeen mods"
 #backup old bin, if exists
 if [ -d $HOME/bin ]
 then
     echo ''
     echo "current $HOME/bin folder found!!! Creating backup..."
     sudo mv $HOME/bin bin_old
+    success "backup created"
 else
     echo ''
     echo "No current $HOME/bin folder found. Proceeding to link bin folder for tumx scripts..."
 fi
 
 # symlink .dotfiles bin to ~
-ln -s $HOME/.dotfiles/bin $HOME/bin
+ln -s $HOME/.dotfiles/bin $HOME/bin && success "symlink for $HOME/bin folder created"
 
 # symlink .dotfiles tmux to ~
-ln -s $HOME/.dotfiles/tmux $HOME/.tmux
+ln -s $HOME/.dotfiles/tmux $HOME/.tmux && success "symlink for $HOME/.tmux folder created"
 
 # symlink VSCode User Settings
 if [ -d $HOME/Library/Application\ Support/Code/User ] ; then 
-ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json && success "symlink for vs code settings created"
 else
-echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..."
+echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..." && fail "symlink for vs code settings not created"
 fi
 
 # install Source Code Pro nerd font
-cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts && echo "Source Code Pro font copied successfully!"
+cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts && success "Source Code Pro font copied successfully!"
 
 # .config permissions fix
-info "permissions fix"
-for file in $HOME/.config
-do sudo chown $(whoami) $HOME/.config
-success '.config permissions fixed'
-done
+sudo chown $(whoami) $HOME/.config && success '.config permissions fixed'
 
 # # iterm2 config
 # echo ''
