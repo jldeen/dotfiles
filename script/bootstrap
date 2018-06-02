@@ -183,7 +183,11 @@ fi
 cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts && echo "Source Code Pro font copied successfully!"
 
 # .config permissions fix
-sudo chown $(whoami) $HOME/.config && echo "Permissions fixed!"
+info "permissions fix"
+for file in $HOME/.config
+do sudo chown $(whoami) $HOME/.config
+success '.config permissions fixed'
+done
 
 # # iterm2 config
 # echo ''
