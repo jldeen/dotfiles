@@ -155,6 +155,7 @@ then
   fi
 fi
 
+echo ''
 info "jldeen mods"
 #backup old bin, if exists
 if [ -d $HOME/bin ]
@@ -164,7 +165,6 @@ then
     sudo mv $HOME/bin bin_old
     success "backup created"
 else
-    echo ''
     echo "No current $HOME/bin folder found. Proceeding to link bin folder for tumx scripts..."
 fi
 
@@ -176,9 +176,11 @@ ln -s $HOME/.dotfiles/tmux $HOME/.tmux && success "symlink for $HOME/.tmux folde
 
 # symlink VSCode User Settings
 if [ -d $HOME/Library/Application\ Support/Code/User ] ; then 
-ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json && success "symlink for vs code settings created"
+  ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+  success "symlink for vs code settings created"
 else
-echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..." && fail "symlink for vs code settings not created"
+  fail "symlink for vs code settings not created"
+  echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..."
 fi
 
 # install Source Code Pro nerd font
