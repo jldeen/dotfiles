@@ -156,11 +156,10 @@ then
 fi
 
 echo ''
-info "jldeen mods"
+info "starting jldeen mods"
 #backup old bin, if exists
 if [ -d $HOME/bin ]
 then
-    echo ''
     echo "current $HOME/bin folder found!!! Creating backup..."
     sudo mv $HOME/bin bin_old
     success "backup created"
@@ -179,7 +178,7 @@ if [ -d $HOME/Library/Application\ Support/Code/User ] ; then
   ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
   success "symlink for vs code settings created"
 else
-  fail "symlink for vs code settings not created"
+  info "symlink for vs code settings not created"
   echo "VS Code does not appear to have been installed or launched yet. Cannot create symlink for VS Code User settings..."
 fi
 
@@ -188,6 +187,27 @@ cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts &&
 
 # .config permissions fix
 sudo chown $(whoami) $HOME/.config && success '.config permissions fixed'
+
+# airport symlink
+sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+success "symlink for airport created"
+
+# crontab additions
+(crontab -l 2>/dev/null; echo "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin") | crontab -
+success "PATH added to crontab"
+
+(crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
+success "crontab created for speedtest cli --simple"
+
+(crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --json > ~/bin/bandwidth.json") | crontab -
+success "crontab created for speedtest cli --json"
+
+# first run of speedtest-cli
+speedtest-cli --simple > ~/bin/bandwidth.log
+success "speedtest-cli bandwidth.log created"
+
+speedtest-cli --json > ~/bin/bandwidth.json
+success "speedtest-cli bandwidth.json created"
 
 # iterm2 config
 echo ''
@@ -201,9 +221,9 @@ then
   defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
     if [[ $? -eq 0 ]]
     then
-        echo "Successfully configured iTerm2 to use jldeen's custom colors..."
+        success "successfully configured iTerm2 to use jldeen's custom colors..."
     else
-        echo "Failed to apply jldeen's custom colors..." >&2
+        fail "failed to apply jldeen's custom colors..." >&2
 fi
 else 
     echo "You chose not to use iTerm2 or jldeen's custom colors."
