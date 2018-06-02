@@ -126,4 +126,3 @@ GIT_PS1_SHOWUPSTREAM="auto"
 
 # az cli
 autoload bashcompinit && bashcompinit
-source /usr/local/etc/bash_completion.d/az
