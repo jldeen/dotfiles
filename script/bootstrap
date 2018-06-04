@@ -191,12 +191,23 @@ sudo chown $(whoami) $HOME/.config
 success '.config permissions fixed'
 
 # airport symlink
-sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
-success "symlink for airport created"
+
+if ! [ -f /usr/local/bin/airport ]
+  then
+    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+    success "symlink for airport created"
+  else 
+    info "symlink for airport already exists"
+  fi
 
 # crontab additions
-(crontab -l 2>/dev/null; echo "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin") | crontab -
-success "PATH added to crontab"
+PATH=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+(crontab -l 2>/dev/null; echo "$PATH") | crontab -
+if [[ $? -eq 0 ]]
+success "$PATH added to crontab"
+else
+info "$PATH not successfully added to crontab"
+fi
 
 (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
 success "crontab created for speedtest cli --simple"
