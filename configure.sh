@@ -1,15 +1,34 @@
 #!/bin/bash
 
 # Install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if test ! $(which brew)
+then
+  echo "  Installing Homebrew for you."
+
+  # Install the correct homebrew for each OS type
+  if test "$(uname)" = "Darwin"
+  then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+  then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+  fi
+
+fi
 
 echo "Updating package lists..."
 brew update
+
 # zsh install
+if test $(which zsh) 
+then
 echo ''
-echo "Now installing zsh..."
+echo "zsh already installed..."
+else
+echo "zsh not found, now installing zsh..."
 echo ''
 brew install zsh zsh-completions
+fi
 
 # Installing git completion
 echo ''
@@ -27,10 +46,25 @@ if ! curl "$URL" --silent --output "$HOME/.git-completion.bash"; then
 fi
 
 # oh-my-zsh install
+if [ -d ~/.oh-my-zsh/ ] ; then
 echo ''
-echo "Now installing oh-my-zsh..."
+echo "oh-my-zsh is already installed..."
+read -p "Would you like to update oh-my-zsh now?" -n 1 -r
+echo ''
+    if [[ $REPLY =~ ^[Yy]$ ]] ; then
+    cd ~/.oh-my-zsh && git pull
+        if [[ $? -eq 0 ]]
+        then
+            echo "Update complete..." && cd
+        else
+            echo "Update not complete..." >&2 cd
+        fi
+    fi
+else
+echo "oh-my-zsh not found, now installing oh-my-zsh..."
 echo ''
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 # oh-my-zsh plugin install
 echo ''
@@ -94,9 +128,7 @@ then
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     echo ''
-    echo "Now setting up dependencies..."
-    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
-    
+
     if [[ $? -eq 0 ]]
     then
         echo "Successfully configured your environment with jldeen's macOS dotfiles..."
@@ -116,42 +148,3 @@ else
 	echo "source $HOME/.git-completion.bash" >> ${ZDOTDIR:-$HOME}/.bashrc && echo "added git-completion to .bashrc..."
 	
 fi
-
-# Set default shell to zsh
-echo ''
-read -p "Do you want to change your default shell? y/n" -n 1 -r
-echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	echo "Now setting default shell..."
-    chsh -s $(which zsh)
-    if [[ $? -eq 0 ]]
-    then
-        echo "Successfully set your default shell to zsh..."
-    else
-        echo "Default shell not set successfully..." >&2
-fi
-else 
-    echo "You chose not to set your default shell to zsh. Exiting now..."
-fi
-
-# Setup and configure az cli
-echo ''
-read -p "Do you want to install Azure CLI? y/n (This will take some time...)" -n 1 -r
-echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	echo "Now installing az cli..."
-    brew install azure-cli
-    if [[ $? -eq 0 ]]
-    then
-        echo "Successfully installed Azure CLI 2.0."
-    else
-        echo "Azure CLI not installed successfully." >&2
-fi
-else 
-    echo "You chose not to install Azure CLI. Exiting now."
-fi
-
-echo ''
-echo '	Badass macOS terminal installed!'

@@ -28,23 +28,11 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=($'%F{red} \uf1d0 %f %F{yellow}❯ ')
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history kubecontext)
 
-# # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-# if [ -n "$TMUX" ]; then                                                                               
-#   function refresh {                                                                                
-#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
-#     export $(tmux show-environment | grep "^DISPLAY")                                               
-#   }                                                                                                 
-# else                                                                                                  
-#   function refresh { }                                                                              
-# fi
-
-# # Then, I define a preexec hook that calls refresh before each new command that gets executed:
-# function preexec {                                                                                    
-#     refresh                                                                                           
-# }
+POWERLEVEL9K_KUBECONTEXT_BACKGROUND='004'
+POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
 
 # POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
 ## 
@@ -98,6 +86,7 @@ plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -137,4 +126,3 @@ alias k="kubectl"
 
 # az cli
 autoload bashcompinit && bashcompinit
-source /usr/local/etc/bash_completion.d/az

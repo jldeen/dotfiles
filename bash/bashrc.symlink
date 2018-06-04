@@ -124,6 +124,5 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
-export PATH=$PATH:/home/jldeen/bin
-
-source '/home/jldeen/lib/azure-cli/az.completion'
+# az cli
+autoload bashcompinit && bashcompinit

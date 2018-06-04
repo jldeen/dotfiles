@@ -42,6 +42,9 @@ set laststatus=2
 " Set line number
 set number
 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
 " Nerdtree Settings
 set mouse=a
 autocmd VimEnter * NERDTree | wincmd p
