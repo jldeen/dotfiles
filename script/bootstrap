@@ -137,6 +137,19 @@ install_dotfiles () {
   done
 }
 
+add_cron () {
+  local frequency="*/15 * * * *"
+  local command=$1
+  local job="$frequency $command"
+  cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+}
+
+add_path () {
+  local command=$1
+  local job="$command"
+  cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
+}
+
 setup_gitconfig
 install_dotfiles
 
@@ -200,34 +213,29 @@ if ! [ -f /usr/local/bin/airport ]
   fi
 
 # crontab additions
-PATH="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-( crontab -l | grep -v -F "$PATH" ; echo "$PATH" ) | crontab -
-if [[ $? -eq 0 ]]
-then
-success "$PATH added to crontab"
-else
-info "ERROR $PATH could not be added to crontab"
-fi
+add_path "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  if [[ $? -eq 0 ]]
+  then
+  success "$PATH added to crontab"
+  else
+  info "ERROR $PATH could not be added to crontab"
+  fi
 
-croncmd="speedtest-cli --simple > ~/bin/bandwidth.log"
-cronjob="*/15 * * * * $croncmd"
-( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
-if [[ $? -eq 0 ]]
-then
-success "crontab created for speedtest cli --simple"
-else
-info "ERROR crontab could not be created for speedtest cli --simple"
-fi
+add_cron "speedtest-cli --simple > ~/bin/bandwidth.log"
+  if [[ $? -eq 0 ]]
+  then
+  success "crontab created for speedtest cli --simple"
+  else
+  info "ERROR crontab could not be created for speedtest cli --simple"
+  fi
 
-croncmd="speedtest-cli --json > ~/bin/bandwidth.json"
-cronjob="*/15 * * * * $croncmd"
-( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
-if [[ $? -eq 0 ]]
-then
-success "crontab created for speedtest cli --json"
-else
-info "ERROR crontab could not be created for speedtest cli --json"
-fi
+add_cron "speedtest-cli --json > ~/bin/bandwidth.json"
+  if [[ $? -eq 0 ]]
+  then
+  success "crontab created for speedtest cli --json"
+  else
+  info "ERROR crontab could not be created for speedtest cli --json"
+  fi
 
 # first run of speedtest-cli
 echo "Running speedtest-cli for tmux status bar data now..."
