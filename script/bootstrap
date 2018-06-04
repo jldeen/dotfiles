@@ -200,8 +200,8 @@ if ! [ -f /usr/local/bin/airport ]
   fi
 
 # crontab additions
-PATH=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-(crontab -l 2>/dev/null&& echo "$PATH") | crontab -
+PATH="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+( crontab -l | grep -v -F "$PATH" ; echo "$PATH" ) | crontab -
 if [[ $? -eq 0 ]]
 then
 success "$PATH added to crontab"
@@ -209,7 +209,9 @@ else
 info "ERROR $PATH could not be added to crontab"
 fi
 
-(crontab -l 2>/dev/null&& echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
+croncmd="speedtest-cli --simple > ~/bin/bandwidth.log"
+cronjob="*/15 * * * * $croncmd"
+( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 if [[ $? -eq 0 ]]
 then
 success "crontab created for speedtest cli --simple"
@@ -217,7 +219,9 @@ else
 info "ERROR crontab could not be created for speedtest cli --simple"
 fi
 
-(crontab -l 2>/dev/null&& echo "*/15 * * * * speedtest-cli --json > ~/bin/bandwidth.json") | crontab -
+croncmd="speedtest-cli --json > ~/bin/bandwidth.json"
+cronjob="*/15 * * * * $croncmd"
+( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 if [[ $? -eq 0 ]]
 then
 success "crontab created for speedtest cli --json"
