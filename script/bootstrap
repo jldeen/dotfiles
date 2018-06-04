@@ -191,7 +191,6 @@ sudo chown $(whoami) $HOME/.config
 success '.config permissions fixed'
 
 # airport symlink
-
 if ! [ -f /usr/local/bin/airport ]
   then
     sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
@@ -204,6 +203,7 @@ if ! [ -f /usr/local/bin/airport ]
 PATH=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 (crontab -l 2>/dev/null; echo "$PATH") | crontab -
 if [[ $? -eq 0 ]]
+then
 success "$PATH added to crontab"
 else
 info "ERROR $PATH could not be added to crontab"
@@ -211,6 +211,7 @@ fi
 
 (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
 if [[ $? -eq 0 ]]
+then
 success "crontab created for speedtest cli --simple"
 else
 info "ERROR crontab could not be created for speedtest cli --simple"
@@ -218,6 +219,7 @@ fi
 
 (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --json > ~/bin/bandwidth.json") | crontab -
 if [[ $? -eq 0 ]]
+then
 success "crontab created for speedtest cli --json"
 else
 info "ERROR crontab could not be created for speedtest cli --json"
