@@ -144,7 +144,7 @@ add_cron () {
   cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
 }
 
-add_path () {
+add_line () {
   local command=$1
   local job="$command"
   cat <(fgrep -i -v "$command" <(crontab -l)) <(echo "$job") | crontab -
@@ -213,7 +213,7 @@ if ! [ -f /usr/local/bin/airport ]
   fi
 
 # crontab additions
-add_path "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   if [[ $? -eq 0 ]]
   then
   success "$PATH added to crontab"
