@@ -206,14 +206,22 @@ PATH=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 if [[ $? -eq 0 ]]
 success "$PATH added to crontab"
 else
-info "$PATH not successfully added to crontab"
+info "ERROR $PATH could not be added to crontab"
 fi
 
 (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --simple > ~/bin/bandwidth.log") | crontab -
+if [[ $? -eq 0 ]]
 success "crontab created for speedtest cli --simple"
+else
+info "ERROR crontab could not be created for speedtest cli --simple"
+fi
 
 (crontab -l 2>/dev/null; echo "*/15 * * * * speedtest-cli --json > ~/bin/bandwidth.json") | crontab -
+if [[ $? -eq 0 ]]
 success "crontab created for speedtest cli --json"
+else
+info "ERROR crontab could not be created for speedtest cli --json"
+fi
 
 # first run of speedtest-cli
 echo "Running speedtest-cli for tmux status bar data now..."
