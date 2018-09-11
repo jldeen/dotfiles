@@ -12,7 +12,7 @@
 
         re-ignore = !git rm --cached -r . && git add -A
         ec = config --global -e
-        up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+        up = !git fetch --prune && git pull --rebase --prune $@ && git submodule update --init --recursive
         cob = checkout -b
         cm = !git add -A && git commit -m
         save = !git add -A && git commit -m 'SAVEPOINT'

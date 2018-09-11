@@ -15,7 +15,7 @@ zsh_dotnet() {
 
     version=$(dotnet --version)
 
-    echo -n "$version%  %{$color%}\uE70C" # \uE70C is 
+    echo -n "$version%  %{$color%}\uE70C" # \uE70C is
 }
 
 POWERLEVEL9K_CUSTOM_DOTNET="zsh_dotnet"
@@ -77,6 +77,15 @@ POWERLEVEL9K_RBENV_VISUAL_IDENTIFIER_COLOR="red"
 POWERLEVEL9K_CUSTOM_DOTNET_BACKGROUND="$DEFAULT_BACKGROUND"
 POWERLEVEL9K_CUSTOM_DOTNET_FOREGROUND="249"
 
+# PYENV settings
+POWERLEVEL9K_PYENV_BACKGROUND="$DEFAULT_BACKGROUND"
+POWERLEVEL9K_PYENV_FOREGROUND="249"
+POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_COLOR="yellow"
+
+# virtualenv settings
+POWERLEVEL9K_VIRTUALENV_BACKGROUND="$DEFAULT_BACKGROUND"
+POWERLEVEL9K_VIRTUALENV_FOREGROUND="$DEFAULT_FOREGROUND"
+
 # Prompt settings
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_dotnet go_version nvm rbenv time)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status custom_dotnet go_version nvm rbenv pyenv time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir dir_writable virtualenv vcs)
