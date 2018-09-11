@@ -13,7 +13,7 @@ source $HOME/.powerlevel9k
 # # Default username to hide "user@hostname" info
 export DEFAULT_USER="ronnie"
 
-plugins=(git)
+plugins=(git docker encode64 jira osx pip pyenv sudo web-search virtualenv)
 source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
