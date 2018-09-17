@@ -14,8 +14,10 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # POWERLEVEL9K_IP_INTERFACE='en0'
 # POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
 
-# zsh tmux settings
+## zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
+# do not autoconnect to existing session, allows a new iTerm tab to open with a new tmux session
+ZSH_TMUX_AUTOCONNECT='false'
 
 ## Powerlevel9k Settings
 POWERLEVEL9K_HISTORY_BACKGROUND='green'
