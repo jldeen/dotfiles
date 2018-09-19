@@ -23,6 +23,7 @@ brew 'zsh-completions'
 cask 'font-sourcecodepro-nerd-font-mono'
 cask 'font-ubuntu-nerd-font-mono'
 cask 'font-ubuntumono-nerd-font-mono'
+case 'font-fira-code'
 
 cask 'beyond-compare'
 cask 'ccleaner'
