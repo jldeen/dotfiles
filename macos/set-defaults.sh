@@ -50,6 +50,35 @@ defaults write com.apple.dock autohide -bool true
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
+# Set default Finder location to home folder (~/)
+defaults write com.apple.finder NewWindowTarget -string "PfLo" && \
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# Disable ext change warning
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Use current directory as default search scope in Finder
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Show Path bar in Finder
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Show Status bar in Finder
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true && \
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true && \
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true && \
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+
 # Set the terminal theme to "Pro." The default white background looks terrible.
 #   From https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 osascript <<EOD
