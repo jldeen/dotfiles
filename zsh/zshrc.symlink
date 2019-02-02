@@ -54,7 +54,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 ## 
 
 # Default username to hide "user@hostname" info
-DEFAULT_USER="jldeen"
+DEFAULT_USER="coffeehorn"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
