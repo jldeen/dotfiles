@@ -35,20 +35,20 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 
-# # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-# if [ -n "$TMUX" ]; then                                                                               
-#   function refresh {                                                                                
-#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
-#     export $(tmux show-environment | grep "^DISPLAY")                                               
-#   }                                                                                                 
-# else                                                                                                  
-#   function refresh { }                                                                              
-# fi
+# Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
+if [ -n "$TMUX" ]; then                                                                               
+  function refresh {                                                                                
+    export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
+    export $(tmux show-environment | grep "^DISPLAY")                                               
+  }                                                                                                 
+else                                                                                                  
+  function refresh { }                                                                              
+fi
 
-# # Then, I define a preexec hook that calls refresh before each new command that gets executed:
-# function preexec {                                                                                    
-#     refresh                                                                                           
-# }
+# Then, I define a preexec hook that calls refresh before each new command that gets executed:
+function preexec {                                                                                    
+    refresh                                                                                           
+}
 
 # POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
 ## 
