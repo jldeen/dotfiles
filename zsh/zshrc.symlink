@@ -114,15 +114,42 @@ source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # For a full list of active aliases, run `alias`.
 #
 
-# Example aliases
+# exports
+export GOPATH=~/go 
+
+# Generic aliases
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias k="kubectl"
+alias js='~/bin/show-struct.py'
 
-# export PATH=$PATH:~/bin
-# export GOPATH=~/go 
-# export PATH=$GOPATH/bin:$PATH
-# export GOROOT=/usr/local/opt/go/libexec
+#jd k8s aliases - simplify for prod
+alias badwifi='k config use-context docker-for-desktop'
+alias jdk8s='k config use-context jdk8s'
+
+# menu clock function
+#demo-mode
+
+function toggleClock () {
+    ~/bin/toggleClock.sh
+}
+
+# function noclock () {
+#     defaults write com.apple.systemuiserver menuExtras '(
+#     "/System/Library/CoreServices/Menu Extras/Battery.menu",
+#     "/System/Library/CoreServices/Menu Extras/AirPort.menu",
+#     "/System/Library/CoreServices/Menu Extras/Volume.menu"
+#     )' && killall SystemUIServer
+# }
+
+# function showclock () {
+#     defaults write com.apple.systemuiserver menuExtras '(
+#     "/System/Library/CoreServices/Menu Extras/Clock.menu",
+#     "/System/Library/CoreServices/Menu Extras/Battery.menu",
+#     "/System/Library/CoreServices/Menu Extras/AirPort.menu",
+#     "/System/Library/CoreServices/Menu Extras/Volume.menu"
+#     )' && killall SystemUIServer
+# }
 
 # az cli
 autoload bashcompinit && bashcompinit
