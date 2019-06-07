@@ -41,7 +41,7 @@ POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
 ## 
 
 # Default username to hide "user@hostname" info
-DEFAULT_USER="jessicadeen"
+DEFAULT_USER="whoami"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
