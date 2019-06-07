@@ -202,7 +202,6 @@ success "Source Code Pro font copied successfully!"
 # .config permissions fix
 sudo chown $(whoami) $HOME/.config 
 success '.config permissions fixed'
-
 # airport symlink
 if ! [ -f /usr/local/bin/airport ]
   then

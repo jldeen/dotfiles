@@ -36046,7 +36046,7 @@
 	<key>NSNavLastRootDirectory</key>
 	<string>~</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{849, 448}</string>
+	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -36078,11 +36078,6 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
-	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
-	<dict>
-		<key>TB Is Shown</key>
-		<integer>1</integer>
-	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>431 216 660 77 0 0 1680 1027 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
@@ -37515,26 +37510,13 @@
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>92150115-FFFB-433E-B237-D4D3D2F7B4A2</string>
-	<key>NoSyncLastTipTime</key>
-	<real>515442352.29137498</real>
+	<string>39B11FBA-1B8D-4F87-816C-9C4BE605D3AF</string>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
-	<key>NoSyncPermissionToShowTip</key>
-	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>513918337.30616999</real>
-	<key>NoSyncTipsDisabled</key>
-	<true/>
-	<key>NoSyncTipsToNotShow</key>
-	<array>
-		<string>000</string>
-		<string>0000</string>
-		<string>0001</string>
-		<string>0002</string>
-	</array>
+	<real>546818164.89214206</real>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -37571,11 +37553,11 @@
 	<key>PrefsCustomFolder</key>
 	<string>~/.itermcfg</string>
 	<key>SUEnableAutomaticChecks</key>
-	<false/>
+	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final.xml?shard=43</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=56</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
