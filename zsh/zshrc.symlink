@@ -87,7 +87,7 @@ plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -151,8 +151,10 @@ function gitReset () {
 #---- Aliases ----
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
+alias config='/usr/bin/git --git-dir=/Users/jessicadeen/.cfg/ --work-tree=/Users/jessicadeen'
 alias h3="/usr/local/bin/tmp/helm"
 alias badwifi='k config use-context docker-for-desktop'
+alias jdk8s='k config use-context jdk8s'
 alias js='~/bin/show-struct.py'
 #acs-engine
 alias acse="/usr/local/bin/acs-engine"
@@ -169,14 +171,14 @@ export PATH="/usr/local/sbin:$PATH"
 #---- End Export ----
 
 #---- Source ----
+source $ZSH/oh-my-zsh.sh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # font source
 source ~/.fonts/*.sh
 # az cli
 autoload bashcompinit && bashcompinit
-source '~/lib/azure-cli/az.completion'
 source '/etc/bash_completion.d/azds'
-# vsts source
-source '~/lib/vsts-cli/vsts.completion'
 [ -f ~/.kube/fubectl.source ] && source ~/.kube/fubectl.source
 #---- End Source ----
 #---- END CUSTOM ----
