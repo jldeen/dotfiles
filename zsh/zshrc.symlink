@@ -37,6 +37,21 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history kubecontext)
 POWERLEVEL9K_KUBECONTEXT_BACKGROUND='004'
 POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
 
+# Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
+# if [ -n "$TMUX" ]; then                                                                               
+#   function refresh {                                                                                
+#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
+#     export $(tmux show-environment | grep "^DISPLAY")                                               
+#   }                                                                                                 
+# else                                                                                                  
+#   function refresh { }                                                                              
+# fi
+
+# # Then, I define a preexec hook that calls refresh before each new command that gets executed:
+# function preexec {                                                                                    
+#     refresh                                                                                           
+# }
+
 # POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
 ## 
 
