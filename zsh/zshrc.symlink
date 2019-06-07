@@ -17,7 +17,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 ## zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
 
-# do not autoconnect to existing session, allows a new iTerm tab to open with a new tmux session
+# do not autoconnect to existing tmux session, allows a new term new tmux session
 ZSH_TMUX_AUTOCONNECT='false'
 
 ## Powerlevel9k Settings
