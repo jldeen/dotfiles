@@ -112,6 +112,12 @@ echo "Now installing Midnight commander..."
 echo ''
 brew install mc
 
+# Fubectl install
+echo ''
+echo "Now installing Fubectl - fancy Kubectl..."
+curl -LO https://rawgit.com/kubermatic/fubectl/master/fubectl.source
+mv fubectl.source ~/.kube
+
 # Pull down personal dotfiles
 echo ''
 read -p "Do you want to use jldeen's dotfiles? y/n" -n 1 -r
@@ -146,5 +152,7 @@ else
 	echo "source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc && echo "added zsh-autosuggestions to .zshrc..."
 	echo ''
 	echo "source $HOME/.git-completion.bash" >> ${ZDOTDIR:-$HOME}/.bashrc && echo "added git-completion to .bashrc..."
+    echo ''
+    echo "[ -f ~/.kube/fubectl.source ] && source ~/.kube/fubectl.source" >> ${ZDOTDIR:-$HOME}/.zshrc && echo "added fubectl to .zshrc..."
 	
 fi

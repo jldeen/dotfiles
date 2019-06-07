@@ -16,6 +16,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 ## zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
+
 # do not autoconnect to existing session, allows a new iTerm tab to open with a new tmux session
 ZSH_TMUX_AUTOCONNECT='false'
 
@@ -88,7 +89,7 @@ plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -110,21 +111,78 @@ source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+#---- CUSTOM ----
+#---- Functions ----
+function toggleClock () {
+    ~/Git/dotfiles/bin/toggleClock.sh
+}
 
-# Example aliases
+function gitReset () {
+    git fetch origin
+    git reset --hard origin/master
+    # git clean
+    git clean -n -f > /dev/null
+    if [[ $? -eq 0 ]] ; then 
+    echo ''
+    echo "You have files that will be removed from git clean."
+    read -p ", do you want to see them?" -n 1 -r
+    echo ''
+        if [[ $REPLY =~ ^[Yy]$ ]] ; then
+        git clean -n -f
+        echo .
+        read -p "Are you sure you would like to remove these files?"
+            if [[ $? -eq 0 ]]
+            then
+                echo "running git clean now..."
+                git clean -f
+                echo .
+                echo "git clean is complete."
+            else
+                echo "you chose not to run git clean..."
+            fi
+        else
+        git clean -f
+        fi
+    else
+        echo "running git clean -n -f..."
+        echo "there is nothing to clean... exiting..."
+    fi
+}
+#---- End of Functions ----
+
+#---- Aliases ----
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
-alias k="kubectl"
+alias config='/usr/bin/git --git-dir=/Users/jessicadeen/.cfg/ --work-tree=/Users/jessicadeen'
+alias h3="/usr/local/bin/tmp/helm"
+alias badwifi='k config use-context docker-for-desktop'
+alias jdk8s='k config use-context jdk8s'
+alias js='~/bin/show-struct.py'
+#acs-engine
+alias acse="/usr/local/bin/acs-engine"
+#---- End of Aliases ----
 
-# export PATH=$PATH:~/bin
-# export GOPATH=~/go 
-# export PATH=$GOPATH/bin:$PATH
-# export GOROOT=/usr/local/opt/go/libexec
+#---- Export ----
+export PATH=$PATH:/Users/jessicadeen/bin
+export GOPATH=~/go 
+export PATH=$GOPATH/bin:$PATH
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:/usr/local/bin/node
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+#---- End Export ----
 
+#---- Source ----
+source $ZSH/oh-my-zsh.sh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# font source
+source ~/.fonts/*.sh
 # az cli
 autoload bashcompinit && bashcompinit
+source '/etc/bash_completion.d/azds'
+
+[ -f ~/.kube/fubectl.source ] && source ~/.kube/fubectl.source
+#---- End Source ----
+#---- END CUSTOM ----
+

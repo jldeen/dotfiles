@@ -213,37 +213,37 @@ if ! [ -f /usr/local/bin/airport ]
   fi
 
 # crontab additions
-add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-  if [[ $? -eq 0 ]]
-  then
-  success "$PATH added to crontab"
-  else
-  info "ERROR $PATH could not be added to crontab"
-  fi
+# add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+#   if [[ $? -eq 0 ]]
+#   then
+#   success "$PATH added to crontab"
+#   else
+#   info "ERROR $PATH could not be added to crontab"
+#   fi
 
-add_cron "speedtest-cli --simple > ~/bin/bandwidth.log"
-  if [[ $? -eq 0 ]]
-  then
-  success "crontab created for speedtest cli --simple"
-  else
-  info "ERROR crontab could not be created for speedtest cli --simple"
-  fi
+# add_cron "speedtest-cli --simple > ~/bin/bandwidth.log"
+#   if [[ $? -eq 0 ]]
+#   then
+#   success "crontab created for speedtest cli --simple"
+#   else
+#   info "ERROR crontab could not be created for speedtest cli --simple"
+#   fi
 
-add_cron "speedtest-cli --json > ~/bin/bandwidth.json"
-  if [[ $? -eq 0 ]]
-  then
-  success "crontab created for speedtest cli --json"
-  else
-  info "ERROR crontab could not be created for speedtest cli --json"
-  fi
+# add_cron "speedtest-cli --json > ~/bin/bandwidth.json"
+#   if [[ $? -eq 0 ]]
+#   then
+#   success "crontab created for speedtest cli --json"
+#   else
+#   info "ERROR crontab could not be created for speedtest cli --json"
+#   fi
 
-# first run of speedtest-cli
-echo "Running speedtest-cli for tmux status bar data now..."
-speedtest-cli --simple > ~/bin/bandwidth.log
-success "speedtest-cli bandwidth.log created"
+# # first run of speedtest-cli
+# echo "Running speedtest-cli for tmux status bar data now..."
+# speedtest-cli --simple > ~/bin/bandwidth.log
+# success "speedtest-cli bandwidth.log created"
 
-speedtest-cli --json > ~/bin/bandwidth.json
-success "speedtest-cli bandwidth.json created"
+# speedtest-cli --json > ~/bin/bandwidth.json
+# success "speedtest-cli bandwidth.json created"
 
 # iterm2 config
 echo ''
