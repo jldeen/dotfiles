@@ -1,3 +1,7 @@
+# updated using python script migration options
+# credit for migration goes to github.com/tbutts
+# migration script can be found here: https://gist.github.com/tbutts/6abf7fb5b948c066bf180922fb37adcf
+
 # remap prefix to Control + a
 set -g prefix C-a
 unbind C-b
@@ -11,6 +15,7 @@ bind-key ] send-prefix
 bind-key C-] last-window
 
 set -g default-terminal "xterm-256color"
+# set-option -g default-command "reattach-to-user-namespace -l zsh"
  
 set-option -g history-limit 20000
 
@@ -70,14 +75,17 @@ set -g status-interval 1
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
 set -g status-position bottom
-set -g status-bg colour237
-set -g status-fg colour137
-set -g status-left '#[bg=colour237] #[fg=colour197]#(~/bin/internet_info.sh) '
-set -g status-right '#[bg=colour237]#{prefix_highlight} #[bg=colour237]#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165] #H'
+set -g status-style bg=colour237,fg=colour137
+set -g status-style 'none'
+set -g status-left ' #[fg=colour197]#(~/bin/internet_info.sh) '
+set -g status-right '#{prefix_highlight} #(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165] #H'
 set -g status-right-length 100
 set -g status-left-length 80
 
 set-window-option -g aggressive-resize
+
+setw -g window-status-current-style fg=colour170,bg=colour239,bold
+
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
 set-option -g set-titles-string 'do epic shit. | #S | / #W'
