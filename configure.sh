@@ -80,6 +80,12 @@ echo "Now installing powerlevel9k..."
 echo ''
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+# powerlevel10k install
+echo ''
+echo "Now installing powerlevel10k..."
+echo ''
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
 # vimrc vundle install
 echo ''
 echo "Now installing vundle..."
