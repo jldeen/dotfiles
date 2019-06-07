@@ -3,7 +3,6 @@ set -g prefix C-a
 unbind C-b
 bind C-a send-prefix
 
-
 # force a reload of the config file
 bind-key R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 
@@ -39,15 +38,26 @@ unbind '"'
 unbind %
 
 # Easy-to-remember window commands
+bind c confirm new-window
 bind k confirm kill-window
 bind K confirm kill-server
 bind a last-window
 bind space command-prompt -p index "select-window"
 unbind &
 
+# Don't auto remname my windows
+set-option -g allow-rename off
+
+# Easy-to-remember session commands
+bind C confirm new-session
+
+
+# Task manager
+set -g @tasks_manager 'taskwarrior'
+
 # Colors
-set -g @tasks_format_begin '#[fg=white,bg=default]'
-set -g @tasks_format_end '#[fg=white,bg=default]'
+set -g @tasks_format_begin '#[fg=white,bg=colour236]'
+set -g @tasks_format_end '#[fg=white,bg=colour236]'
 
 # Icons
 set -g @tasks_icon_urgent '⧗ '
@@ -62,21 +72,15 @@ set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CO
 set -g status-position bottom
 set -g status-bg colour237
 set -g status-fg colour137
-set -g status-attr 'none'
-set -g status-left ' #[fg=colour197]#(~/bin/internet_info.sh) '
-set -g status-right '#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165]#[bg=default] #H'
+set -g status-left '#[bg=colour237] #[fg=colour197]#(~/bin/internet_info.sh) '
+set -g status-right '#[bg=colour237]#{prefix_highlight} #[bg=colour237]#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165] #H'
 set -g status-right-length 100
 set -g status-left-length 80
 
 set-window-option -g aggressive-resize
-setw -g window-status-current-fg colour170
-setw -g window-status-current-bg colour239
-setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
 set-option -g set-titles-string 'do epic shit. | #S | / #W'
-setw -g window-status-current-fg colour170
-setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
 # Plugins
@@ -86,6 +90,9 @@ setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=c
    chriszarate/tmux-tasks       \
    soyuka/tmux-current-pane-hostname     \
    christoomey/vim-tmux-navigator       \
+   tmux-plugins/tmux-prefix-highlight \
+   tmux-plugins/tmux-resurrect \
+   tmux-plugins/tmux-sessionist \
 '
 
 # Other examples:
