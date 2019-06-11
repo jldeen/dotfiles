@@ -187,9 +187,11 @@ ln -s $HOME/.dotfiles/bin $HOME/bin && success "symlink for $HOME/bin folder cre
 ln -s $HOME/.dotfiles/tmux $HOME/.tmux && success "symlink for $HOME/.tmux folder created"
 
 # symlink VSCode User Settings
-if [ -d $HOME/Library/Application\ Support/Code/User ] ; then 
-  ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-  success "symlink for vs code settings created"
+if [ -d $HOME/Library/Application\ Support/Code/User ] ; then
+  echo "Making backup of current settings.json and creating symlink..."
+  echo ''
+  mv $HOME/Library/Application\ Support/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.old.json && success "settings.old.json created"
+  ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json && success "settings.json for vs code symlink created"
 else
   info "symlink for vs code settings not created"
   echo "VS Code does not appear to be installed or has not been launched yet. Cannot create symlink for VS Code User settings..."
@@ -202,6 +204,7 @@ success "Source Code Pro font copied successfully!"
 # .config permissions fix
 sudo chown $(whoami) $HOME/.config 
 success '.config permissions fixed'
+
 # airport symlink
 if ! [ -f /usr/local/bin/airport ]
   then
