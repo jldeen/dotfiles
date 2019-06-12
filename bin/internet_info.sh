@@ -13,19 +13,19 @@ IP=$(ipconfig getifaddr en0)
 #         PL=""
 # fi
 
-# Speedtest
-DL=$(cat ~/bin/bandwidth.log | awk 'NR==2{print $2}')
-UP=$(cat ~/bin/bandwidth.log | awk 'NR==3{print $2}')
+# # Speedtest
+# DL=$(cat ~/bin/bandwidth.log | awk 'NR==2{print $2}')
+# UP=$(cat ~/bin/bandwidth.log | awk 'NR==3{print $2}')
 
 # # Public IP
-PUB_IP=$(cat ~/bin/bandwidth.json | jq -r .client.ip)
+PUBLIC_IP=`curl -4 ifconfig.co`
 
-if [[ "$PUB_IP" = ";; connection timed out; no servers could be reached" ]]; then 
-    PUB_IP="Not Available"
-elif [[ "$PUB_IP" = "" ]]; then
-    PUB_IP="No external access"
+if [[ "$PUBLIC_IP" = ";; connection timed out; no servers could be reached" ]]; then 
+    PUBLIC_IP="Not Available"
+elif [[ "$PUBLIC_IP" = "" ]]; then
+    PUBLIC_IP="No external access"
 else 
-    PUB_IP=$(cat ~/bin/bandwidth.json | jq -r .client.ip)
+    PUBLIC_IP=`curl -4 ifconfig.co`
 fi
  
 INTERNET=''
@@ -44,4 +44,4 @@ else
     echo -n '#[fg=colour120]'
 fi
 
-echo -n "$INTERNET  -[$internet_info]db | #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour197]$IP | $PUB_IP"
+echo -n "$INTERNET  -[$internet_info]db | #[fg=colour81]$PL #[fg=colour86]$DL Mbit/s $UP Mbit/s #[fg=colour197]$IP | $PUBLIC_IP"
