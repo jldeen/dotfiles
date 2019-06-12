@@ -1,3 +1,5 @@
+alias lc='colorls -la'
+alias ls="colorls --sd -A"
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias config='/usr/bin/git --git-dir=/Users/$(whoami)/.cfg/ --work-tree=/Users/$(whoami)'
