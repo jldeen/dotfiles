@@ -91,6 +91,12 @@ echo "Now installing powerlevel10k..."
 echo ''
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
+# tmux tpm install
+ech ''
+echo "Now installing Tmux TPM manager..."
+echo ''
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # vimrc vundle install
 echo ''
 echo "Now installing vundle..."
