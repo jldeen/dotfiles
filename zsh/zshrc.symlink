@@ -1,21 +1,18 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
+source $ZSH/oh-my-zsh.sh
 
 # ZSH Customization Settings
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# fix pasting speed
+# ref https://github.com/zsh-users/zsh-autosuggestions/issues/238
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 # zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
-
-# do not autoconnect to existing tmux session, allows a new term new tmux session
-ZSH_TMUX_AUTOCONNECT='false'
-
-# syntax highlighting
-# typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
 
 # #Background Jobs Function
 # set_default POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE true
@@ -94,7 +91,7 @@ DEFAULT_USER="whoami"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions zsh-completions)
+plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z)
 
 # User configuration
 
@@ -125,7 +122,32 @@ source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.p9kgt
 source $HOME/.functions
 source $HOME/.aliases
+
+# autload ----------------------------------------------------------------------
+autoload -Uz vcs_info 
+autoload -Uz colors && colors
 autoload -U compinit && compinit
+
+## zsh git stuff ______________________________________________________________________
+
+# syntax highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+#styles
+ZSH_HIGHLIGHT_STYLES[default]=none
+ZSH_HIGHLIGHT_STYLES[function]=fg=063
+ZSH_HIGHLIGHT_STYLES[command]=fg=002
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=002
+ZSH_HIGHLIGHT_STYLES[alias]=fg=green
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=green
+#path
+ZSH_HIGHLIGHT_STYLES[path]=fg=cyan,underline
+ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[path_approx]=fg=cyan
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=240
+
+# patterns
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
 
 #---- Export ----
 export PATH=$PATH:/Users/jessicadeen/bin
@@ -149,3 +171,4 @@ export PATH="/usr/local/sbin:$PATH"
 source <(kubectl completion zsh)
 export MONGO_PATH=/usr/local/mongodb 
 export PATH=$PATH:$MONGO_PATH/bin
+source $(dirname $(gem which colorls))/tab_complete.sh
