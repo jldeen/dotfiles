@@ -92,10 +92,16 @@ echo ''
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 # tmux tpm install
-ech ''
+echo ''
 echo "Now installing Tmux TPM manager..."
 echo ''
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# fubectl install
+echo ''
+echo "Now installing fubectl..."
+echo ''
+curl -LO https://rawgit.com/kubermatic/fubectl/master/fubectl.source --output "$HOME/bin/fubectl.source"
 
 # vimrc vundle install
 echo ''
