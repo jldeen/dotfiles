@@ -17,7 +17,7 @@ bind-key C-] last-window
 set -g default-terminal "xterm-256color"
 # set-option -g default-command "reattach-to-user-namespace -l zsh"
  
-set-option -g history-limit 20000
+set-option -g history-limit 30000
 
 # use vi style keybindings
 setw -g mode-keys vi
@@ -55,7 +55,6 @@ set-option -g allow-rename off
 
 # Easy-to-remember session commands
 bind C confirm new-session
-
 
 # Task manager
 set -g @tasks_manager 'taskwarrior'
@@ -102,11 +101,6 @@ setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=c
    tmux-plugins/tmux-resurrect \
    tmux-plugins/tmux-sessionist \
 '
-
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'git@github.com/user/plugin'
-# set -g @plugin 'git@bitbucket.com/user/plugin'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
