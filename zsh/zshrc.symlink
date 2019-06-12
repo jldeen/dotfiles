@@ -163,4 +163,3 @@ source <(kubectl completion zsh)
 source $(dirname $(gem which colorls))/tab_complete.sh
 #---- End Source ----
 #---- END CUSTOM ----
-
