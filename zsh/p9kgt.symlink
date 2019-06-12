@@ -1,0 +1,38 @@
+# P9KGT
+# ln -s $HOME/.dotfiles/zsh/.p9kgt.symlink $HOME/.p9kgt
+# https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#p9kgt
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+POWERLEVEL9K_MODE="awesome-fontconfig"
+
+# POWERLEVEL9K_IP_INTERFACE='en0'
+# POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
+
+# Standard Settings
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=($'%F{red} \uf1d0 %f %F{yellow}❯ ')
+
+# Prompt Segments
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history kubecontext)
+
+# Colors
+POWERLEVEL9K_HISTORY_BACKGROUND='green'
+# Set 'dir_writable' segment colors
+P9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND=$P9KGT_YELLOW
+P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND=$P9KGT_RED
+POWERLEVEL9K_KUBECONTEXT_BACKGROUND='004'
+POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
+
+# # `vcs` color customization
+# POWERLEVEL9K_VCS_CLEAN_FOREGROUND='blue'
+# POWERLEVEL9K_VCS_CLEAN_BACKGROUND='black'
+# POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='yellow'
+# POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='black'
+# POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
+# POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='black'

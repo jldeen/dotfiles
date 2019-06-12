@@ -1,0 +1,11 @@
+alias lc='colorls -la'
+alias ls="colorls --sd -A"
+alias zshconfig="code ~/.zshrc"
+alias ohmyzsh="code ~/.oh-my-zsh"
+alias config='/usr/bin/git --git-dir=/Users/$(whoami)/.cfg/ --work-tree=/Users/$(whoami)'
+alias h3="/usr/local/bin/tmp/helm"
+alias badwifi='k config use-context docker-for-desktop'
+alias jdk8s='k config use-context jdk8s-us'
+alias js='~/bin/show-struct.py'
+#acs-engine
+alias acse="/usr/local/bin/acs-engine"

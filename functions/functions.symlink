@@ -1,0 +1,37 @@
+#---- Functions ----
+function toggleClock () {
+    ~/Git/dotfiles/bin/toggleClock.sh
+}
+
+function gitReset () {
+    git fetch origin
+    git reset --hard origin/master
+    # git clean
+    git clean -n -f > /dev/null
+    if [[ $? -eq 0 ]] ; then 
+    echo ''
+    echo "You have files that will be removed from git clean."
+    read -p ", do you want to see them?" -n 1 -r
+    echo ''
+        if [[ $REPLY =~ ^[Yy]$ ]] ; then
+        git clean -n -f
+        echo .
+        read -p "Are you sure you would like to remove these files?"
+            if [[ $? -eq 0 ]]
+            then
+                echo "running git clean now..."
+                git clean -f
+                echo .
+                echo "git clean is complete."
+            else
+                echo "you chose not to run git clean..."
+            fi
+        else
+        git clean -f
+        fi
+    else
+        echo "running git clean -n -f..."
+        echo "there is nothing to clean... exiting..."
+    fi
+}
+#---- End of Functions ----

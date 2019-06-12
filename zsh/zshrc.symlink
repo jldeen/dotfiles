@@ -1,41 +1,35 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
+# Path to your oh-my-zsh installation oh-my-zsh specific settings
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
+source $ZSH/oh-my-zsh.sh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-POWERLEVEL9K_MODE="awesome-fontconfig"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH Customization Settings
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# POWERLEVEL9K_IP_INTERFACE='en0'
-# POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
+# fix pasting speed
+# ref https://github.com/zsh-users/zsh-autosuggestions/issues/238
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-## zsh tmux settings
+# zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
+ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
 
-# do not autoconnect to existing tmux session, allows a new term new tmux session
-ZSH_TMUX_AUTOCONNECT='false'
-
-## Powerlevel9k Settings
-POWERLEVEL9K_HISTORY_BACKGROUND='green'
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=($'%F{red} \uf1d0 %f %F{yellow}❯ ')
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history kubecontext)
-
-POWERLEVEL9K_KUBECONTEXT_BACKGROUND='004'
-POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
+# #Background Jobs Function
+# set_default POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE true
+# prompt_background_jobs() {
+# local background_jobs_number=${$(jobs -l | wc -l)// /}
+# local wrong_lines=`jobs -l | awk '/pwd now/{ count++ } END {print count}'`
+# if [[ wrong_lines -gt 0 ]]; then
+#      background_jobs_number=$(( $background_jobs_number - $wrong_lines ))
+#   fi
+#   if [[ background_jobs_number -gt 0 ]]; then
+#     local background_jobs_number_print="1"
+#     if [[ "$POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE" == "true" ]] && [[ "$background_jobs_number" -gt 1 ]]; then
+#       background_jobs_number_print="$background_jobs_number"
+#     fi
+#     "$1_prompt_segment" "$0" "$2" "$DEFAULT_COLOR" "cyan" "$background_jobs_number_print" 'BACKGROUND_JOBS_ICON'
+#   fi
+# }
 
 # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
 # if [ -n "$TMUX" ]; then                                                                               
@@ -47,14 +41,11 @@ POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
 #   function refresh { }                                                                              
 # fi
 
-POWERLEVEL9K_KUBECONTEXT_BACKGROUND='004'
-POWERLEVEL9K_KUBECONTEXT_FOREGROUND='000'
-
 # POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
 ## 
 
 # Default username to hide "user@hostname" info
-DEFAULT_USER="whoami"
+DEFAULT_USER="$(whoami)"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -69,7 +60,7 @@ DEFAULT_USER="whoami"
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls.
+#Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
@@ -98,11 +89,7 @@ DEFAULT_USER="whoami"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z)
 
 # User configuration
 
@@ -125,55 +112,38 @@ source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.z
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 #---- CUSTOM ----
-#---- Functions ----
-function toggleClock () {
-    ~/Git/dotfiles/bin/toggleClock.sh
-}
+#Powerlevel9k/Powerlevel10k settings
+# https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#p9kgt
+source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.p9kgt
+source $HOME/.functions
+source $HOME/.aliases
 
-function gitReset () {
-    git fetch origin
-    git reset --hard origin/master
-    # git clean
-    git clean -n -f > /dev/null
-    if [[ $? -eq 0 ]] ; then 
-    echo ''
-    echo "You have files that will be removed from git clean."
-    read -p ", do you want to see them?" -n 1 -r
-    echo ''
-        if [[ $REPLY =~ ^[Yy]$ ]] ; then
-        git clean -n -f
-        echo .
-        read -p "Are you sure you would like to remove these files?"
-            if [[ $? -eq 0 ]]
-            then
-                echo "running git clean now..."
-                git clean -f
-                echo .
-                echo "git clean is complete."
-            else
-                echo "you chose not to run git clean..."
-            fi
-        else
-        git clean -f
-        fi
-    else
-        echo "running git clean -n -f..."
-        echo "there is nothing to clean... exiting..."
-    fi
-}
-#---- End of Functions ----
+# autoload ----------------------------------------------------------------------
+autoload -Uz vcs_info 
+autoload -Uz colors && colors
+autoload -U compinit && compinit
 
-#---- Aliases ----
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=/Users/jessicadeen/.cfg/ --work-tree=/Users/jessicadeen'
-alias h3="/usr/local/bin/tmp/helm"
-alias badwifi='k config use-context docker-for-desktop'
-alias jdk8s='k config use-context jdk8s'
-alias js='~/bin/show-struct.py'
-#acs-engine
-alias acse="/usr/local/bin/acs-engine"
-#---- End of Aliases ----
+# syntax highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+#styles
+ZSH_HIGHLIGHT_STYLES[default]=none
+# ZSH_HIGHLIGHT_STYLES[function]=fg=magenta,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=green
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=green
+ZSH_HIGHLIGHT_STYLES[alias]=fg=green
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=green
+#path
+ZSH_HIGHLIGHT_STYLES[path]=fg=cyan,underline
+ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[path_approx]=fg=cyan
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=240
+
+# patterns
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
 
 #---- Export ----
 export PATH=$PATH:/Users/jessicadeen/bin
@@ -183,18 +153,13 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:/usr/local/bin/node
 export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export MONGO_PATH=/usr/local/mongodb 
+export PATH=$PATH:$MONGO_PATH/bin
 #---- End Export ----
 
 #---- Source ----
-source $ZSH/oh-my-zsh.sh
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# font source
-source ~/.fonts/*.sh
-# az cli
-autoload bashcompinit && bashcompinit
-source '/etc/bash_completion.d/azds'
-
-[ -f ~/.kube/fubectl.source ] && source ~/.kube/fubectl.source
+[ -f ~/bin/fubectl.source ] && source ~/bin/fubectl.source
+source <(kubectl completion zsh)
+source $(dirname $(gem which colorls))/tab_complete.sh
 #---- End Source ----
 #---- END CUSTOM ----

@@ -20,36 +20,39 @@
 // "workbench.colorTheme": "Visual Studio Dark"
 // "window.zoomLevel": 0,
 // "workbench.startupEditor": "newUntitledFile",
-//PowerShell
-"terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+
+// shell settings
+"terminal.integrated.shell.osx": "/bin/zsh",
+
 // Color Override for terminal
 "workbench.colorCustomizations": {
-    "terminal.foreground": "#839496",
-    "terminal.background": "#002833",
-    "terminal.ansiBlack": "#003541",
-    "terminal.ansiBlue": "#268bd2",
-    "terminal.ansiCyan": "#2aa198",
-    "terminal.ansiGreen": "#859901",
-    "terminal.ansiMagenta": "#d33682",
-    "terminal.ansiRed": "#dc322f",
-    "terminal.ansiWhite": "#eee8d5",
-    "terminal.ansiYellow": "#b58901",
-    "terminal.ansiBrightBlack": "#586e75",
-    "terminal.ansiBrightBlue": "#839496",
-    "terminal.ansiBrightCyan": "#93a1a1",
-    "terminal.ansiBrightGreen": "#586e75",
-    "terminal.ansiBrightMagenta": "#6c6ec6",
-    "terminal.ansiBrightRed": "#cb4b16",
-    "terminal.ansiBrightWhite": "#fdf6e3",
-    "terminal.ansiBrightYellow": "#657b83",
-    "terminalCursor.foreground": "#839496",
-    "terminalCursor.background": "#003541"
-    },
-    "workbench.colorTheme": "Visual Studio Dark",
+    "activityBarBadge.background": "#5C6BC0",
+    "list.activeSelectionForeground": "#5C6BC0",
+    "list.inactiveSelectionForeground": "#5C6BC0",
+    "list.highlightForeground": "#5C6BC0",
+    "scrollbarSlider.activeBackground": "#5C6BC050",
+    "editorSuggestWidget.highlightForeground": "#5C6BC0",
+    "textLink.foreground": "#5C6BC0",
+    "progressBar.background": "#5C6BC0",
+    "pickerGroup.foreground": "#5C6BC0",
+    "tab.activeBorder": "#5C6BC0",
+    "notificationLink.foreground": "#5C6BC0",
+    "editorWidget.resizeBorder": "#5C6BC0",
+    "editorWidget.border": "#5C6BC0",
+    "settings.modifiedItemIndicator": "#5C6BC0",
+    "settings.headerForeground": "#5C6BC0",
+    "panelTitle.activeBorder": "#5C6BC0",
+    "breadcrumb.activeSelectionForeground": "#5C6BC0",
+    "menu.selectionForeground": "#5C6BC0",
+    "menubar.selectionForeground": "#5C6BC0"
+},
+    "workbench.colorTheme": "One Dark Pro",
     "azure.resourceFilter": [
         "72f988bf-86f1-41af-91ab-2d7cd011db47/dfb5d696-98d8-447c-a14d-56f131f3c4a5",
         "72f988bf-86f1-41af-91ab-2d7cd011db47/998e0f50-cedb-4e50-a461-52ef20a0478b"
     ],
     "workbench.activityBar.visible": true,
-    "workbench.sideBar.location": "left"
+    "workbench.sideBar.location": "left",
+    "materialTheme.accent": "Indigo",
+    "workbench.iconTheme": "seti"
 }

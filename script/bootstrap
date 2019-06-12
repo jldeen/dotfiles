@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
 # bootstrap installs things.
+source ./script/prompt
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
@@ -8,24 +9,6 @@ DOTFILES_ROOT=$(pwd -P)
 set -e
 
 echo ''
-
-info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
-}
-
-user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
-}
-
-success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
-  exit
-}
 
 setup_gitconfig () {
   if ! [ -f git/gitconfig.local.symlink ]
@@ -168,101 +151,133 @@ then
   fi
 fi
 
-echo ''
-info "starting jldeen mods"
-#backup old bin, if exists
-if [ -d $HOME/bin ]
-then
-    echo "current $HOME/bin folder found!!! Creating backup..."
-    sudo mv $HOME/bin bin_old
-    success "backup created"
-else
-    echo "No current $HOME/bin folder found. Proceeding to link bin folder for tumx scripts..."
-fi
+jldeenMods () {
+  info "starting jldeen mods"
+  #backup old bin, if exists
+  if [ -d $HOME/bin ]; then
+    info "current $HOME/bin folder, checking for existing symlink"
+    if [ ! -L $HOME/bin ]; then
+      info "current $HOME/bin is not a symlink, creating backup"
+      sudo mv $HOME/bin bin_old
+      success "backup folder created"
+    else info "$HOME/bin symlink already exists"
+    fi
+  else
+      info "No current $HOME/bin folder found, starting symlink creation"
+  fi
+}
 
-# symlink .dotfiles bin to ~
-ln -s $HOME/.dotfiles/bin $HOME/bin && success "symlink for $HOME/bin folder created"
+jd_Symlinks () {
+  # symlink .dotfiles bin to ~
+  ln -s $HOME/.dotfiles/bin $HOME/bin && success "symlink for $HOME/bin folder created"
 
-# symlink .dotfiles tmux to ~
-ln -s $HOME/.dotfiles/tmux $HOME/.tmux && success "symlink for $HOME/.tmux folder created"
+  # symlink .dotfiles tmux to ~
+  ln -s $HOME/.dotfiles/tmux $HOME/.tmux && success "symlink for $HOME/.tmux folder created"
 
-# symlink VSCode User Settings
-if [ -d $HOME/Library/Application\ Support/Code/User ] ; then 
-  ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-  success "symlink for vs code settings created"
-else
-  info "symlink for vs code settings not created"
-  echo "VS Code does not appear to be installed or has not been launched yet. Cannot create symlink for VS Code User settings..."
-fi
-
-# install Source Code Pro nerd font
-cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
-success "Source Code Pro font copied successfully!"
-
-# .config permissions fix
-sudo chown $(whoami) $HOME/.config 
-success '.config permissions fixed'
-# airport symlink
-if ! [ -f /usr/local/bin/airport ]
-  then
-    sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
-    success "symlink for airport created"
-  else 
-    info "symlink for airport already exists"
+  # symlink VSCode User Settings
+  if [ -d $HOME/Library/Application\ Support/Code/User ] ; then
+    echo "Making backup of current settings.json and creating symlink..."
+    echo ''
+    mv $HOME/Library/Application\ Support/Code/User/settings.json $HOME/Library/Application\ Support/Code/User/settings.old.json && success "settings.old.json created"
+    ln -s $HOME/.dotfiles/code/settings.json $HOME/Library/Application\ Support/Code/User/settings.json && success "settings.json for vs code symlink created"
+  else
+    info "symlink for vs code settings not created"
+    echo "VS Code does not appear to be installed or has not been launched yet. Cannot create symlink for VS Code User settings..."
   fi
 
-# crontab additions
-# add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-#   if [[ $? -eq 0 ]]
-#   then
-#   success "$PATH added to crontab"
-#   else
-#   info "ERROR $PATH could not be added to crontab"
-#   fi
+  # airport symlink
+  if ! [ -f /usr/local/bin/airport ]
+    then
+      sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
+      success "symlink for airport created"
+    else 
+      info "symlink for airport already exists"
+    fi
+}
 
-# add_cron "speedtest-cli --simple > ~/bin/bandwidth.log"
-#   if [[ $? -eq 0 ]]
-#   then
-#   success "crontab created for speedtest cli --simple"
-#   else
-#   info "ERROR crontab could not be created for speedtest cli --simple"
-#   fi
+jdcolors () {
+  # colorls setup
+  sudo gem install colorls && success 'ls colors have been configured'
+}
 
-# add_cron "speedtest-cli --json > ~/bin/bandwidth.json"
-#   if [[ $? -eq 0 ]]
-#   then
-#   success "crontab created for speedtest cli --json"
-#   else
-#   info "ERROR crontab could not be created for speedtest cli --json"
-#   fi
-
-# # first run of speedtest-cli
-# echo "Running speedtest-cli for tmux status bar data now..."
-# speedtest-cli --simple > ~/bin/bandwidth.log
-# success "speedtest-cli bandwidth.log created"
-
-# speedtest-cli --json > ~/bin/bandwidth.json
-# success "speedtest-cli bandwidth.json created"
-
-# iterm2 config
-echo ''
-read -p "Do you currently use iTerm2 and would you like to set jldeen's custom colors? y/n" -n 1 -r
-echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	# Specify the preferences directory
-  defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/.itermcfg/"
-  # Tell iTerm2 to use the custom preferences in the directory
-  defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+jdcrontab () {
+  #crontab additions
+  add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     if [[ $? -eq 0 ]]
     then
-        success "successfully configured iTerm2 to use jldeen's custom colors..."
+    success "$PATH added to crontab"
     else
-        fail "failed to apply jldeen's custom colors..." >&2
-fi
-else 
-    echo "You chose not to use iTerm2 or jldeen's custom colors."
-fi
+    info "ERROR $PATH could not be added to crontab"
+    fi
 
-echo ''
-echo '	Badass macOS terminal installed!'
+  add_cron "speedtest-cli --simple > ~/bin/bandwidth.log"
+    if [[ $? -eq 0 ]]
+    then
+    success "crontab created for speedtest cli --simple"
+    else
+    info "ERROR crontab could not be created for speedtest cli --simple"
+    fi
+
+  add_cron "speedtest-cli --json > ~/bin/bandwidth.json"
+    if [[ $? -eq 0 ]]
+    then
+    success "crontab created for speedtest cli --json"
+    else
+    info "ERROR crontab could not be created for speedtest cli --json"
+    fi
+
+  # first run of speedtest-cli
+  echo "Running speedtest-cli for tmux status bar data now..."
+  speedtest-cli --simple > ~/bin/bandwidth.log
+  success "speedtest-cli bandwidth.log created"
+
+  speedtest-cli --json > ~/bin/bandwidth.json
+  success "speedtest-cli bandwidth.json created"
+}
+
+jditermConfig () {
+  # iterm2 config
+  read -p "Do you currently use iTerm2 and would you like to set jldeen's custom colors? y/n " -n 1 -r
+  echo ''
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    # Specify the preferences directory
+    defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$HOME/.itermcfg/"
+    # Tell iTerm2 to use the custom preferences in the directory
+    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+      if [[ $? -eq 0 ]]
+      then
+          success "successfully configured iTerm2 to use jldeen's custom colors..."
+      else
+          fail "failed to apply jldeen's custom colors..." >&2
+  fi
+  else 
+      info "You chose not to use iTerm2 or jldeen's custom colors."
+  fi
+}
+
+jdFontSetup () {
+  # install Source Code Pro nerd font
+  cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
+  success "Source Code Pro font copied successfully!"
+}
+
+jdconfigFix () {
+  # .config permissions fix
+  if [ -d "$HOME/.config" ]; then
+    info "$HOME/.config doesn't exist, nothing to fix"
+  else
+    sudo chown $(whoami) $HOME/.config 
+    success '.config permissions fixed'
+  fi
+}
+
+jldeenMods
+jd_Symlinks
+jdcolors
+#jdcrontab
+jditermConfig
+jdFontSetup
+jdconfigFix
+
+success 'Badass macOS terminal installed!'
