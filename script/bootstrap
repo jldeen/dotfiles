@@ -214,6 +214,11 @@ if ! [ -f /usr/local/bin/airport ]
     info "symlink for airport already exists"
   fi
 
+# colorls setup
+echo ''
+echo "Now setting up colorls..."
+sudo gem install colorls
+
 # crontab additions
 # add_line "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 #   if [[ $? -eq 0 ]]
