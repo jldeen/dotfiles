@@ -131,7 +131,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 #styles
 ZSH_HIGHLIGHT_STYLES[default]=none
-ZSH_HIGHLIGHT_STYLES[function]=fg=magenta,bold
+# ZSH_HIGHLIGHT_STYLES[function]=fg=magenta,bold
 ZSH_HIGHLIGHT_STYLES[command]=fg=green
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=green
 ZSH_HIGHLIGHT_STYLES[alias]=fg=green
