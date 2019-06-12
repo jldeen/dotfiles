@@ -20,8 +20,10 @@
 // "workbench.colorTheme": "Visual Studio Dark"
 // "window.zoomLevel": 0,
 // "workbench.startupEditor": "newUntitledFile",
-//PowerShell
+
+// shell settings
 "terminal.integrated.shell.osx": "/bin/zsh",
+
 // Color Override for terminal
 "workbench.colorCustomizations": {
     "activityBarBadge.background": "#5C6BC0",
