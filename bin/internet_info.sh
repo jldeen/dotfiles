@@ -3,15 +3,15 @@
 # Internal IP
 IP=$(ipconfig getifaddr en0)
 
-# Packet loss check
-gtimeout 7s ping -c 5 google.com | grep 'loss' | awk '{print $7}' > /dev/null 2>&1
-if [[ $? -eq 0 ]]
-    then
-        PL=$(ping -c 5 google.com | grep 'loss' | awk '{print $7}')
-        PL+=" p/l"
-    else
-        PL=""
-fi
+# # Packet loss check
+# gtimeout 7s ping -c 5 google.com | grep 'loss' | awk '{print $7}' > /dev/null 2>&1
+# if [[ $? -eq 0 ]]
+#     then
+#         PL=$(ping -c 5 google.com | grep 'loss' | awk '{print $7}')
+#         PL+=" p/l"
+#     else
+#         PL=""
+# fi
 
 # Speedtest
 DL=$(cat ~/bin/bandwidth.log | awk 'NR==2{print $2}')
