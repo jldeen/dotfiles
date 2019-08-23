@@ -34,4 +34,64 @@ function gitReset () {
         echo "there is nothing to clean... exiting..."
     fi
 }
+
+zsh_history_fix () {
+    mv ~/.zsh_history ~/.zsh_history_old
+    strings .zsh_history_old >> .zsh_history
+    fc -R ~/.zsh_history
+    rm ~/.zsh_history_old
+}
+
+iconsOn () {
+    defaults write com.apple.finder CreateDesktop true
+    killall Finder
+}
+iconsOff () {
+    defaults write com.apple.finder CreateDesktop false
+    killall Finder
+}
+
+codeLight () {
+    source $HOME/.dotfiles/script/prompt
+
+    settings_json=$HOME/Library/Application\ Support/Code/User/settings.json
+    settings_dark=$HOME/Library/Application\ Support/Code/User/settings.dark.json
+    settings_light=$HOME/Library/Application\ Support/Code/User/settings.light.json
+    
+    if diff $settings_json $settings_dark > /dev/null 2>&1 
+    then
+        echo "VS Code Settings have NOT changed since last updated. Switching to codeLight settings.json..."
+        echo
+        cp $settings_light $settings_json && success "codeLight enabled"
+    else
+        echo "VS Code Settings have changed since last updated. Updating codeDark settings.json..."
+        echo
+        cp $settings_json $settings_dark && success "settings.dark.json updated"
+        echo
+        cp $settings_light $settings_json && success "codeLight enabled"
+    fi
+}
+
+codeDark () {
+    source $HOME/.dotfiles/script/prompt
+
+    settings_json=$HOME/Library/Application\ Support/Code/User/settings.json
+    settings_dark=$HOME/Library/Application\ Support/Code/User/settings.dark.json
+    settings_light=$HOME/Library/Application\ Support/Code/User/settings.light.json
+    
+    if diff $settings_json $settings_light > /dev/null 2>&1 
+    then
+        echo "VS Code Settings have NOT changed since last updated. Switching to codeLight settings.json..."
+        echo
+        cp $settings_dark $settings_json && success "codeDark enabled"
+    else
+        echo "VS Code Settings have changed since last updated. Updating codeLight settings.json..."
+        echo
+        cp $settings_json $settings_light && success "settings.light.json updated"
+        echo
+        cp $settings_dark $settings_json && success "codeDark enabled"
+    fi
+
+}
+
 #---- End of Functions ----
