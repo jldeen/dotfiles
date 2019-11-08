@@ -155,6 +155,9 @@ export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export MONGO_PATH=/usr/local/mongodb 
 export PATH=$PATH:$MONGO_PATH/bin
+export PATH="/usr/local/bin/jdk8u212-b04/Contents/Home/bin:$PATH"
+export M2_HOME=/usr/local/Cellar/maven/3.6.1/libexec/
+
 #---- End Export ----
 
 #---- Source ----
@@ -163,3 +166,12 @@ source <(kubectl completion zsh)
 source $(dirname $(gem which colorls))/tab_complete.sh
 #---- End Source ----
 #---- END CUSTOM ----
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm
+alias h3=/usr/local/bin/tmp/helm

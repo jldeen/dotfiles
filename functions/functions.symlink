@@ -1,6 +1,6 @@
 #---- Functions ----
 function toggleClock () {
-    ~/Git/dotfiles/bin/toggleClock.sh
+    ~/.dotfiles/bin/toggleClock.sh
 }
 
 function gitReset () {
