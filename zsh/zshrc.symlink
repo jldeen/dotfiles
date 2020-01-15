@@ -162,6 +162,7 @@ export PORT=3000
 path+=(
     $(ruby -e 'puts File.join(Gem.user_dir, "bin")')
 )
+
 #---- End Export ----
 # # ColorLS settings
 source $(dirname $(gem which colorls))/tab_complete.sh

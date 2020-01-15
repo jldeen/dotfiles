@@ -46,7 +46,7 @@
     "menu.selectionForeground": "#5C6BC0",
     "menubar.selectionForeground": "#5C6BC0"
 },
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Visual Studio Light",
     "azure.resourceFilter": [
         "72f988bf-86f1-41af-91ab-2d7cd011db47/dfb5d696-98d8-447c-a14d-56f131f3c4a5",
         "72f988bf-86f1-41af-91ab-2d7cd011db47/998e0f50-cedb-4e50-a461-52ef20a0478b"
@@ -63,5 +63,6 @@
         "vs-kubernetes.draft-path": "/Users/jessicadeen/.vs-kubernetes/tools/draft/darwin-amd64/draft",
         "vs-kubernetes.minikube-path": "/Users/jessicadeen/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
         "vs-kubernetes.kubectl-path": "/Users/jessicadeen/.vs-kubernetes/tools/kubectl/kubectl"
-    }
+    },
+    "team.showWelcomeMessage": false,
 }

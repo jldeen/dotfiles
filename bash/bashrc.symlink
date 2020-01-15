@@ -125,6 +125,5 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
 # az cli
-autoload bashcompinit && bashcompinit
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+autoload bashcompinit && bashcompinitsource /Users/jessicadeen/.git-completion.bash
+source /Users/jessicadeen/.git-completion.bash
