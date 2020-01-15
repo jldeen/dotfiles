@@ -37,16 +37,6 @@ zshInstall () {
     fi
 }
 
-zshZInstall () {
-    # Install z for dir searching
-    if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-z" ]; then
-        info "zsh-z already exists..."
-    else
-        git clone https://github.com/agkozak/zsh-z ~/.oh-my-zsh/custom/plugins/zsh-z
-        success 'zsh-z installed'
-    fi
-}
-
 configureGitCompletion () {
     GIT_VERSION=`git --version | awk '{print $3}'`
     URL="https://raw.github.com/git/git/v$GIT_VERSION/contrib/completion/git-completion.bash"
@@ -82,20 +72,33 @@ ohmyzshInstall () {
 
 ohmyzshPluginInstall () {
     # oh-my-zsh plugin install
+
+    # zsh completions
     if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-completions" ]; then
         info 'zsh-completions already installed'
     else
-        git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions && success 'zsh-completions installed'
+        git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions && success 'zsh-completions installed'
     fi
+
+    # auto suggestions
     if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
         info 'zsh-autosuggestions already installed'
     else
-        git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions && success 'zsh-autosuggestions installed'
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && success 'zsh-autosuggestions installed'
     fi
+
+    # syntax highlight
     if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
         info 'zsh-syntax-highlighting already installed'
     else
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting && 'zsh-syntax-highlighting installed'
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && success 'zsh-syntax-highlighting installed'
+    fi
+
+    # zsh z
+    if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-z" ]; then
+        info 'zsh-syntax-highlighting already installed'
+    else
+        git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-z && success 'zsh-z installed'
     fi
 }
 
@@ -186,7 +189,6 @@ brewUpdate
 
 # zsh setup
 zshInstall
-zshZInstall
 configureGitCompletion
 
 # oh my zsh setup
