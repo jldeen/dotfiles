@@ -57,7 +57,7 @@ echo "Now installing oh-my-zsh plugins..."
 echo ''
 
 # zsh z
-git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-z
 
 # zsh completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
