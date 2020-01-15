@@ -94,4 +94,23 @@ codeDark () {
 
 }
 
+360sh () {
+    az account set -s "Ignite 2019 - BRK2067" && echo "Setting Azure sub..." && \
+	azds controller select -n rpslsaksbfoxveu5decgm -g RockPaperScissorsLizardSpockKubernetes && \
+	azds space select -n default && \
+    kubectl config use-context rpslsaksbfoxveu5decgm && \
+    cd ~ && \
+    cd git/RockPaperScissorsLizardSpockKubernetes/Source/Services/RPSLS.NodePlayer.Api && \
+    code .
+}
+
+360bk () {
+    az account set -s "ca-jessde-demo-test" && echo "Setting Azure sub..." && \
+    azds controller select -n live360 -g rpsls360l && \
+    azds space select -n default && \
+    kubectl config use-context rpslsaksqlz4vyae6d4as && \
+    cd ~/git/RpslsK8s/Source/Services/RPSLS.NodePlayer.Api && \
+    code .
+}
+
 #---- End of Functions ----
