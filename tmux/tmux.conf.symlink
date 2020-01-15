@@ -7,6 +7,25 @@ set -g prefix C-a
 unbind C-b
 bind C-a send-prefix
 
+# Allow opening multiple terminals to view the same session at different sizes.
+setw -g aggressive-resize on
+
+# activity monitoring
+setw -g monitor-activity on
+set -g visual-activity on
+
+# set window number starting point to 1
+set -g base-index 1
+
+# faster command sequence
+set -s escape-time 0
+
+# Ensure window index numbers get reordered on delete.
+set-option -g renumber-windows on
+
+# # aggressive resize for windows
+setw -g aggressive-resize on
+
 # force a reload of the config file
 bind-key R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 
@@ -14,10 +33,13 @@ bind-key R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 bind-key ] send-prefix
 bind-key C-] last-window
 
-set -g default-terminal "xterm-256color"
+# Enable color support inside of tmux.
+set -g default-terminal "screen-256color"
+
 # set-option -g default-command "reattach-to-user-namespace -l zsh"
  
-set-option -g history-limit 30000
+# Add a bit more scroll history in the buffer.
+set -g history-limit 50000
 
 # use vi style keybindings
 setw -g mode-keys vi
@@ -37,7 +59,8 @@ bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-n
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "highlighted selection copied to system clipboard"
 
 # Easy-to-remember split pane commands
-bind \ split-window -h -c '#{pane_current_path}' # vertical pane
+# bind \ split-window -h -c '#{pane_current_path}' # vertical pane
+bind-key \\ split-window -v -c '#{pane_current_path}' # Split panes vertically
 bind - split-window -v -c '#{pane_current_path}' # horizontal pane
 unbind '"'
 unbind %
@@ -79,6 +102,7 @@ set -g status-style 'none'
 set -g status-left ' #[fg=colour197]#(~/bin/internet_info.sh) '
 set -g status-right '#{prefix_highlight} #(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour051] #H'
 set -g status-right-length 100
+
 set -g status-left-length 80
 
 set-window-option -g aggressive-resize
@@ -100,6 +124,11 @@ setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=c
    tmux-plugins/tmux-prefix-highlight \
    tmux-plugins/tmux-resurrect \
    tmux-plugins/tmux-sessionist \
+   tmux-plugins/tmux-sessionist \
+   xamut/tmux-spotify           \
+   tmux-plugins/tmux-online-status \
+   tmux-plugins/tmux-resurrect  \
+   tmux-plugins/tmux-yank \
 '
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
