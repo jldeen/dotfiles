@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # zsh tmux settings
-ZSH_TMUX_AUTOSTART='true'
+ZSH_TMUX_AUTOSTART='false'
 ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
 
 # #Background Jobs Function
@@ -155,11 +155,20 @@ export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export MONGO_PATH=/usr/local/mongodb 
 export PATH=$PATH:$MONGO_PATH/bin
+export PATH="$HOME/.fastlane/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export LANG=en_US.UTF-8
+export PORT=3000
+path+=(
+    $(ruby -e 'puts File.join(Gem.user_dir, "bin")')
+)
 #---- End Export ----
-
+# # ColorLS settings
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias lc='colorls'
 #---- Source ----
 [ -f ~/bin/fubectl.source ] && source ~/bin/fubectl.source
 source <(kubectl completion zsh)
-source $(dirname $(gem which colorls))/tab_complete.sh
 #---- End Source ----
 #---- END CUSTOM ----
+alias h3=/usr/local/bin/tmp/helm
