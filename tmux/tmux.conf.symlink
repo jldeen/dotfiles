@@ -98,11 +98,19 @@ set-option -g set-titles-string 'do epic shit. | #S | / #W'
 
 # Plugins
 # List of plugins
- set -g @tpm_plugins '          \
+set -g @tpm_plugins '          \
    tmux-plugins/tpm             \
    chriszarate/tmux-tasks       \
    soyuka/tmux-current-pane-hostname     \
    christoomey/vim-tmux-navigator       \
+   tmux-plugins/tmux-prefix-highlight \
+   tmux-plugins/tmux-resurrect \
+   tmux-plugins/tmux-sessionist \
+   tmux-plugins/tmux-sessionist \
+   xamut/tmux-spotify           \
+   tmux-plugins/tmux-online-status \
+   tmux-plugins/tmux-resurrect  \
+   tmux-plugins/tmux-yank \
 '
 
 # Other examples:
