@@ -1,0 +1,116 @@
+#---- Functions ----
+function toggleClock () {
+    ~/.dotfiles/bin/toggleClock.sh
+}
+
+function gitReset () {
+    git fetch origin
+    git reset --hard origin/master
+    # git clean
+    git clean -n -f > /dev/null
+    if [[ $? -eq 0 ]] ; then 
+    echo ''
+    echo "You have files that will be removed from git clean."
+    read -p ", do you want to see them?" -n 1 -r
+    echo ''
+        if [[ $REPLY =~ ^[Yy]$ ]] ; then
+        git clean -n -f
+        echo .
+        read -p "Are you sure you would like to remove these files?"
+            if [[ $? -eq 0 ]]
+            then
+                echo "running git clean now..."
+                git clean -f
+                echo .
+                echo "git clean is complete."
+            else
+                echo "you chose not to run git clean..."
+            fi
+        else
+        git clean -f
+        fi
+    else
+        echo "running git clean -n -f..."
+        echo "there is nothing to clean... exiting..."
+    fi
+}
+
+zsh_history_fix () {
+    mv ~/.zsh_history ~/.zsh_history_old
+    strings .zsh_history_old >> .zsh_history
+    fc -R ~/.zsh_history
+    rm ~/.zsh_history_old
+}
+
+iconsOn () {
+    defaults write com.apple.finder CreateDesktop true
+    killall Finder
+}
+iconsOff () {
+    defaults write com.apple.finder CreateDesktop false
+    killall Finder
+}
+
+codeLight () {
+    source $HOME/.dotfiles/script/prompt
+
+    settings_json=$HOME/Library/Application\ Support/Code/User/settings.json
+    settings_dark=$HOME/Library/Application\ Support/Code/User/settings.dark.json
+    settings_light=$HOME/Library/Application\ Support/Code/User/settings.light.json
+    
+    if diff $settings_json $settings_dark > /dev/null 2>&1 
+    then
+        echo "VS Code Settings have NOT changed since last updated. Switching to codeLight settings.json..."
+        echo
+        cp $settings_light $settings_json && success "codeLight enabled"
+    else
+        echo "VS Code Settings have changed since last updated. Updating codeDark settings.json..."
+        echo
+        cp $settings_json $settings_dark && success "settings.dark.json updated"
+        echo
+        cp $settings_light $settings_json && success "codeLight enabled"
+    fi
+}
+
+codeDark () {
+    source $HOME/.dotfiles/script/prompt
+
+    settings_json=$HOME/Library/Application\ Support/Code/User/settings.json
+    settings_dark=$HOME/Library/Application\ Support/Code/User/settings.dark.json
+    settings_light=$HOME/Library/Application\ Support/Code/User/settings.light.json
+    
+    if diff $settings_json $settings_light > /dev/null 2>&1 
+    then
+        echo "VS Code Settings have NOT changed since last updated. Switching to codeLight settings.json..."
+        echo
+        cp $settings_dark $settings_json && success "codeDark enabled"
+    else
+        echo "VS Code Settings have changed since last updated. Updating codeLight settings.json..."
+        echo
+        cp $settings_json $settings_light && success "settings.light.json updated"
+        echo
+        cp $settings_dark $settings_json && success "codeDark enabled"
+    fi
+
+}
+
+360sh () {
+    az account set -s "Ignite 2019 - BRK2067" && echo "Setting Azure sub..." && \
+	azds controller select -n rpslsaksbfoxveu5decgm -g RockPaperScissorsLizardSpockKubernetes && \
+	azds space select -n default && \
+    kubectl config use-context rpslsaksbfoxveu5decgm && \
+    cd ~ && \
+    cd git/RockPaperScissorsLizardSpockKubernetes/Source/Services/RPSLS.NodePlayer.Api && \
+    code .
+}
+
+360bk () {
+    az account set -s "ca-jessde-demo-test" && echo "Setting Azure sub..." && \
+    azds controller select -n live360 -g rpsls360l && \
+    azds space select -n default && \
+    kubectl config use-context rpslsaksqlz4vyae6d4as && \
+    cd ~/git/RpslsK8s/Source/Services/RPSLS.NodePlayer.Api && \
+    code .
+}
+
+#---- End of Functions ----

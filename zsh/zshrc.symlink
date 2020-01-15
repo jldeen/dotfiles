@@ -1,54 +1,45 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
+# Path to your oh-my-zsh installation oh-my-zsh specific settings
 export ZSH=~/.oh-my-zsh
-export TERM=screen-256color
+export TERM=xterm-256color
+source $ZSH/oh-my-zsh.sh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_MODE="nerdfont-complete"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH Customization Settings
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# POWERLEVEL9K_IP_INTERFACE='en0'
-# POWERLEVEL9K_PUBLIC_IP_HOST='http://ident.me'
+# fix pasting speed
+# ref https://github.com/zsh-users/zsh-autosuggestions/issues/238
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-## zsh tmux settings
-ZSH_TMUX_AUTOSTART='true'
-# do not autoconnect to existing tmux session, allows a new term new tmux session
-ZSH_TMUX_AUTOCONNECT='false'
+# zsh tmux settings
+ZSH_TMUX_AUTOSTART='false'
+ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
 
-## Powerlevel9k Settings
-POWERLEVEL9K_HISTORY_BACKGROUND='green'
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
-}❯ "
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
+# #Background Jobs Function
+# set_default POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE true
+# prompt_background_jobs() {
+# local background_jobs_number=${$(jobs -l | wc -l)// /}
+# local wrong_lines=`jobs -l | awk '/pwd now/{ count++ } END {print count}'`
+# if [[ wrong_lines -gt 0 ]]; then
+#      background_jobs_number=$(( $background_jobs_number - $wrong_lines ))
+#   fi
+#   if [[ background_jobs_number -gt 0 ]]; then
+#     local background_jobs_number_print="1"
+#     if [[ "$POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE" == "true" ]] && [[ "$background_jobs_number" -gt 1 ]]; then
+#       background_jobs_number_print="$background_jobs_number"
+#     fi
+#     "$1_prompt_segment" "$0" "$2" "$DEFAULT_COLOR" "cyan" "$background_jobs_number_print" 'BACKGROUND_JOBS_ICON'
+#   fi
+# }
 
 # Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-if [ -n "$TMUX" ]; then                                                                               
-  function refresh {                                                                                
-    export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
-    export $(tmux show-environment | grep "^DISPLAY")                                               
-  }                                                                                                 
-else                                                                                                  
-  function refresh { }                                                                              
-fi
-
-# Then, I define a preexec hook that calls refresh before each new command that gets executed:
-function preexec {                                                                                    
-    refresh                                                                                           
-}
+# if [ -n "$TMUX" ]; then                                                                               
+#   function refresh {                                                                                
+#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
+#     export $(tmux show-environment | grep "^DISPLAY")                                               
+#   }                                                                                                 
+# else                                                                                                  
+#   function refresh { }                                                                              
+# fi
 
 # POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
 ## 
@@ -69,7 +60,7 @@ DEFAULT_USER="whoami"
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls.
+#Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
@@ -98,11 +89,7 @@ DEFAULT_USER="whoami"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z)
 
 # User configuration
 
@@ -124,19 +111,46 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
+#---- CUSTOM ----
+#Powerlevel9k/Powerlevel10k settings
+# https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#p9kgt
+source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.p9kgt
+source $HOME/.functions
+source $HOME/.aliases
 
-# Example aliases
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias k="kubectl"
+# autoload ----------------------------------------------------------------------
+autoload -Uz vcs_info 
+autoload -Uz colors && colors
+autoload -U compinit && compinit
 
+# syntax highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+#styles
+ZSH_HIGHLIGHT_STYLES[default]=none
+# ZSH_HIGHLIGHT_STYLES[function]=fg=magenta,bold
+ZSH_HIGHLIGHT_STYLES[command]=fg=green
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=green
+ZSH_HIGHLIGHT_STYLES[alias]=fg=green
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=green
+#path
+ZSH_HIGHLIGHT_STYLES[path]=fg=cyan,underline
+ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[path_approx]=fg=cyan
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=240
+
+# patterns
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
+
+#---- Export ----
 export PATH=$PATH:~/bin
+#---- End Export ----
 
-# az cli
-# autoload bashcompinit && bashcompinit
-# source /usr/bin/az
+#---- Source ----
+[ -f ~/bin/fubectl.source ] && source ~/bin/fubectl.source
+source <(kubectl completion zsh)
+#---- End Source ----
+#---- END CUSTOM ----
