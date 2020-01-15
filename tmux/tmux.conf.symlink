@@ -51,7 +51,7 @@ unbind-key MouseDown3Pane
 bind-key -n MouseDown3Pane run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
 
 # Easy-to-remember split pane commands
-bind \ split-window -h -c '#{pane_current_path}' # vertical pane
+bind \\ split-window -h -c '#{pane_current_path}' # vertical pane
 bind - split-window -v -c '#{pane_current_path}' # horizontal pane
 unbind '"'
 unbind %
@@ -80,22 +80,21 @@ set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CO
 set -g status-position bottom
 set -g status-bg colour237
 set -g status-fg colour137
-set -g status-attr 'none'
 set -g status-left ' #[fg=colour197]#(~/bin/internet_info.sh) '
 set -g status-right '#(eval ~/.tmux/responsive `tmux display -p "#{client_width}"`)#[fg=colour165]#[bg=default] #H'
 set -g status-right-length 100
 set -g status-left-length 80
 
 set-window-option -g aggressive-resize
-setw -g window-status-current-fg colour170
-setw -g window-status-current-bg colour239
-setw -g window-status-current-attr bold
+# setw -g window-status-current-fg colour170
+# setw -g window-status-current-bg colour239
+# setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
 set-option -g set-titles-string 'do epic shit. | #S | / #W'
-setw -g window-status-current-fg colour170
-setw -g window-status-current-attr bold
-setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
+# setw -g window-status-current-fg colour170
+# setw -g window-status-current-attr bold
+# setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
 # Plugins
 # List of plugins
