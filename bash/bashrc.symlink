@@ -123,7 +123,3 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
-
-# az cli
-autoload bashcompinit && bashcompinitsource /Users/jessicadeen/.git-completion.bash
-source /Users/jessicadeen/.git-completion.bash
