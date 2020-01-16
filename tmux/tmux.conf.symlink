@@ -17,6 +17,11 @@ set-option -g history-limit 20000
 
 # use vi style keybindings
 setw -g mode-keys vi
+bind P paste-buffer
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
+bind-key -t vi-copy 'r' rectangle-toggle
+
 
 # xterm-style function key sequences
 setw -g xterm-keys on
@@ -24,31 +29,24 @@ setw -g xterm-keys on
 # Mouse support ---------------------------------------------------------- 
 set -g mouse on
 
+# https://github.com/tmux/tmux/issues/145#issuecomment-151098708
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
 
-# # Vi copypaste
-setw -g mode-keys vi
+set -g set-clipboard on
 
-## Clipboard integration
 
-# Selection with mouse should copy to clipboard right away, in addition to the default action.
-# Unbind the default action first.
+#unbind -n MouseDrag1Pane
 
-#### Doesn't work yet
-#unbind -n -Tcopy-mode-vi MouseDragEnd1Pane
-#bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-selection-and-cancel\; run "tmux save-buffer - | xclip -i -sel clipboard &gt; /dev/null"
-####
+# start numbering from 1 instead of 0
+set -g base-index 1
+setw -g pane-base-index 1
 
-# Copy mode copy should also copy it to the clipboard as well.
+# get rid of delay reading command characters while tmux waits for escape sequence
+set -s escape-time 1
 
-#### Doesn't work yet
-#unbind -Tcopy-mode-vi Enter
-#bind -Tcopy-mode-vi Enter send -X copy-selection-and-cancel\; run "tmux save-buffer - | xclip -i -sel clipboard &gt; /dev/null"
-####
+#bind -T copy-mode-vi MouseDrag1Pane send -X copy-pipe "cat > /dev/clipboard" \; send -X clear-selection
 
-# Right click to paste from the clipboard
-# If you like middle click better, change MouseDown3Pane to MouseDown2Pane for middle click.
-unbind-key MouseDown3Pane
-bind-key -n MouseDown3Pane run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
+
 
 # Easy-to-remember split pane commands
 bind \\ split-window -h -c '#{pane_current_path}' # vertical pane
@@ -96,6 +94,11 @@ set-option -g set-titles-string 'do epic shit. | #S | / #W'
 # setw -g window-status-current-attr bold
 # setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour170]#F '
 
+bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+bind-key -t vi-copy WheelUpPane halfpage-up
+bind-key -t vi-copy WheelDownPane halfpage-down
+
 # Plugins
 # List of plugins
 set -g @tpm_plugins '          \
@@ -110,8 +113,9 @@ set -g @tpm_plugins '          \
    xamut/tmux-spotify           \
    tmux-plugins/tmux-online-status \
    tmux-plugins/tmux-resurrect  \
-   tmux-plugins/tmux-yank \
 '
+
+set -g @tpm-clean 'u'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
