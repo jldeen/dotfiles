@@ -17,15 +17,14 @@ fi
 DL=$(speedtest-cli --simple | awk 'NR==2{print $2}')
 UP=$(speedtest-cli --simple | awk 'NR==3{print $2}')
 
-# Public IP
-PUB_IP=$(speedtest-cli --json | jq -r .client.ip)
+PUBLIC_IP=$(curl -4 ifconfig.co)
 
-if [[ "$PUB_IP" = ";; connection timed out; no servers could be reached" ]]; then 
-    PUB_IP="Not Available"
-elif [[ "$PUB_IP" = "" ]]; then
-    PUB_IP="No external access"
+if [[ "$PUBLIC_IP" = ";; connection timed out; no servers could be reached" ]]; then 
+    PUBLIC_IP="Not Available"
+elif [[ "$PUBLIC_IP" = "" ]]; then
+    PUBLIC_IP="No external access"
 else 
-    PUB_IP=$(speedtest-cli --json | jq -r .client.ip)
+    PUBLIC_IP=$(curl -4 ifconfig.co)
 fi
  
 INTERNET=''
@@ -44,4 +43,4 @@ INTERNET=''
 #     echo -n '#[fg=colour150]'
 # fi
 
-echo -n "#[fg=colour150]$INTERNET #[fg=colour197]$IP | $PUB_IP"
+echo -n "#[fg=colour150]$INTERNET #[fg=colour197]$IP | $PUBLIC_IP"
