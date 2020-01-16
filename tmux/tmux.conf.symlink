@@ -119,8 +119,7 @@ set -g @tpm_plugins '          \
    xamut/tmux-spotify           \
    tmux-plugins/tmux-online-status \
    tmux-plugins/tmux-resurrect  \
-   tmux-plugins/tmux-yank \
-
+   tmux-plugins/tmux-yank       \
 '
 
 set -g @tpm-clean 'u'
