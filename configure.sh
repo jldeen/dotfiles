@@ -68,7 +68,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # syntax highlight
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-
 # powerlevel9k install
 echo ''
 echo "Now installing powerlevel9k..."
@@ -140,7 +139,7 @@ then
 	echo ''
 	cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 	echo ''
-	echo "Checking out wsl-dev branch..." && git checkout wsl-dev
+	echo "Checking out wsl branch..." && git checkout wsl
 	echo ''
 	echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
     if [[ $? -eq 0 ]]

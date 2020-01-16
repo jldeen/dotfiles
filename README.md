@@ -3,12 +3,12 @@
 ### WSL Configuration / Install
 Run the following to configure WSL from scratch...
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl-dev/configure.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/wsl/configure.sh)"
 ```
 ### WSL Emulator Install
 Run the following command from an Administrator PowerShell prompt...
 ```
-Set-ExecutionPolicy Bypass; irm 'https://raw.githubusercontent.com/jldeen/dotfiles/wsl-dev/wslterm.ps1' | iex;
+Set-ExecutionPolicy Bypass; irm 'https://raw.githubusercontent.com/jldeen/dotfiles/wsl/wslterm.ps1' | iex;
 ```
 
 ### Notes
@@ -61,7 +61,7 @@ There's a few special files in the hierarchy.
 ## Git clone
 There are two "master" branches here: WSL and MacOS.
 
-If you wish to clone these filesa and run scripts manually, run this:
+If you wish to clone these files and run scripts manually, run this:
 
 ```sh
 git clone https://github.com/jldeen/dotfiles.git ~/.dotfiles
