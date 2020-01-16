@@ -12,21 +12,29 @@ bind-key ] send-prefix
 bind-key C-] last-window
 
 set -g default-terminal "xterm-256color"
- 
+
 set-option -g history-limit 20000
 
 # use vi style keybindings
+# https://github.com/tmux/tmux/issues/910
 setw -g mode-keys vi
 bind P paste-buffer
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-bind-key -t vi-copy 'r' rectangle-toggle
+
+### --- tmux 2.1 or azure cloud shell
+# bind-key -t vi-copy 'v' begin-selection
+# bind-key -t vi-copy 'y' copy-selection
+# bind-key -t vi-copy 'r' rectangle-toggle
+### --- end tmux 2.1 or azure cloud shell
+
+bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+bind-key -T copy-mode-vi 'y' send-keys -X copy-selection
+
 
 
 # xterm-style function key sequences
 setw -g xterm-keys on
 
-# Mouse support ---------------------------------------------------------- 
+# Mouse support ----------------------------------------------------------
 set -g mouse on
 
 # https://github.com/tmux/tmux/issues/145#issuecomment-151098708
@@ -69,7 +77,7 @@ set -g @tasks_format_end '#[fg=white,bg=default]'
 set -g @tasks_icon_urgent '⧗ '
 set -g @tasks_icon_outstanding '+ '
 
-# Status bar ------------------------------------------------------------- 
+# Status bar -------------------------------------------------------------
 # set-option -g status on
 set-option -g set-titles on
 set -g status-interval 1
@@ -96,8 +104,6 @@ set-option -g set-titles-string 'do epic shit. | #S | / #W'
 
 bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
 bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
-bind-key -t vi-copy WheelUpPane halfpage-up
-bind-key -t vi-copy WheelDownPane halfpage-down
 
 # Plugins
 # List of plugins
@@ -113,6 +119,8 @@ set -g @tpm_plugins '          \
    xamut/tmux-spotify           \
    tmux-plugins/tmux-online-status \
    tmux-plugins/tmux-resurrect  \
+   tmux-plugins/tmux-yank \
+
 '
 
 set -g @tpm-clean 'u'
