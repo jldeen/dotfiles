@@ -152,5 +152,6 @@ export PATH=$PATH:~/bin
 #---- Source ----
 [ -f ~/bin/fubectl.source ] && source ~/bin/fubectl.source
 source <(kubectl completion zsh)
+source $(dirname $(gem which colorls))/tab_complete.sh
 #---- End Source ----
 #---- END CUSTOM ----
