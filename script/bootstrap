@@ -258,7 +258,7 @@ jditermConfig () {
 
 jdFontSetup () {
   # install Source Code Pro nerd font
-  cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
+  sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
   success "Source Code Pro font copied successfully!"
 }
 
