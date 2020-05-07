@@ -115,7 +115,7 @@ pl10kInstall () {
         info 'powerlevel10k already installed'
     else
         echo "Now installing powerlevel10k..."
-        git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k && success 'powerlevel10k installed'
+        git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k && success 'powerlevel10k installed'
     fi
 }
 
