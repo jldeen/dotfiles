@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eou pipefail
 
-source <curl -fsSL https://raw.githubusercontent.com/aaroncoville/dotfiles/mac/script/prompt )
+source /dev/stdin <<< "$(curl -fsSL https://raw.githubusercontent.com/aaroncoville/dotfiles-1/mac/script/prompt)"
 
 brewInstall () {
     # Install brew
