@@ -264,7 +264,7 @@ jdFontSetup () {
 
 jdconfigFix () {
   # .config permissions fix
-  if [ -d "$HOME/.config" ]; then
+  if [ ! -d "$HOME/.config" ]; then
     info "$HOME/.config doesn't exist, nothing to fix"
   else
     sudo chown $(whoami) $HOME/.config 
