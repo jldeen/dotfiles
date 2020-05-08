@@ -54,7 +54,7 @@ setup_ruby () {
     read -p "Do you want to install and configure Ruby" yn
     case $yn in
         [Yy]* ) installRuby; break;;
-        [Nn]* ) echo "Not installing ruby..."
+        [Nn]* ) echo "Not installing ruby...";break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
