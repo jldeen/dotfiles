@@ -258,13 +258,13 @@ jditermConfig () {
 
 jdFontSetup () {
   # install Source Code Pro nerd font
-  cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
+  sudo cp $HOME/.dotfiles/Source\ Code\ Pro\ Nerd\ Font\ Complete.ttf /Library/Fonts
   success "Source Code Pro font copied successfully!"
 }
 
 jdconfigFix () {
   # .config permissions fix
-  if [ -d "$HOME/.config" ]; then
+  if [ ! -d "$HOME/.config" ]; then
     info "$HOME/.config doesn't exist, nothing to fix"
   else
     sudo chown $(whoami) $HOME/.config 
