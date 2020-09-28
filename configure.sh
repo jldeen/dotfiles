@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eou pipefail
 
-source ./script/prompt
+source /dev/stdin <<< "$(curl -fsSL https://raw.githubusercontent.com/jldeen/dotfiles/mac/script/prompt)"
 
 brewInstall () {
     # Install brew
@@ -9,7 +9,7 @@ brewInstall () {
     # Install the correct homebrew for each OS type
         if test "$(uname)" = "Darwin"
         then
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
             success 'brew installed'
         elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
         then
