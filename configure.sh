@@ -129,17 +129,6 @@ tmuxTpmInstall () {
     fi
 }
 
-fubectlInstall () {
-    # fubectl install
-    # todo - move to after ~/bin check on bootstrap
-    if [ -f "$HOME/bin/fubectl.source" ]; then
-        info 'fubectl.source already exists'
-    else
-        echo "Now installing fubectl..."
-        curl -o "$HOME/bin/fubectl.source" -LO https://rawgit.com/kubermatic/fubectl/master/fubectl.source && success "fubectl placed in $HOME/bin"
-    fi
-}
-
 vundleInstall () {
     if [ -d "$HOME/.vim/bundle/Vundle.vim" ]; then
         info 'vundle already exists'
