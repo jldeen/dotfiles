@@ -184,7 +184,6 @@ ohmyzshPluginInstall
 pl9kInstall
 pl10kInstall
 tmuxTpmInstall
-fubectlInstall
 
 #vim setup
 vundleInstall
