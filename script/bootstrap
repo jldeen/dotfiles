@@ -195,10 +195,10 @@ jd_Symlinks () {
     fi
 }
 
-jdcolors () {
-  # colorls setup
-  sudo gem install colorls && success 'ls colors have been configured'
-}
+# jdcolors () {
+#   # colorls setup
+#   sudo gem install colorls && success 'ls colors have been configured'
+# }
 
 jdcrontab () {
   #crontab additions
@@ -274,7 +274,7 @@ jdconfigFix () {
 
 jldeenMods
 jd_Symlinks
-jdcolors
+# jdcolors
 #jdcrontab
 jditermConfig
 jdFontSetup
