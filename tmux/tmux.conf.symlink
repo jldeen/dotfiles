@@ -37,7 +37,7 @@ bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-n
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "highlighted selection copied to system clipboard"
 
 # Easy-to-remember split pane commands
-bind \ split-window -h -c '#{pane_current_path}' # vertical pane
+bind \\ split-window -h -c '#{pane_current_path}' # vertical pane
 bind - split-window -v -c '#{pane_current_path}' # horizontal pane
 unbind '"'
 unbind %
