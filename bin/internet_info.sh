@@ -25,7 +25,7 @@ if [[ "$PUBLIC_IP" = ";; connection timed out; no servers could be reached" ]]; 
 elif [[ "$PUBLIC_IP" = "" ]]; then
     PUBLIC_IP="No external access"
 else 
-    PUBLIC_IP=`curl -4 ifconfig.co`
+    PUBLIC_IP=`curl -4 ifconfig.me`
 fi
  
 INTERNET=''
