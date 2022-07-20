@@ -2,11 +2,12 @@ cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
 
-brew 'ack'
 brew 'azure-cli'
 brew 'bash-completion'
 brew 'coreutils'
+brew 'docker'
 brew 'fzf'
+brew 'gatsby-cli'
 brew 'git'
 brew 'go'
 brew 'grc'
