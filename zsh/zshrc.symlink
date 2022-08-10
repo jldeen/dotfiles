@@ -1,165 +1,178 @@
-# Path to your oh-my-zsh installation oh-my-zsh specific settings
-export ZSH=~/.oh-my-zsh
-export TERM=xterm-256color
-source $ZSH/oh-my-zsh.sh
 
-# ZSH Customization Settings
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ $TERM_PROGRAM == "WarpTerminal" ]]; then
+	eval "$(starship init zsh)"
+    # plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z kubectl)
+    # export ZSH=~/.oh-my-zsh
+    # source $ZSH/oh-my-zsh.sh
+    # ZSH_THEME="agnoster"
+    DEFAULT_USER="$(whoami)"
+    # zsh tmux settings
+    # ZSH_TMUX_AUTOSTART='true'
+    # ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
+else
+    # Path to your oh-my-zsh installation oh-my-zsh specific settings
+    export ZSH=~/.oh-my-zsh
+    export TERM=xterm-256color
+    source $ZSH/oh-my-zsh.sh
 
-# fix pasting speed
-# ref https://github.com/zsh-users/zsh-autosuggestions/issues/238
-zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-# zsh tmux settings
-ZSH_TMUX_AUTOSTART='true'
-ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
+    # ZSH Customization Settings
+    ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# #Background Jobs Function
-# set_default POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE true
-# prompt_background_jobs() {
-# local background_jobs_number=${$(jobs -l | wc -l)// /}
-# local wrong_lines=`jobs -l | awk '/pwd now/{ count++ } END {print count}'`
-# if [[ wrong_lines -gt 0 ]]; then
-#      background_jobs_number=$(( $background_jobs_number - $wrong_lines ))
-#   fi
-#   if [[ background_jobs_number -gt 0 ]]; then
-#     local background_jobs_number_print="1"
-#     if [[ "$POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE" == "true" ]] && [[ "$background_jobs_number" -gt 1 ]]; then
-#       background_jobs_number_print="$background_jobs_number"
-#     fi
-#     "$1_prompt_segment" "$0" "$2" "$DEFAULT_COLOR" "cyan" "$background_jobs_number_print" 'BACKGROUND_JOBS_ICON'
-#   fi
-# }
 
-# Refresh Function - https://babushk.in/posts/renew-environment-tmux.html
-# if [ -n "$TMUX" ]; then                                                                               
-#   function refresh {                                                                                
-#     export $(tmux show-environment | grep "^SSH_AUTH_SOCK")                                       
-#     export $(tmux show-environment | grep "^DISPLAY")                                               
-#   }                                                                                                 
-# else                                                                                                  
-#   function refresh { }                                                                              
-# fi
+    # fix pasting speed
+    # ref https://github.com/zsh-users/zsh-autosuggestions/issues/238
+    zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-# POWERLEVEL9K_TIME_FORMAT="%D{%T | %m.%d.%y}"
-## 
+    # zsh tmux settings
+    ZSH_TMUX_AUTOSTART='true'
+    ZSH_TMUX_AUTOCONNECT='false' # do not autoconnect to existing tmux session, allows a new term new tmux session
 
-# Default username to hide "user@hostname" info
-DEFAULT_USER="$(whoami)"
+    # Default username to hide "user@hostname" info
+    DEFAULT_USER="$(whoami)"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+    # Uncomment the following line to use case-sensitive completion.
+    # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+    # Uncomment the following line to use hyphen-insensitive completion. Case
+    # sensitive completion must be off. _ and - will be interchangeable.
+    # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+    # Uncomment the following line to disable bi-weekly auto-update checks.
+    # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+    # Uncomment the following line to change how often to auto-update (in days).
+    # export UPDATE_ZSH_DAYS=13
 
-#Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+    #Uncomment the following line to disable colors in ls.
+    # DISABLE_LS_COLORS="true"
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+    # Uncomment the following line to disable auto-setting terminal title.
+    # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+    # Uncomment the following line to enable command auto-correction.
+    # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+    # Uncomment the following line to display red dots whilst waiting for completion.
+    # COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+    # Uncomment the following line if you want to disable marking untracked files
+    # under VCS as dirty. This makes repository status check for large repositories
+    # much, much faster.
+    # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+    # Uncomment the following line if you want to change the command execution time
+    # stamp shown in the history command output.
+    # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+    # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+    # Would you like to use another custom folder than $ZSH/custom?
+    # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z)
+    # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+    # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+    # Example format: plugins=(rails git textmate ruby lighthouse)
+    # Add wisely, as too many plugins slow down shell startup.
+    plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z kubectl)
+    # User configuration
 
-# User configuration
+    # export MANPATH="/usr/local/man:$MANPATH"
 
-# export MANPATH="/usr/local/man:$MANPATH"
+    # You may need to manually set your language environment
+    # export LANG=en_US.UTF-8
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+    # Preferred editor for local and remote sessions
+    # if [[ -n $SSH_CONNECTION ]]; then
+    #   export EDITOR='vim'
+    # else
+    #   export EDITOR='mvim'
+    # fi
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+    # Compilation flags
+    # export ARCHFLAGS="-arch x86_64"
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+    # ssh
+    # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+    #---- CUSTOM ----
+    #Powerlevel9k/Powerlevel10k settings
+    # https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#p9kgt
+    source $ZSH/oh-my-zsh.sh
+    source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $HOME/.p9kgt
+  
 
-#---- CUSTOM ----
-#Powerlevel9k/Powerlevel10k settings
-# https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config#p9kgt
-source $ZSH/oh-my-zsh.sh
-source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.p9kgt
-source $HOME/.functions
-source $HOME/.aliases
+    # autoload ----------------------------------------------------------------------
+    autoload -Uz vcs_info 
+    autoload -Uz colors && colors
+    autoload -U compinit && compinit
 
-# autoload ----------------------------------------------------------------------
-autoload -Uz vcs_info 
-autoload -Uz colors && colors
-autoload -U compinit && compinit
+    # syntax highlighting
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
-# syntax highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+    #styles
+    ZSH_HIGHLIGHT_STYLES[default]=none
+    # ZSH_HIGHLIGHT_STYLES[function]=fg=magenta,bold
+    ZSH_HIGHLIGHT_STYLES[command]=fg=green
+    ZSH_HIGHLIGHT_STYLES[precommand]=fg=green
+    ZSH_HIGHLIGHT_STYLES[alias]=fg=green
+    ZSH_HIGHLIGHT_STYLES[builtin]=fg=green
+    #path
+    ZSH_HIGHLIGHT_STYLES[path]=fg=cyan,underline
+    ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=cyan
+    ZSH_HIGHLIGHT_STYLES[path_approx]=fg=cyan
+    # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=240
 
-#styles
-ZSH_HIGHLIGHT_STYLES[default]=none
-# ZSH_HIGHLIGHT_STYLES[function]=fg=magenta,bold
-ZSH_HIGHLIGHT_STYLES[command]=fg=green
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=green
-ZSH_HIGHLIGHT_STYLES[alias]=fg=green
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=green
-#path
-ZSH_HIGHLIGHT_STYLES[path]=fg=cyan,underline
-ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=cyan
-ZSH_HIGHLIGHT_STYLES[path_approx]=fg=cyan
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=240
+    # patterns
+    ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
 
-# patterns
-ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
+fi
+    source $HOME/.functions
+    source $HOME/.aliases
+    #---- Export ----
+    export PATH=$PATH:/Users/jessicadeen/bin
+    export GOPATH=~/go 
+    export PATH=$GOPATH/bin:$PATH
+    export GOROOT=/usr/local/opt/go/libexec
+    export PATH=$PATH:/usr/local/bin/node
+    export PATH="/usr/local/opt/node@8/bin:$PATH"
+    export PATH="/usr/local/sbin:$PATH"
+    export MONGO_PATH=/usr/local/mongodb 
+    export PATH=$PATH:$MONGO_PATH/bin
+    #---- End Export ----
 
-#---- Export ----
-export PATH=$PATH:/Users/jessicadeen/bin
-export GOPATH=~/go 
-export PATH=$GOPATH/bin:$PATH
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:/usr/local/bin/node
-export PATH="/usr/local/opt/node@8/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export MONGO_PATH=/usr/local/mongodb 
-export PATH=$PATH:$MONGO_PATH/bin
-#---- End Export ----
+    #---- Source ----
+    # source <(kubectl completion zsh)
 
-#---- Source ----
-[ -f ~/bin/fubectl.source ] && source ~/bin/fubectl.source
-source <(kubectl completion zsh)
-source $(dirname $(gem which colorls))/tab_complete.sh
-#---- End Source ----
-#---- END CUSTOM ----
+
+    # source $(dirname $(gem which colorls))/tab_complete.sh
+    #---- End Source ----
+    #---- END CUSTOM ----
+    export PATH=/usr/local/sbin:/usr/local/opt/node@8/bin:/Users/jessicadeen/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/jessicadeen/bin:/usr/local/bin/node:/usr/local/mongodb/bin:/Users/jessicadeen/.krew/bin
+    export PATH="$HOME/.cargo/bin:$PATH"
+
+    export PATH="/usr/local/opt/python@3.10/bin:$PATH"
+
+    # Add .NET Core SDK tools
+    export PATH="$PATH:/Users/jessicadeen/.dotnet/tools"
+    export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    export GEM_HOME="$HOME/.gem"
+
+    # Hugo Env Vars
+    export HUGOxPARAMSxGITxLAST_COMMITxAUTHORNAME=$(git log -1 --format=%an >/dev/null 2>&1)
+    export HUGOxPARAMSxGITxLAST_COMMITxDATE=$(git log -1 --format=%cd --date=format:'%B %d, %Y' >/dev/null 2>&1)
+    export HUGOxPARAMSxGITxLAST_COMMITxHASH=$(git log -1 --format=%H >/dev/null 2>&1)
+    export HUGOxPARAMSxGITxLAST_COMMITxSUBJECT=$(git log -1 --format=%s >/dev/null 2>&1)
+
+    # Elgato Light
+    export elgato_ip=192.168.184.167
+    export number_of_lights=1
+
+    # NVM
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"source /Users/jessicadeen/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/jessicadeen/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"

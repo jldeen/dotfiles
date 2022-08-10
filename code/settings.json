@@ -1,58 +1,114 @@
 {
-// word wrap settings    
-    "editor.wordWrap": "on",
-//-------- Remote VSCode configuration --------
-
-// Port number to use for connection.
-"remote.port": 52698,
-
-// Launch the server on start up.
-"remote.onstartup": true,
-
-// Controls the font family.
-"editor.fontFamily": "'SourceCodePro Nerd Font'",
-"terminal.integrated.fontFamily": "'SourceCodePro Nerd Font'",
-"terminal.integrated.fontSize": 11,
-"workbench.startupEditor": "newUntitledFile",
-"typescript.check.npmIsInstalled": false,
-"window.zoomLevel": 1,
-"git.autofetch": true,
-// "workbench.colorTheme": "Visual Studio Dark"
-// "window.zoomLevel": 0,
-// "workbench.startupEditor": "newUntitledFile",
-
-// shell settings
-"terminal.integrated.shell.osx": "/bin/zsh",
-
-// Color Override for terminal
-"workbench.colorCustomizations": {
-    "activityBarBadge.background": "#5C6BC0",
-    "list.activeSelectionForeground": "#5C6BC0",
-    "list.inactiveSelectionForeground": "#5C6BC0",
-    "list.highlightForeground": "#5C6BC0",
-    "scrollbarSlider.activeBackground": "#5C6BC050",
-    "editorSuggestWidget.highlightForeground": "#5C6BC0",
-    "textLink.foreground": "#5C6BC0",
-    "progressBar.background": "#5C6BC0",
-    "pickerGroup.foreground": "#5C6BC0",
-    "tab.activeBorder": "#5C6BC0",
-    "notificationLink.foreground": "#5C6BC0",
-    "editorWidget.resizeBorder": "#5C6BC0",
-    "editorWidget.border": "#5C6BC0",
-    "settings.modifiedItemIndicator": "#5C6BC0",
-    "settings.headerForeground": "#5C6BC0",
-    "panelTitle.activeBorder": "#5C6BC0",
-    "breadcrumb.activeSelectionForeground": "#5C6BC0",
-    "menu.selectionForeground": "#5C6BC0",
-    "menubar.selectionForeground": "#5C6BC0"
-},
-    "workbench.colorTheme": "One Dark Pro",
-    "azure.resourceFilter": [
-        "72f988bf-86f1-41af-91ab-2d7cd011db47/dfb5d696-98d8-447c-a14d-56f131f3c4a5",
-        "72f988bf-86f1-41af-91ab-2d7cd011db47/998e0f50-cedb-4e50-a461-52ef20a0478b"
-    ],
-    "workbench.activityBar.visible": true,
-    "workbench.sideBar.location": "left",
-    "materialTheme.accent": "Indigo",
-    "workbench.iconTheme": "seti"
-}
+    // word wrap settings    
+        "editor.wordWrap": "on",
+        "git.path": "/usr/local/bin/git",
+    
+    //-------- Remote VSCode configuration --------
+    
+    // Port number to use for connection.
+    "remote.port": 52698,
+    
+    // Launch the server on start up.
+    "remote.onstartup": true,
+    
+    // Prettier Javascript
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+      },
+    
+    "editor.acceptSuggestionOnEnter": "off",
+    // "editor.quickSuggestions": {
+    //     "other": false,
+    //     "comments": false,
+    //     "strings": false
+    // },
+    
+    // Controls the font family.
+    "editor.fontFamily": "'SourceCodePro Nerd Font'",
+    "terminal.integrated.fontFamily": "'SourceCodePro Nerd Font'",
+    "terminal.integrated.fontSize": 11,
+    "workbench.startupEditor": "newUntitledFile",
+    "typescript.check.npmIsInstalled": false,
+    "git.autofetch": true,
+    // "workbench.colorTheme": "Visual Studio Dark"
+    // "window.zoomLevel": 0,
+    // "workbench.startupEditor": "newUntitledFile",
+    
+    // shell settings
+    // "terminal.integrated.shell.osx": "/bin/zsh",
+    "terminal.integrated.inheritEnv": true,
+    
+    // Color Override for terminal
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#5C6BC0",
+        "list.activeSelectionForeground": "#5C6BC0",
+        "list.inactiveSelectionForeground": "#5C6BC0",
+        "list.highlightForeground": "#5C6BC0",
+        "scrollbarSlider.activeBackground": "#5C6BC050",
+        "editorSuggestWidget.highlightForeground": "#5C6BC0",
+        "textLink.foreground": "#5C6BC0",
+        "progressBar.background": "#5C6BC0",
+        "pickerGroup.foreground": "#5C6BC0",
+        "tab.activeBorder": "#5C6BC0",
+        "notificationLink.foreground": "#5C6BC0",
+        "editorWidget.resizeBorder": "#5C6BC0",
+        "editorWidget.border": "#5C6BC0",
+        "settings.modifiedItemIndicator": "#5C6BC0",
+        "settings.headerForeground": "#5C6BC0",
+        "panelTitle.activeBorder": "#5C6BC0",
+        "breadcrumb.activeSelectionForeground": "#5C6BC0",
+        "menu.selectionForeground": "#5C6BC0",
+        "menubar.selectionForeground": "#5C6BC0"
+    },
+        "azure.resourceFilter": [
+            "72f988bf-86f1-41af-91ab-2d7cd011db47/dfb5d696-98d8-447c-a14d-56f131f3c4a5",
+            "72f988bf-86f1-41af-91ab-2d7cd011db47/998e0f50-cedb-4e50-a461-52ef20a0478b"
+        ],
+        "workbench.activityBar.visible": true,
+        "workbench.sideBar.location": "left",
+        "materialTheme.accent": "Indigo",
+        "workbench.iconTheme": "material-icon-theme",
+        "vs-kubernetes": {
+            "vs-kubernetes.kubectl-path.mac": "/Users/jessicadeen/.vs-kubernetes/tools/kubectl/kubectl",
+            "vs-kubernetes.minikube-path.mac": "/Users/jessicadeen/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+            "vs-kubernetes.helm-path.mac": "/Users/jessicadeen/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+            "vs-kubernetes.draft-path.mac": "/Users/jessicadeen/.vs-kubernetes/tools/draft/darwin-amd64/draft",
+            "vscode-kubernetes.minikube-path.mac": "/Users/jessicadeen/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
+            "vscode-kubernetes.kubectl-path.linux": "/home/vscode/.vs-kubernetes/tools/kubectl/kubectl",
+            "vscode-kubernetes.helm-path.linux": "/home/vscode/.vs-kubernetes/tools/helm/linux-amd64/helm",
+            "vscode-kubernetes.minikube-path.linux": "/home/vscode/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+        },
+        "diffEditor.ignoreTrimWhitespace": false,
+        "redhat.telemetry.enabled": true,
+        "go.toolsManagement.autoUpdate": true,
+        "editor.suggestSelection": "first",
+        "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+        "[json]": {
+            "editor.defaultFormatter": "vscode.json-language-features"
+        },
+        "window.zoomLevel": 1,
+        "python.linting.enabled": false,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": false,
+        "python.formatting.autopep8Path": "/usr/local/bin/autopep8",
+        "python.formatting.blackPath": "/usr/local/bin/black",
+        "python.formatting.yapfPath": "/usr/local/bin/yapf",
+        "python.linting.banditPath": "/usr/local/bin/bandit",
+        "python.linting.flake8Path": "/usr/local/bin/flake8",
+        "python.linting.mypyPath": "/usr/local/bin/mypy",
+        "python.linting.pycodestylePath": "/usr/local/bin/pycodestyle",
+        "python.linting.pydocstylePath": "/usr/local/bin/pydocstyle",
+        "python.linting.pylintPath": "/usr/local/bin/epylint",
+        "python.languageServer": "Pylance",
+        "python.experiments.enabled": false,
+        "python.terminal.activateEnvironment": false,
+        "vsintellicode.features.python.deepLearning": "enabled",
+        "editor.unicodeHighlight.allowedCharacters": {
+            "🚀": true
+        },
+        "git.enableCommitSigning": true,
+        "githubPullRequests.pullBranch": "never",
+        "workbench.colorTheme": "Dracula",
+        "git.alwaysSignOff": true,
+    }

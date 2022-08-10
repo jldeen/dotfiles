@@ -1,6 +1,30 @@
 #---- Functions ----
 function toggleClock () {
-    ~/Git/dotfiles/bin/toggleClock.sh
+    ~/.dotfiles/bin/toggleClock.sh
+}
+
+function hvec () {
+  for f; do
+    ffmpeg -i "$f" -map 0:0 -map 0:1 -map 0:2 -c:v copy -c:a:0 copy -c:a:1 copy "${f%.*}.mp4" -y
+
+    avconvert --preset PresetHEVCHighestQuality --source "${f%.*}.mp4" --replace --output "${f%.*}.mov" > /dev/null 2>&1 && echo '' && \
+    echo "MKV to MP4 converted successfully. You may open your file here: ${f%.*}.mp4" && \
+    echo "HEVC converted succesfully. You may open your file here: ${f%.*}.mov" 
+  done
+}
+
+function includeEveryone () {
+    git branch -m master main
+    git push -u origin main
+}
+
+function toggleMenu () {
+    ~/.dotfiles/bin/toggleMenuBigSur.sh
+}
+
+function urlencode() {
+  python -c 'import urllib, sys; print urllib.quote(sys.argv[1], sys.argv[2])' \
+    "$1" "$urlencode_safe"
 }
 
 function gitReset () {
@@ -34,4 +58,19 @@ function gitReset () {
         echo "there is nothing to clean... exiting..."
     fi
 }
+
+function unloadGlobalProtect {
+  launchctl unload -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
+
+  launchctl unload -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist
+}
+
+function loadGlobalProtect {
+  launchctl load -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
+
+  launchctl load -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist
+}
+# function blastoff(){
+#     echo "🚀"
+# }
 #---- End of Functions ----
