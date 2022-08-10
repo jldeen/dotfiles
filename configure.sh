@@ -10,6 +10,8 @@ brewInstall () {
         if test "$(uname)" = "Darwin"
         then
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> $HOME/.zprofile
+            eval "$(/opt/homebrew/bin/brew shellenv)"
             success 'brew installed'
         elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
         then
@@ -90,7 +92,7 @@ ohmyzshPluginInstall () {
     if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
         info 'zsh-autosuggestions already installed'
     else
-        git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions && success 'zsh-autosuggestions installed'
+        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions && success 'zsh-autosuggestions installed'
     fi
     if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
         info 'zsh-syntax-highlighting already installed'
