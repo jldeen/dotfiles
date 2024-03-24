@@ -3,6 +3,66 @@ function toggleClock () {
     ~/.dotfiles/bin/toggleClock.sh
 }
 
+function lxc-ip () {
+  lxc exec $1 -- ip addr show "$2" | grep "inet\b" | awk '{print $2}' | cut -d/ -f1
+}
+
+function incus-ip () {
+  incus exec $1 -- ip addr show "$2" | grep "inet\b" | awk '{print $2}' | cut -d/ -f1
+}
+
+function lxccreate () {
+  lxc launch "$1" "$2" --profile hdhome \
+    -c security.privileged=true \
+    -c security.nesting=true
+
+cat <<EOF | lxc config set "$2" raw.lxc -
+lxc.apparmor.profile=unconfied
+lxc.mount.auto=proc:rw sys:rw cgroup:rw
+lxc.cgroup.devices.allow=a
+lxc.cap.drop=
+EOF
+
+lxc exec "$2" -- bash -c 'while [ "$(systemctl is-system-running 2>/dev/null)" != "running" ] && [ "$(systemctl is-system-running 2>/dev/null)" != "degraded" ]; do :; done'
+
+TAILSCALE_IP=$(lxc-ip "$2" eth0)
+HDHOME_IP=$(lxc-ip "$2" eth1)
+
+echo ''
+echo "TAILSCALE IP: $TAILSCALE_IP"
+echo "HDHOME IP: $HDHOME_IP"
+echo ''
+echo "add to ssh config with the following commands:"
+echo "manssh add $2-ts jldeen@$TAILSCALE_IP -i ~/.ssh/id_rsa"
+echo "manssh add $2-hdhome jldeen@$HDHOME_IP -i ~/.ssh/id_rsa"
+}
+
+function incuscreate () {
+  incus launch "$1" "$2" --profile hdhome \
+    -c security.privileged=true \
+    -c security.nesting=true
+
+cat <<EOF | incus config set "$2" raw.lxc -
+lxc.apparmor.profile=unconfined
+lxc.mount.auto=proc:rw sys:rw cgroup:rw
+lxc.cgroup.devices.allow=a
+lxc.cap.drop=
+EOF
+
+incus exec "$2" -- bash -c 'while [ "$(systemctl is-system-running 2>/dev/null)" != "running" ] && [ "$(systemctl is-system-running 2>/dev/null)" != "degraded" ]; do :; done'
+
+TAILSCALE_IP=$(incus-ip "$2" eth0)
+HDHOME_IP=$(incus-ip "$2" eth1)
+
+echo ''
+echo "TAILSCALE IP: $TAILSCALE_IP"
+echo "HDHOME IP: $HDHOME_IP"
+echo ''
+echo "add to ssh config with the following commands:"
+echo "manssh add $2-ts jldeen@$TAILSCALE_IP -i ~/.ssh/id_rsa"
+echo "manssh add $2-hdhome jldeen@$HDHOME_IP -i ~/.ssh/id_rsa"
+}
+
 function hvec () {
   for f; do
     ffmpeg -i "$f" -map 0:0 -map 0:1 -map 0:2 -c:v copy -c:a:0 copy -c:a:1 copy "${f%.*}.mp4" -y
@@ -70,6 +130,7 @@ function loadGlobalProtect {
 
   launchctl load -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist
 }
+
 # function blastoff(){
 #     echo "🚀"
 # }

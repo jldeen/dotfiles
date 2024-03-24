@@ -31,17 +31,11 @@
         #
         # Setting to git 2.0 default to suppress warning message
         default = simple
-[credential]
-	helper = osxkeychain
-[init]
-	defaultBranch = main
-[commit]
-	gpgsign = true
-	template = /Users/jessicadeen/.gitmessage
-[user]
-	signingkey = 4A54847CBED78EF167763CE60A26547A7F82CA24
-	email = jessicadeen@me.com
 [gpg]
-	program = gpg
-[committer]
-	email = jessicadeen@me.com
+	program = /opt/homebrew/bin/gpg
+[commit]
+	gpgSign = true
+[user]
+	signingkey = 7F82CA24
+[tag]
+	gpgSign = true

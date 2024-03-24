@@ -19,7 +19,6 @@ else
     # ZSH Customization Settings
     ZSH_THEME="powerlevel10k/powerlevel10k"
 
-
     # fix pasting speed
     # ref https://github.com/zsh-users/zsh-autosuggestions/issues/238
     zstyle ':bracketed-paste-magic' active-widgets '.self-*'
@@ -73,7 +72,8 @@ else
     # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
     # Example format: plugins=(rails git textmate ruby lighthouse)
     # Add wisely, as too many plugins slow down shell startup.
-    plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z kubectl)
+    plugins=(sudo git history tmux tmuxinator zsh-autosuggestions zsh-completions zsh-z kubectl history-sync)
+    
     # User configuration
 
     # export MANPATH="/usr/local/man:$MANPATH"
@@ -154,6 +154,9 @@ fi
 
     export PATH="/usr/local/opt/python@3.10/bin:$PATH"
 
+    # Go Path
+    # export GOROOT="$(brew --prefix golang)/libexec"
+
     # Add .NET Core SDK tools
     export PATH="$PATH:/Users/jessicadeen/.dotnet/tools"
     export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
@@ -167,12 +170,13 @@ fi
     export HUGOxPARAMSxGITxLAST_COMMITxSUBJECT=$(git log -1 --format=%s >/dev/null 2>&1)
 
     # Elgato Light
-    export elgato_ip=192.168.184.167
+    export elgato_ip=192.168.184.166
     export number_of_lights=1
 
     # NVM
     export NVM_DIR="$HOME/.nvm"
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
     [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"source /Users/jessicadeen/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 source /Users/jessicadeen/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(/opt/homebrew/bin/brew shellenv)"

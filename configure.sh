@@ -15,7 +15,7 @@ brewInstall () {
             success 'brew installed'
         elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
         then
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             success 'brew installed'
         fi
     else
@@ -24,6 +24,8 @@ brewInstall () {
 }
 
 brewUpdate () {
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jessicadeen/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     brew update
     success 'brew updated'
 }
@@ -101,15 +103,15 @@ ohmyzshPluginInstall () {
     fi
 }
 
-pl9kInstall () {
-    # powerlevel9k install
-    if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
-        info 'powerlevel9k already installed'
-    else
-        echo "Now installing powerlevel9k..."
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k && success 'powerlevel9k installed'
-    fi
-}
+# pl9kInstall () {
+#     # powerlevel9k install
+#     if [ -d "$HOME/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
+#         info 'powerlevel9k already installed'
+#     else
+#         echo "Now installing powerlevel9k..."
+#     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k && success 'powerlevel9k installed'
+#     fi
+# }
 
 pl10kInstall () {
     # powerlevel10k install
