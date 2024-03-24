@@ -118,20 +118,4 @@ function gitReset () {
         echo "there is nothing to clean... exiting..."
     fi
 }
-
-function unloadGlobalProtect {
-  launchctl unload -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
-
-  launchctl unload -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist
-}
-
-function loadGlobalProtect {
-  launchctl load -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
-
-  launchctl load -w /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist
-}
-
-# function blastoff(){
-#     echo "🚀"
-# }
 #---- End of Functions ----
