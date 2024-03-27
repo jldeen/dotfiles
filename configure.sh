@@ -24,7 +24,7 @@ brewInstall () {
 }
 
 brewUpdate () {
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$(whoami)/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jldeen/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew update
     success 'brew updated'
