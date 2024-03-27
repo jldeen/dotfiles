@@ -144,8 +144,8 @@ then
   then
     success "dependencies installed"
     echo ''
-    echo "Now updating dependencies..."
-    pip3 install --upgrade setuptools
+    #echo "Now updating dependencies..."
+    #pip3 install --upgrade setuptools
   else
     fail "error installing dependencies"
   fi
