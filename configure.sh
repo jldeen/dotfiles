@@ -185,7 +185,6 @@ configureGitCompletion
 ohmyzshInstall
 zshZInstall
 ohmyzshPluginInstall
-pl9kInstall
 pl10kInstall
 tmuxTpmInstall
 
